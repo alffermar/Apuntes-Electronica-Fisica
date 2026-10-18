@@ -1,0 +1,41 @@
+% Figura extraída de "Tema 1.tex" (línea 461 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+		\draw (0,0) -- (4,0);
+		\draw (0,-0.7) -- (4,-0.7);
+		\draw (0,-2.3) -- (4,-2.3);
+		\draw (0,-3) -- (4,-3);
+		\draw[dashed] (0,-1.8) -- (4,-1.8);
+		\node at (4.3,-0.65) {$E_c$};
+		\node at (4.3,-1.75) {$E_a$};
+		\node at (4.3,-2.25) {$E_v$};
+           \draw[blue] (0,-1.5) -- (4, -1.5);
+            \draw[dashed, blue] (0,-2) -- (4, -2);
+            \node at (-0.35, -1.95)  {\textcolor{blue}{\small{$E_\mathrm{F}$}}};
+            \node at (-0.35, -1.45)  {\textcolor{blue}{\small{$E_\mathrm{F}^\mathrm{int}$}}};
+
+	\end{tikzpicture}
+\end{document}

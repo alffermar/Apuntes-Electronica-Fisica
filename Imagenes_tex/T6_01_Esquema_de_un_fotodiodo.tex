@@ -1,0 +1,41 @@
+% Figura extraída de "Tema 6.tex" (línea 19 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+\draw[-latex, decorate, decoration={snake, amplitude=2mm, segment length=5mm}] (1,4) -- (1,3);
+\draw[-latex, decorate, decoration={snake, amplitude=2mm, segment length=5mm}] (0.7,4) -- (0.7,3);
+\node[right]at(1.2,3.5){$h\nu$};
+    \draw[ultra thick] (0,0) rectangle (4,3);
+    \draw[thick] (0,2)--(4,2);
+    \draw (3.5,3)--(3.5,3.5);
+    \draw (3.5,0)--(3.5,-0.5);
+    \filldraw[fill=black] (3.5,3.6) circle (2pt);
+    \node[left] at(3.5,3.6){+};
+    \filldraw[fill=black] (3.5,-0.6) circle (2pt);
+    \node[left] at(3.5,-0.6){-};
+    \node[right] at(0,2.5){$N$};
+    \node[right] at(0,1.75){$P$};
+\end{tikzpicture}
+\end{document}

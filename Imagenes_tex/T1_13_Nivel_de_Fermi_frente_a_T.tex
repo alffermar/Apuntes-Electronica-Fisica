@@ -1,0 +1,99 @@
+% Figura redibujada a partir de "Imagenes/Nivel de Fermi temperatrua.PNG" (Tema 1).
+% Ocupa lo mismo que el PNG en el documento: 220.7 pt x 178.3 pt. Las
+% posiciones se dan en píxeles del PNG original (733 x 592 px).
+% Curvas calculadas para Si con ionización total:
+%   E_F - E_Fi = +-kT asinh(N / 2n_i),  n_i = sqrt(N_C N_V) (T/300)^{3/2} exp(-E_g/2kT),
+%   E_g(T) = 1.17 - 4.73e-4 T^2/(T + 636) eV,  N_C = 2.8e19 cm^-3,  N_V = 1.04e19 cm^-3.
+\documentclass[12pt,border=0pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.18}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}[x=0.30110pt, y=-0.30110pt, font=\scriptsize]
+    \useasboundingbox (0,0) rectangle (733,592);
+    \begin{scope}[x=1pt, y=1pt]
+    % Esquina inferior izquierda de los ejes en (112, 522) px
+    \begin{axis}[
+        at={(33.72pt,-157.17pt)}, anchor=south west, scale only axis,
+        width=177.65pt, height=151.15pt,
+        xmin=0, xmax=600, ymin=-1, ymax=1,
+        xtick={0,100,...,600}, ytick={-1,-0.8,...,1},
+        minor y tick num=1,
+        yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=1},
+        tick align=inside, tick style={line width=0.4pt, black},
+        major tick length=3pt, minor tick length=1.8pt,
+        grid=major, major grid style={line width=0.25pt, black!35},
+        samples=120,
+        declare function={
+            kT(\T) = 8.617e-5*\T;
+            Eg(\T) = 1.17 - 4.73e-4*\T^2/(\T + 636);
+            ni(\T) = 1.7065e19*(\T/300)^1.5*exp(-Eg(\T)/(2*kT(\T)));
+            asinh(\u) = ln(\u + sqrt(\u^2 + 1));
+            EF(\T,\N) = kT(\T)*asinh(\N/(2*ni(\T)));
+            Ec(\T) = Eg(\T)/2 + 0.4952*kT(\T);
+            Ev(\T) = -Eg(\T)/2 + 0.4952*kT(\T);
+        },
+    ]
+        % Bandas (zonas sombreadas): contorno cerrado recorrido con t en [0, 1200]
+        \addplot[fill=gray, opacity=0.4, draw=none, domain=0:1200, samples=241, variable=\t]
+            ({\t <= 600 ? \t : 1200 - \t}, {\t <= 600 ? Ec(\t) : Ec(1200 - \t) + 0.06}) -- cycle;
+        \addplot[fill=gray, opacity=0.4, draw=none, domain=0:1200, samples=241, variable=\t]
+            ({\t <= 600 ? \t : 1200 - \t}, {\t <= 600 ? Ev(\t) : Ev(1200 - \t) - 0.12}) -- cycle;
+        \addplot[black, ultra thick, domain=0:600] {Ec(x)};
+        \addplot[black, ultra thick, domain=30:600] {Ev(x)};
+        % Nivel de Fermi para N = 1e12 ... 1e18 cm^-3: tipo N en azul, tipo P en rojo
+        % (décadas pares más gruesas)
+        \pgfplotsset{grueso/.style={thick, domain=45:600},
+                     fino/.style={semithin, domain=45:600}, semithin/.style={line width=0.5pt}}
+        \addplot[blue, grueso] {EF(x, 1e12)};  \addplot[red, grueso] {-EF(x, 1e12)};
+        \addplot[blue, fino]   {EF(x, 1e13)};  \addplot[red, fino]   {-EF(x, 1e13)};
+        \addplot[blue, grueso] {EF(x, 1e14)};  \addplot[red, grueso] {-EF(x, 1e14)};
+        \addplot[blue, fino]   {EF(x, 1e15)};  \addplot[red, fino]   {-EF(x, 1e15)};
+        \addplot[blue, grueso] {EF(x, 1e16)};  \addplot[red, grueso] {-EF(x, 1e16)};
+        \addplot[blue, fino]   {EF(x, 1e17)};  \addplot[red, fino]   {-EF(x, 1e17)};
+        \addplot[blue, grueso] {EF(x, 1e18)};  \addplot[red, grueso] {-EF(x, 1e18)};
+    \end{axis}
+    \end{scope}
+    % Etiquetas de los ejes
+    \node[rotate=90] at (20,271) {$E_\mathrm{F} - E_\mathrm{Fi}$ (eV)};
+    \node at (395,580) {$T$ (K)};
+    % Rótulos
+    \begin{scope}[every node/.style={fill=white, inner sep=0.6pt}]
+        \node at (655,40) {Si};
+        \node at (408,87) {Banda de conducción};
+        \node at (410,477) {Banda de valencia};
+        \node at (212,257) {Nivel intrínseco};
+        \node[text=blue] at (172,187) {Tipo N};
+        \node[text=red] at (172,352) {Tipo P};
+        \node[text=blue] at (606,150) {$N_\mathrm{D} = 10^{18}$ cm$^{-3}$};
+        \node[text=blue] at (330,226) {$10^{12}$};
+        \node[text=blue] at (470,232) {$10^{14}$};
+        \node[text=blue] at (628,258) {$10^{16}$};
+        \node[text=red] at (330,316) {$10^{12}$};
+        \node[text=red] at (470,310) {$10^{14}$};
+        \node[text=red] at (628,284) {$10^{16}$};
+        \node[text=red] at (468,388) {$N_\mathrm{A} = 10^{18}$ cm$^{-3}$};
+    \end{scope}
+\end{tikzpicture}
+\end{document}

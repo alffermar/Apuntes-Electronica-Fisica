@@ -1,0 +1,54 @@
+% Figura extraída de "Tema 3.tex" (línea 187 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+    \draw (0,3)--(0,-3);
+    \draw[dashed, thick] (-4,0)--(4,0);
+    \draw[dashed] (-4,2)--(4,2);
+    \node at (-4.5,2){BC};
+    \node at (-4.5,-0.3){BV};
+    \node at (-4.5,.5){$E_\mathrm{F}$};
+
+   \draw[ultra thick] (-4,2)--(-1.2,2); % Unión recta
+     \draw[ultra thick] (-1.2,2) to[out=-20, in=120] (0,1); % Unión suavizada
+    \draw[ultra thick] (0,1) to[out=-60, in=180] (1.7,0.5); % Desplazado 2.3 unidades hacia abajo
+    
+    \draw[ultra thick] (1.7,0.5)--(4,0.5);
+
+    \draw[ultra thick] (-4,2-2.3)--(-1.2,2-2.3); 
+    \node at (-2,2.5) {P};
+    \node at (2,2.5) {N};
+    \draw[latex-latex] (1.9,0.5)--(1.9,2) ;
+    \node at (2.5,1.25) {$eV_\mathrm{B}$};
+    
+    \draw[ultra thick] (-1.2,2-2.3) to[out=-20, in=120] (0,1-2.3); % Desplazado 2.3 unidades hacia abajo
+    \draw[ultra thick] (0,1-2.3) to[out=-60, in=180] (1.7,0.5-2.3); % Desplazado 2.3 unidades hacia abajo
+    
+    \draw[ultra thick] (1.7,0.5-2.3)--(4,0.5-2.3);
+
+    \draw[thick] (-1.2, 2.5)-- (-1.2, -2.5) node[below] {$x=x_\mathrm{p}$};
+    \draw[thick] (1.7, 2.5)-- (1.7, -2.5)node[below] {$x=x_\mathrm{n}$};
+\end{tikzpicture}
+\end{document}

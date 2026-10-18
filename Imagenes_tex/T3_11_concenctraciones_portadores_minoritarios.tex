@@ -1,0 +1,43 @@
+% Figura extraída de "Tema 3.tex" (línea 415 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+        \node at (-2,3.2) {P};
+    \node at (2,3.2) {N};
+    \draw[-latex, thick] (0,-0.2)--(0,3.5);
+    \draw[-latex, thick] (-6,0)--(6,0);
+        \draw[dashed, thick] (-1.2, 3.2)-- (-1.2, -0.2) node[below] {$x=x_\mathrm{p}$};
+    \draw[dashed, thick] (1.2, 3.2)-- (1.2, -0.2)node[below] {$x=x_\mathrm{n}$};
+
+    \draw[ultra thick] (-3.7,1)--(-5.5,1); %Recta
+    \draw[ultra thick] (-3.7,1) to[out=0, in=270] (-1.2,2.5) ;
+    \draw[ultra thick] (1.2,3) to[out=-70, in=180] (3.7,1.5); %Curva
+    \draw[ultra thick] (3.7,1.5)--(5.5,1.5); %Recta
+    \draw[dashed, blue] (0,1.5)--(5.5,1.5); %Recta
+    \draw[dashed, red] (0,1)--(-5.5,1) ; %Recta
+    \node at (-0.5,1.5) {\textcolor{red}{$n_{p0}$}};
+    \node at (0.5,1) {\textcolor{blue}{$p_{n0}$}};
+    \end{tikzpicture}
+\end{document}

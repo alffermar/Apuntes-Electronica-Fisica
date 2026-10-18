@@ -1,0 +1,66 @@
+% Figura extraída de "Tema 2.tex" (línea 370 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+%% DIBUJAMOS EL CUBO
+% Dimensiones
+\def\L{3} % Longitud (x)
+\def\W{3} % Altura (y)
+\def\H{3} % Ancho (z)
+
+% Dibuja los lados exteriores
+\draw  (0,\W,0) -- (0,\W,\H); %Lado izquierdo arriba
+\draw (0,0,\H)--(0,\W,\H); % Lado izquierdo frontal
+\draw (\L,0,0) -- (\L,\W,0) -- (\L,\W,\H); %Lado derecho trasero y superior derecho
+\draw (0,0,\H) -- (\L,0,\H) -- (\L,\W,\H); %Lado bajo frontal y derecho frontal
+\draw (0,\W,0) -- (\L,\W,0); %Lado de arriba atrás
+\draw (0,\W,\H)-- (\L,\W,\H); % Lado de abajo adelante
+\draw (\L,0,0) -- (\L,0,\H); %Lado derecho abajo
+% Dibuja los lados interiores punteados
+\draw[dashed] (0,0,0) -- (0,0,\H);
+\draw[dashed] (0,0,0) -- (\L,0,0);
+\draw[dashed] (0,0,0)-- (0,\W,0);
+%%
+%%% Ponemos las dimensiones
+    %Longitud
+\draw[latex-latex] (0, 0, \H+1) -- (\L, 0, \H+1) node[midway, below, yshift=-5] {$\mathrm{d}x$};
+\draw (0,0,\H+0.5) --(0,0,\H+1.5);
+\draw (\L,0,\H+0.5) --(\L,0,\H+1.5);
+    %Anchura
+\draw[latex-latex] (\L+0.5, 0, 0) -- (\L+0.5, 0, \H);
+\node at (\L+1,-0.1,\H/2-0.1) {$\mathrm{d}y$};
+\draw (\L+0.3,0,\H) --(\L+0.75,0,\H);
+\draw (\L+0.3,0,0) --(\L+0.75,0,0);
+    %Altura
+\draw[latex-latex] (\L+0.5, 0, 0) -- (\L+0.5, \W,0);
+\node at (\L+1,\W/2,0) {$\mathrm{d}z$};
+\draw (\L+0.3,\W,0) --(\L+0.75,\W,0);
+\draw [-latex, blue] (-2,\W/3+0.5,\H/2)--(0,\W/3+0.5,\H/2);
+\draw [-latex, blue] (3,\W/3+0.5,\H/2)--(5,\W/3+0.5,\H/2);
+\node at (-2, \W/3, \H/2-0.5) {\textcolor{blue}{$\textbf{j}_{nx}(x,y,z)$}};
+\node at (6, \W/3, \H/2-0.5) {\textcolor{blue}{$\textbf{j}_{nx}(x+\mathrm{d}x,y,z)=$}};
+\node at (8, \W/3, \H/2+1) {\textcolor{blue}{$\textbf{j}_{nx}(x,y,z)+\diff[]{\textbf{j}_{nx}}{x}\mathrm{d}x$}};
+\end{tikzpicture}
+\end{document}

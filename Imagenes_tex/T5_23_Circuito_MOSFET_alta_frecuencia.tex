@@ -1,0 +1,63 @@
+% Figura redibujada a partir de "Imagenes/Circuito equivalente alta tension.PNG" (Tema 5).
+% Coordenadas en píxeles del PNG original (424 x 323 px), escaladas para que
+% ocupe lo mismo que el PNG en el documento: 166.0 pt x 126.4 pt.
+\documentclass[12pt,border=0pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}[x=0.3915pt, y=-0.3915pt, font=\footnotesize,
+    abierto/.style={circle, draw, fill=white, inner sep=0pt, minimum size=4pt},
+    nodo/.style={circle, fill, inner sep=0pt, minimum size=4pt},
+    fuente/.style={circle, draw, thick, fill=white, inner sep=0pt, minimum size=21pt}]
+    \useasboundingbox (0,0) rectangle (424,323);
+    % Línea de puerta y drenador con C_gd
+    \draw (40,46) -- (120,46) (131,46) -- (410,46);
+    \draw (120,26) -- (120,66) (131,26) -- (131,66);
+    \node[abierto] at (40,46) {};
+    \node[abierto] at (410,46) {};
+    % Línea de fuente
+    \draw (35,283) node[nodo]{} -- (405,283) node[nodo]{};
+    % C_gs
+    \draw (75,46) -- (75,158) (75,170) -- (75,283);
+    \draw (45,158) -- (105,158) (45,170) -- (105,170);
+    % Fuente de corriente g_m v_gs
+    \draw (172,46) -- (172,283);
+    \node[fuente] at (172,172) {};
+    \draw[-latex] (172,159) -- (172,186);
+    % Resistencia 1/g_d
+    \draw (278,46) -- (278,128) (278,200) -- (278,283);
+    \draw (267,128) rectangle (289,200);
+    % C_ds
+    \draw (345,46) -- (345,152) (345,163) -- (345,283);
+    \draw (318,152) -- (372,152) (318,163) -- (372,163);
+    % Etiquetas
+    \node at (14,46) {G};
+    \node at (396,78) {D};
+    \node at (235,308) {S};
+    \node at (158,26) {$C_\mathrm{gd}$};
+    \node at (40,212) {$C_\mathrm{gs}$};
+    \node at (137,122) {$g_\mathrm{m}\, v_\mathrm{gs}$};
+    \node at (236,176) {$1/g_\mathrm{d}$};
+    \node at (395,170) {$C_\mathrm{ds}$};
+\end{tikzpicture}
+\end{document}

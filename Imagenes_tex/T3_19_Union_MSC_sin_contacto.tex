@@ -1,0 +1,51 @@
+% Figura extraída de "Tema 3.tex" (línea 770 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+    \draw[ultra thick] (-6,0) node[left]{$E_\mathrm{C_M}$} --(-1,0) ;
+    \draw[ultra thick] (1,1)--(6,1)node[right]{$E_\mathrm{V_{SC}}$};
+    \draw[dashed, thick] (-6,1.5) node[left]{$E_\mathrm{F_M}$} --(-1,1.5);
+    \draw[dashed, thick](1,2)-- (6,2)node[right]{$E_\mathrm{F_{SC}}$};
+    \fill[gray, opacity=0.4] (-6,0) rectangle (-1,1.5);
+    \draw[ultra thick] (1,2.5)--(6,2.5) node[right]{$E_\mathrm{C_{SC}}$};
+    \fill[gray, opacity=0.4](1,2.5) rectangle (6,2.7);
+    \draw[thick] (-6,3.5) --(-1,3.5);
+    \node[above] at(-3.5,3.6) {Metal};
+    \draw[thick] (6,3.5)--(1,3.5);
+    \node[above] at(3.5,3.6) {Semiconductor};
+    \draw[thick] (-1,3.5)--(-1,0);
+    \draw[latex-latex] (-4,3.5)--(-4,0);
+    \node at (-4.3,2.4) {$\chi_\mathrm{M}$};
+    \draw[latex-latex] (-2,3.5)--(-2,1.5);
+    \node at(-1.7,2.4){$\phi_\mathrm{M}$};
+    \draw[thick] (1,3.5)--(1,0);
+    \draw[latex-latex, thick](-1,3.5)--(1,3.5);
+    \node[above] at (0,3.6){Nivel de Vacío};
+    \draw[latex-latex] (2,3.5)--(2,2);
+    \node[left] at (2,3){$\phi_\mathrm{SC}$};
+    \draw[latex-latex] (4,3.5)--(4,2.5);
+    \node[right] at (4,3){$\chi_\mathrm{SC}$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,196 @@
+% Figura redibujada a partir de "Imagenes/Tablas de MOSFET.PNG" (Tema 5).
+% Coordenadas en píxeles del PNG original (1289 x 775 px), escaladas para que
+% ocupe lo mismo que el PNG en el documento: 483.7 pt x 290.8 pt (\linewidth).
+\documentclass[12pt,border=0pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+\usetikzlibrary{decorations.pathreplacing}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+% Símbolo de MOSFET de 4 terminales (con sustrato B).
+% #1: posición de la puerta; #2: 1 = empobrecimiento (canal continuo);
+% #3: 1 = canal P (flecha del sustrato hacia fuera).
+\newcommand{\mosfetB}[3]{%
+    \begin{scope}[shift={#1}]
+        \draw (-31,30) -- (0,30) (0,-28) -- (0,30);
+        \ifnum#2=1 \draw (15,-48) -- (15,46);
+        \else \draw (15,-48) -- (15,-30) (15,-10) -- (15,10) (15,28) -- (15,46);
+        \fi
+        \draw (15,-40) -- (30,-40) -- (30,-55);
+        \draw (15,38) -- (30,38) -- (30,52);
+        \ifnum#3=1 \draw[-latex] (15,0) -- (50,0);
+        \else \draw[-latex] (50,0) -- (16,0);
+        \fi
+        \node at (-40,0) {G};
+        \node at (67,-45) {D};
+        \node at (65,-2) {B};
+        \node at (67,38) {S};
+    \end{scope}}
+% Símbolo de MOSFET de 3 terminales.
+% #1: posición de la puerta; #2: 1 = empobrecimiento (canal grueso);
+% #3: 1 = canal P (flecha de la fuente hacia el canal).
+\newcommand{\mosfet}[3]{%
+    \begin{scope}[shift={#1}]
+        \draw (-30,30) -- (0,30) (0,-30) -- (0,30);
+        \draw (15,-50) -- (15,40);
+        \ifnum#2=1 \fill (16,-38) rectangle (23,30); \fi
+        \draw (15,-43) -- (47,-43) -- (47,-56);
+        \ifnum#3=1 \draw[-latex] (47,23) -- (16,23);
+        \else \draw[-latex] (15,23) -- (47,23);
+        \fi
+        \draw (47,23) -- (47,40);
+        \node at (-41,3) {G};
+        \node at (65,-45) {D};
+        \node at (65,35) {S};
+    \end{scope}}
+% Curvas de salida I_D-V_DS. #1: origen; #2: sentido (1 canal N, -1 canal P);
+% #3: lista de nivel/codo/final (en píxeles, respecto al origen).
+\newcommand{\curvassalida}[3]{%
+    \begin{scope}[shift={#1}, xscale=#2, yscale=#2]
+        \foreach \nivel/\codo/\fin in {#3}
+            \draw[curva] (0,0) to[out=72, in=180] (\codo,-\nivel) -- (\fin,-\nivel);
+    \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}[x=0.37525pt, y=-0.37525pt, font=\scriptsize,
+    eje/.style={-latex}, curva/.style={blue, thick}]
+    \useasboundingbox (0,0) rectangle (1289,775);
+    % ---- Rejilla de la tabla ----
+    \foreach \x in {203,383,712,940,1150} \draw (\x,8) -- (\x,770);
+    \foreach \y in {8,97,268,433,603,770} \draw (203,\y) -- (1150,\y);
+    % ---- Cabeceras ----
+    \begin{scope}[font=\footnotesize, align=center]
+        \node at (293,48) {Tipo};
+        \node at (547,48) {Símbolos};
+        \node at (826,48) {Características\\de salida};
+        \node at (1045,48) {Características de\\transferencia};
+    \end{scope}
+    \begin{scope}[font=\scriptsize\bfseries, align=center]
+        \node at (98,56) {Condición\\para conducción};
+        \node at (1220,56) {Potencial\\umbral};
+    \end{scope}
+    % ---- Columna izquierda: condición de conducción ----
+    \draw[decorate, decoration={brace, amplitude=7pt}] (180,430) -- (180,105);
+    \draw[decorate, decoration={brace, amplitude=7pt}] (180,765) -- (180,440);
+    \node[font=\footnotesize] at (80,272) {$V_\mathrm{GS} > V_\mathrm{T}$};
+    \node[font=\footnotesize] at (78,600) {$V_\mathrm{GS} < V_\mathrm{T}$};
+    % ---- Columna derecha: tensión umbral ----
+    \begin{scope}[font=\footnotesize]
+        \node at (1228,178) {$V_\mathrm{T} > 0$};
+        \node at (1228,345) {$V_\mathrm{T} < 0$};
+        \node at (1228,527) {$V_\mathrm{T} < 0$};
+        \node at (1228,690) {$V_\mathrm{T} > 0$};
+    \end{scope}
+    % ---- Tipo ----
+    \begin{scope}[align=center]
+        \node at (293,175) {Canal N\\Enriquecimiento\\Norm. OFF\\Realce};
+        \node at (293,337) {Canal N\\Empobrecimiento\\Norm. ON\\Vaciamiento};
+        \node at (293,506) {Canal P\\Enriquecimiento\\Norm. OFF\\Realce};
+        \node at (293,668) {Canal P\\Empobrecimiento\\Norm. ON\\Vaciamiento};
+    \end{scope}
+    % ---- Símbolos ----
+    \begin{scope}[]
+        \mosfetB{(442,172)}{0}{0}  \mosfet{(604,172)}{0}{0}
+        \mosfetB{(442,340)}{1}{0}  \mosfet{(604,340)}{1}{0}
+        \mosfetB{(442,520)}{0}{1}  \mosfet{(604,520)}{0}{1}
+        \mosfetB{(442,680)}{1}{1}  \mosfet{(592,680)}{1}{1}
+    \end{scope}
+    % ---- Características de salida ----
+    % Canal N, enriquecimiento
+    \draw[eje] (742,222) -- (742,105);
+    \draw[eje] (735,215) -- (890,215);
+    \curvassalida{(742,215)}{1}{93/70/113, 57/55/98, 33/42/98, 15/32/98}
+    \node at (764,120) {$I_\mathrm{D}$};
+    \node at (818,232) {$V_\mathrm{DS}$};
+    \node at (862,156) {$V_\mathrm{GS}$};
+    \draw[-latex] (890,145) -- (890,117);
+    \node at (893,107) {$+$};
+    \draw[-latex] (876,236) -- (900,236);
+    \node at (915,232) {$+$};
+    % Canal N, empobrecimiento
+    \draw[eje] (742,397) -- (742,280);
+    \draw[eje] (735,390) -- (890,390);
+    \curvassalida{(742,390)}{1}{97/72/113, 55/55/98, 30/42/98, 12/32/98}
+    \node at (764,295) {$I_\mathrm{D}$};
+    \node at (818,408) {$V_\mathrm{DS}$};
+    \node at (872,332) {$V_\mathrm{GS}\!=\!0$};
+    \draw[-latex] (890,320) -- (890,292);
+    \node at (893,282) {$+$};
+    \draw[-latex] (876,410) -- (900,410);
+    \node at (915,407) {$+$};
+    % Canal P, enriquecimiento
+    \draw[eje] (750,468) -- (912,468);
+    \draw (893,462) -- (893,592);
+    \curvassalida{(893,468)}{-1}{27/45/115, 47/60/120, 67/75/122, 90/90/118}
+    \node at (802,454) {$V_\mathrm{DS}$};
+    \draw[-latex] (785,452) -- (757,452);
+    \node at (745,463) {$-$};
+    \node at (770,515) {$V_\mathrm{GS}$};
+    \draw[-latex] (762,528) -- (762,560);
+    \node at (762,573) {$-$};
+    \node at (870,556) {$I_\mathrm{D}$};
+    % Canal P, empobrecimiento
+    \draw[eje] (760,622) -- (918,622);
+    \draw (895,616) -- (895,745);
+    \curvassalida{(895,622)}{-1}{28/45/120, 48/60/125, 70/75/128, 100/92/130}
+    \node at (806,610) {$V_\mathrm{DS}$};
+    \node at (733,635) {$-$};
+    \node at (765,672) {$V_\mathrm{GS}\!=\!0$};
+    \draw[-latex] (752,688) -- (752,722);
+    \node at (752,736) {$-$};
+    \node at (868,718) {$I_\mathrm{D}$};
+    % ---- Características de transferencia ----
+    % Canal N, enriquecimiento
+    \draw[eje] (945,218) -- (1122,218);
+    \draw[eje] (1027,218) -- (1027,116);
+    \draw[curva] (1060,218) .. controls (1080,216) and (1095,160) .. (1118,130);
+    \node at (1045,128) {$I_\mathrm{D}$};
+    \node at (1106,190) {$V_\mathrm{GS}$};
+    \node at (1042,234) {$V_\mathrm{T}$};
+    \node at (956,232) {$-$};
+    \node at (1113,234) {$+$};
+    % Canal N, empobrecimiento
+    \draw[eje] (948,385) -- (1127,385);
+    \draw[eje] (1027,385) -- (1027,283);
+    \draw[curva] (985,385) .. controls (1010,383) and (1030,340) .. (1088,315);
+    \node at (1052,293) {$I_\mathrm{D}$};
+    \node at (1112,358) {$V_\mathrm{GS}$};
+    \node at (956,400) {$-$};
+    \node at (1118,400) {$+$};
+    % Canal P, enriquecimiento
+    \draw[eje] (962,485) -- (1142,485);
+    \draw[eje] (1042,592) -- (1042,455);
+    \draw[curva] (965,570) .. controls (985,560) and (1000,500) .. (1017,485);
+    \node at (1002,465) {$V_\mathrm{T}$};
+    \node at (1068,469) {$I_\mathrm{D}$};
+    \node at (1128,467) {$+$};
+    \node at (963,480) {$-$};
+    \node at (1118,513) {$V_\mathrm{GS}$};
+    % Canal P, empobrecimiento
+    \draw[eje] (950,650) -- (1132,650);
+    \draw[eje] (1030,735) -- (1030,623);
+    \draw[curva] (965,725) .. controls (1000,705) and (1020,655) .. (1060,652) -- (1080,651);
+    \node at (1062,632) {$I_\mathrm{D}$};
+    \node at (1122,634) {$+$};
+    \node at (963,645) {$-$};
+    \node at (1105,678) {$V_\mathrm{GS}$};
+\end{tikzpicture}
+\end{document}

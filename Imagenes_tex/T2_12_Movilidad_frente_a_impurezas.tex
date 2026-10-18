@@ -1,0 +1,90 @@
+% Figura redibujada a partir de "Imagenes/Movilidad vs impurezas.PNG" (Tema 2).
+% Ocupa lo mismo que el PNG en el documento: 227.3 pt x 293.8 pt. Las
+% posiciones se dan en píxeles del PNG original (629 x 813 px).
+% Curvas: modelo de Caughey-Thomas, mu = mu_min + (mu_max - mu_min)/(1 + (N/N_ref)^alfa),
+% con parámetros ajustados a la figura original (T = 300 K).
+\documentclass[12pt,border=0pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+\pgfplotsset{compat=1.18}
+% Panel de 528 x 213 px; el argumento es la esquina inferior izquierda.
+\pgfplotsset{panel/.style={
+    at={#1}, anchor=south west, scale only axis,
+    width=190.79pt, height=76.97pt,
+    xmin=1e14, xmax=1e19, ymin=1e2, ymax=1e4,
+    xtick={1e14,1e15,1e16,1e17,1e18,1e19}, ytick={1e2,1e3,1e4},
+    grid=both, major grid style={line width=0.3pt, black!50},
+    minor grid style={line width=0.2pt, black!22},
+    tick align=inside, tick style={black, line width=0.3pt},
+    samples=60, domain=14:19,
+    declare function={ct(\N,\mn,\mx,\Nr,\a) = \mn + (\mx - \mn)/(1 + (\N/\Nr)^\a);},
+}}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}[x=0.36135pt, y=-0.36135pt, font=\scriptsize]
+    \useasboundingbox (0,0) rectangle (629,813);
+    \begin{scope}[x=1pt, y=1pt]
+    % Ge (ejes entre y = 20 y y = 233 px)
+    \begin{axis}[panel={(28.185pt,-84.195pt)}, xmode=log, ymode=log, xticklabels={}]
+        \addplot[blue, ultra thick] ({10^x}, {ct(10^x, 40, 3990, 5.62e17, 0.45)});
+        \addplot[red, ultra thick] ({10^x}, {ct(10^x, 20, 2174, 5.62e16, 0.60)});
+    \end{axis}
+    % Si (ejes entre y = 275 y y = 488 px)
+    \begin{axis}[panel={(28.185pt,-176.34pt)}, xmode=log, ymode=log, xticklabels={}]
+        \addplot[blue, ultra thick] ({10^x}, {ct(10^x, 60, 1682, 1e17, 0.80)});
+        \addplot[red, ultra thick] ({10^x}, {ct(10^x, 30, 482, 3.16e17, 0.80)});
+    \end{axis}
+    % GaAs (ejes entre y = 522 y y = 735 px)
+    \begin{axis}[panel={(28.185pt,-265.59pt)}, xmode=log, ymode=log]
+        \addplot[blue, ultra thick] ({10^x}, {ct(10^x, 200, 7920, 1e17, 0.45)});
+        \addplot[red, ultra thick] ({10^x}, {ct(10^x, 30, 469, 5.62e16, 0.35)});
+    \end{axis}
+    \end{scope}
+    % Etiquetas de los ejes
+    \node[rotate=90] at (12,385) {Movilidad (cm$^2$/V$\cdot$s)};
+    \node at (340,797) {Concentración de impurezas (cm$^{-3}$)};
+    % Rótulos
+    \begin{scope}[every node/.style={fill=white, inner sep=1pt}]
+        \node at (548,46) {$T = 300$ K};
+        % Ge
+        \node[text=blue] at (310,58) {$\mu_n$};
+        \node[text=red] at (310,134) {$\mu_p$};
+        \node (Ge) at (433,111) {Ge};
+        % Si
+        \node[text=blue] at (318,350) {$\mu_n$};
+        \node[text=red] at (318,437) {$\mu_p$};
+        \node (Si) at (196,388) {Si};
+        % GaAs
+        \node[text=blue] at (290,560) {$\mu_n$};
+        \node[text=red] at (290,662) {$\mu_p$};
+        \node (GaAs) at (402,617) {GaAs};
+    \end{scope}
+    \begin{scope}
+        \draw (Ge.west) to[out=180, in=-80] (405,88);
+        \draw (Ge.west) to[out=180, in=80] (405,128);
+        \draw (Si.east) to[out=0, in=-100] (232,358);
+        \draw (Si.east) to[out=0, in=100] (232,416);
+        \draw (GaAs.north) to[out=90, in=-90] (405,574);
+        \draw (GaAs.south) to[out=-90, in=90] (403,697);
+    \end{scope}
+\end{tikzpicture}
+\end{document}

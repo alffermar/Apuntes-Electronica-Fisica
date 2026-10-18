@@ -1,0 +1,42 @@
+% Figura extraída de "Tema 2.tex" (línea 284 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+		\draw (-1,0) -- (7,0);
+		\draw (-1,-3) -- (7,-3);
+          \draw (-1,-1.3)-- (7,-1.3);
+		\node at (8,0) {$E_\mathrm{c}, n, N_\mathrm{c}$};
+          \node at (8,-1.3) {$E_\mathrm{T}, n_\mathrm{T}, N_\mathrm{T}$};
+		\node at (8,-3.05) {$E_\mathrm{v}, p, N_\mathrm{v}$};
+          \draw[-latex] (0,-1.3) -- (0,0);
+          \draw[-latex] (2,0)--(2,-1.3);
+          \draw [-latex] (4,-3)--(4,-1.3);
+          \draw [-latex] (6,-1.3)--(6,-3);
+          \node at (0.5,-0.65) {$e_n$};
+          \node at (2.5,-0.65) {$c_n$};
+          \node at (4.5,-2.15) {$e_p$};
+          \node at (6.5,-2.15) {$c_p$};
+\end{tikzpicture}
+\end{document}

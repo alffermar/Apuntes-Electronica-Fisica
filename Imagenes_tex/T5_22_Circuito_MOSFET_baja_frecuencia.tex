@@ -1,0 +1,62 @@
+% Figura redibujada a partir de "Imagenes/Circuito equivalente.PNG" (Tema 5).
+% Coordenadas en píxeles del PNG original (433 x 312 px), escaladas para que
+% ocupe lo mismo que el PNG en el documento: 169.5 pt x 122.1 pt.
+\documentclass[12pt,border=0pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}[x=0.3915pt, y=-0.3915pt, font=\footnotesize,
+    abierto/.style={circle, draw, fill=white, inner sep=0pt, minimum size=4pt},
+    nodo/.style={circle, fill, inner sep=0pt, minimum size=4pt},
+    fuente/.style={circle, draw, thick, fill=white, inner sep=0pt, minimum size=21pt}]
+    \useasboundingbox (0,0) rectangle (433,312);
+    % Puerta (en abierto)
+    \draw (57,46) -- (122,46);
+    \node[abierto] at (57,46) {};
+    \node[abierto] at (122,46) {};
+    % Nodo de drenador y nodo de fuente
+    \draw (172,46) -- (357,46) node[abierto]{};
+    \draw (62,276) node[nodo]{} -- (382,276) node[nodo]{};
+    % Fuentes de corriente dependientes
+    \foreach \x in {172,260} {
+        \draw (\x,46) -- (\x,276);
+        \node[fuente] at (\x,160) {};
+        \draw[-latex] (\x,147) -- (\x,174);
+    }
+    % Resistencia 1/g_d
+    \draw (322,46) -- (322,124) (322,196) -- (322,276);
+    \draw (311,124) rectangle (333,196);
+    % Corriente de drenador
+    \draw[-latex] (350,46) -- (327,46);
+    % Etiquetas
+    \node at (22,48) {G};
+    \node at (383,48) {D};
+    \node at (250,300) {S};
+    \node at (343,18) {$i_\mathrm{d}$};
+    \node at (25,160) {$v_\mathrm{gs}$};
+    \node at (405,160) {$v_\mathrm{ds}$};
+    \node[left] at (147,175) {$g_\mathrm{m} v_\mathrm{gs}$};
+    \node at (222,207) {$g_\mathrm{mb} v_\mathrm{bs}$};
+    \node at (365,212) {$1/g_\mathrm{d}$};
+\end{tikzpicture}
+\end{document}

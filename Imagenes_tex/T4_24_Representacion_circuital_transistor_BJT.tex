@@ -1,0 +1,58 @@
+% Figura extraída de "Tema 4.tex" (línea 861 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\footnotesize]
+%\draw[blue, oppacity=0.4] (0,8) grid (11,12);
+\draw[] (2.75,11) rectangle (3.25,9.5);
+\draw [](1.5,11.25) to[short] (3,11.25);
+\draw[](3,11.25)--(3,11);
+\draw (1.5,11.25) to[short] (3,11.25);
+\draw (3,9.5) to[sinusoidal voltage source, sources/symbol/rotate=auto] (3,8.25);
+\draw (1.25,7.75) to[short, -*] (1.25,7.75);
+\draw [](1.25,7.75) to[short] (8,7.75);
+\draw [](3,8.25) to[short] (3,7.75);
+\draw [](1.5,11.25) to[short, -o] (1,11.25);
+\draw [](6,11.25) to[short, -o] (8,11.25);
+\draw[] (7,11.25)-- (7,10.5);
+\draw[] (6.75,10.5) rectangle (7.25,9);
+\draw[] (7,9)-- (7,7.75);
+\draw[thick]  (6,9.5) circle (0.5cm);
+\draw [](6,10) to[short] (6,11.25);
+\draw [](6,9) to[short] (6,7.75);
+\draw [-latex] (6,9.75) .. controls (6,9.5) and (6,9.5) .. (6,9.25);
+\draw (8,7.75) to[short, -*] (8,7.75);
+\node [font=\footnotesize] at (3.75,10.25) {$h_{11}$};
+\node [font=\footnotesize] at (4,8.75) {$h_{12}v_2$};
+\node [font=\footnotesize] at (5,9.75) {$h_{21}i_1$};
+\node [font=\footnotesize] at (7.75,9.5) {$h_{22}^{-1}$};
+\node [font=\footnotesize] at (1.25,9.5) {$v_1$};
+\node [font=\footnotesize] at (8.5,9.5) {$v_2$};
+\node [font=\footnotesize] at (1.75,11.5) {$i_1$};
+\node [font=\footnotesize] at (6.75,11.5) {$i_2$};
+\draw [->, >=Stealth] (1.25,11.25) .. controls (2,11.25) and (2,11.25) .. (2.5,11.25);
+\draw [->, >=Stealth] (7.5,11.25) .. controls (7.5,11.25) and (7.5,11.25) .. (7.25,11.25);
+\end{circuitikz}
+\end{document}

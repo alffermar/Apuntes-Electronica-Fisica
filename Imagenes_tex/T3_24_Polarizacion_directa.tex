@@ -1,0 +1,37 @@
+% Figura extraída de "Tema 3.tex" (línea 1050 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+    \draw[dashed] (-1,0)--(0,0);
+    \draw (0,-1)--(0,1);
+    \draw[ultra thick](0,-0.2) to[out=75,in=220](0.4,0.3) ;
+    \draw[ultra thick] (0.4,0.3)--(1,0.8) node[right]{$E_\mathrm{C}$};
+    
+    \begin{scope}[shift={(0,-0.5)}]
+        \draw[ultra thick](0,-0.2) to[out=75,in=220](0.4,0.3) ;
+    \draw[ultra thick] (0.4,0.3)--(1,0.8)node[right]{$E_\mathrm{V}$};
+    \end{scope}
+\end{tikzpicture}
+\end{document}

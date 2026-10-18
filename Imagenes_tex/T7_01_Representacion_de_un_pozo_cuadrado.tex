@@ -1,0 +1,51 @@
+% Figura extraída de "Tema 7.tex" (línea 22 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+    \draw (0,0) node[left]{\footnotesize{$E_\mathrm{C}$}} --(2,0);
+    \draw (4,0)--(6,0);
+    \draw (2,-1.5)--(4,-1.5);
+    \draw (2,0)--(2,-1.5);
+    \draw (4,0)--(4,-1.5);
+    \begin{scope}[yscale=-1, shift={(0,5)}]
+    \draw node[left]{\footnotesize{$E_\mathrm{V}$}}(0,0)--(2,0);
+    \draw (4,0)--(6,0);
+    \draw (2,-1)--(4,-1);
+    \draw (2,0)--(2,-1);
+    \draw (4,0)--(4,-1);
+    \end{scope}
+    \draw[dashed, latex-latex](3,-4)--(3,-1.5);
+    \draw[dashed, latex-latex](5.5,-5)--(5.5,0); 
+    \node[left] at(3,-3){\footnotesize{$E_\mathrm{g}\mathrm{(GaAs)}$}};
+    \node[left] at(5.5,-2){\footnotesize{$E_\mathrm{g}\mathrm{(AlGaAs)}$}};
+    \draw[latex-latex] (2,0)--(4,0);
+\node[above] at(3,0){\footnotesize{$a$}};
+\draw[-latex] (0,-2.5)--(0,-1.5) node[right]{\footnotesize{$x$}};
+\draw[-latex] (0,-2.5)--(1,-2.5) node[right]{\footnotesize{$z$}};
+\node at(0.5,-2){$\times$};
+\draw (0.5,-2) circle [radius=4pt];
+\node[right]at(0.6,-1.9){\footnotesize{$y$}};
+\end{tikzpicture}
+\end{document}

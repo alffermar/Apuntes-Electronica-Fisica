@@ -1,0 +1,63 @@
+% Figura extraída de "Tema 5.tex" (línea 333 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}
+%Metal
+\begin{scope}[shift={(-0.5,0)}]
+\draw[latex-latex, red] (-3,2.5)--(-3,3.5);
+\node[left, red] at (-3,3){$\phi_\mathrm{MO}$};
+\draw(-4,4.5)--(-1,4.5);
+\draw[dashed, thick] (-4,2.5) node[left]{$E_\mathrm{F_M}$} --(-1,2.5);
+\draw (-1,4.5)--(-1,-0.5);
+\draw[dotted](-3,3.5)--(-1,3.5);
+\end{scope}
+ %Semiconductor
+ \begin{scope}[shift={(0.5,-0.5)}]
+ \draw[ultra thick] (-1,0.75) to[out=270, in=180] (0,0);
+\draw[ultra thick] (0,0)--(3,0)node[right]{$E_\mathrm{V_{SC}}$};
+\begin{scope}[shift={(0,+2)}]
+    \draw[ultra thick] (-1,1) to[out=270, in=180] (0,0);
+\draw[ultra thick] (0,0)--(3,0) node[right]{$E_\mathrm{C_{SC}}$};
+\end{scope}
+\begin{scope}[shift={(0,+3.5)}]
+    \draw (-1,1) to[out=270, in=180] (0,0);
+    \draw (0,0)--(3,0);
+\end{scope}
+
+\draw[dashed] (-1,1)--(3,1);
+\node[above] at(3.45,1){$E_\mathrm{Fi}$};
+\draw[dashed, thick] (-1,0.75)--(3,0.75) node[right]{$E_\mathrm{F_{SC}}$};
+\draw[latex-latex, red, thick] (-1,3)--(-1,3.5);
+\node[red] at (-0.5,3.25){$\phi_\mathrm{SO}$};
+\draw[latex-latex, blue] (1.5,2)--(1.5,3.5);
+\node[left, blue] at (1.5,2.75){$\chi_\mathrm{SC}$};
+\draw (-1,-0.5)--(-1,4.5);
+\draw[dashed] (-1,4.5)--(3,4.5);
+\end{scope}
+\draw (-1-0.5,4.5)--(-0.5,4);
+\draw[ultra thick] (-1-0.5,3.5)--(-0.5,3);
+\draw[ultra thick] (-1-0.5,0)--(-0.5,-0.5);
+    \end{tikzpicture}
+\end{document}

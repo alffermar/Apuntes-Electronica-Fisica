@@ -1,0 +1,63 @@
+% Figura extraída de "Tema 4.tex" (línea 150 del original)
+\documentclass[12pt,border=1pt]{standalone}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{babel, circuits.ee}
+
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+\begin{document}
+\begin{tikzpicture}[scale=0.8]
+ %\draw[step=.5cm,gray,very thin,opacity=0.4] (0,0) grid (6,4);
+  %Cossas distribuidas
+\draw[dashed, thick] (1,3)--(1,0);
+\draw[dashed, thick, blue] (2,3)--(2,0);
+\draw[dashed, thick, blue] (3.5,3)--(3.5,0);
+\draw[dashed, thick] (5.5,3)--(5.5,0);
+\draw[dotted,thick, red] (1.6,3.2)--(1.6,-0.2);
+\draw[dotted,thick, red] (4.2,3.2)--(4.2,-0.2);
+            \node[above,red] at(0.8,3){(E)};
+    \node[above,red] at(5.1,3){(C)};
+    \node[above, red] at(2.9,3){(B)};
+
+  \draw[ultra thick] (0,3)--(0.9,3);
+\draw[ultra thick] (0.9,3) to[out=0, in=110](1.6,1);
+\draw[ultra thick] (1.6,1) to[out=290, in=180](2,0.5);
+\draw[ultra thick] (2,0.5)--(3.5,0.5);
+\draw[ultra thick] (3.5,0.5) to[out=0, in=250] (4.2,1.5);
+\draw[ultra thick] (4.2,1.5) to[out=70, in=180] (5.5,2.7);
+\draw[ultra thick] (5.5,2.7)--(6,2.7);
+\begin{scope}[yscale=-1, shift={(0,-3)}]
+\draw[ultra thick, applegreen] (0,3)--(0.9,3);
+\draw[ultra thick, applegreen] (0.9,3) to[out=0, in=110](1.6,1);
+\draw[ultra thick, applegreen] (1.6,1) to[out=290, in=180](2,0.5);
+\draw[ultra thick, applegreen] (2,0.5)--(3.5,0.5);
+\draw[ultra thick, applegreen] (3.5,0.5) to[out=0, in=250] (4.2,1.5);
+\draw[ultra thick, applegreen] (4.2,1.5) to[out=70, in=180] (5.5,2.7);
+\draw[ultra thick, applegreen] (5.5,2.7)--(6,2.7);
+\end{scope}
+\node[above, applegreen] at(0.5,0){$n_\mathrm{E0}$};
+\node[above, applegreen] at(2.75,2.5){$n_\mathrm{B0}$};
+\node[above, applegreen] at(6,0.3){$n_\mathrm{C0}$};
+
+\node[below] at(0.5,3){$p_\mathrm{E0}$};
+\node[below] at(2.75,0.5){$p_\mathrm{B0}$};
+\node[below] at(6,2.7){$p_\mathrm{C0}$};
+\end{tikzpicture}
+\end{document}
