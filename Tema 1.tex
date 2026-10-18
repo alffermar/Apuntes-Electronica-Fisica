@@ -1,0 +1,485 @@
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Tema 1}
+\fancyhead[L]{4º Grado en Física}
+\chapter{Propiedades Físicas de los Semiconductores}
+Vamos a estudiar las propiedades eléctricas de los semiconductores, para ello utilizaremos la ecuación de Schrodinger y los potenciales asociados a las redes cristalinas que forman los Semiconductores. Estudiar estas propiedades a nivel microscópico nos permite: Determinar las propiedades de los electrones dentro de la red cristalina y, a través de la física estadística, entender las propiedades de un conjunto muy grande de los mismos.
+\section{Bandas de energía} \label{sec: Bandas de energia}
+\subsection{Formación de Bandas} \label{sec: Formacion de bandas}
+Para hacernos una idea intuitiva de \textbf{banda de energía}, supongamos que tenemos átomo hidrogenoide aislado, el electrón de este átomo tiene una función de onda asociada $\psi(r)$, que nos permite estudiar la probabilidad que tenemos de encontrar al electrón en un cierto lugar. Si ahora cogemos otro átomo hidrogenoide y lo acercamos lo suficiente como para que la interacción comience a tener relevancia veremos que las funciones de onda comienzan a solaparse. Como nuestro sistema es ligado, la energía del sistema está cuantizada pero al ser fermiones el principio de exclusión de Pauli hace que el nivel de energía donde se encontraban los electrones se divide en dos niveles discretos. Si vamos añadiendo átomos y formamos una red cristalina (periódica en el espacio) los electrones irán ocupando poco a poco distintos niveles de energía que a su vez se irán dividiendo en subniveles discretos.\\
+
+\noindent Esta idea la podemos aplicar a cualquier tipo de átomo que forma nuestra red cristalina. Como el número de electrones es significativamente grande respecto al valor de las magnitudes que tienen los niveles energético, por ejemplo, si tenemos $10^{19}$ electrones en un nivel con energía 1 eV, cada subnivel se diferenciará en $10^{-19}$ eV, por lo que podemos tratar esta banda como una región continua de energía.
+\newpage
+\subsection{Bandas de valencia y de condución} \label{sec: Bandas de valencia y de conduccion}
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\centering
+	\includegraphics{Standalone/T1_01_Banda_de_valencia_y_conduccion.pdf}
+	\caption{Diagramas de la banda de valencia y la banda de conducción}
+	\label{fig: Banda de valencia y conduccion}
+\end{wrapfigure}
+
+
+Para átomos multielectrónicos como el Si=[Ne] $3s^2 \ 3p^2$, los electrones que nos interesa estudiar son los de la última capa, conocida como \textbf{capa de valencia}, en este caso están en el nivel energético n=3, vemos que existen dos electrones en el nivel \textit{s} que solo pueden ocupar dos estados posibles (\textit{l}=0), mientras los otros dos electrones que están en el nivel \textit{p} (\textit{l}=1) pueden ocupar 6 posibles estados. Volviendo a la idea anterior, cuando acercamos más átomos de Si y formamos una red, los electrones que se encuentran en la capa de valencia interaccionan entre sí se forman dos bandas, denominadas \textbf{banda de valencia} y \textbf{banda de conducción}.
+\noindent Supongamos ahora que la red cristalina está formada por $N$ átomos, las bandas de energía, se volverán dividir en niveles discretos, pero no tendrán $2N$ y $6N$ posibles estados, sino la banda más baja (valencia) tendrá $4 N$  estados y la banda superior (conducción) tendrá $4 N$ estados. La diferencia de enrgía que presentan las barras es lo que se conoce como GAP del semiconductor y es el ancho de una \textbf{banda de energía prohibida}.\\
+
+\noindent Para acabar si hacemos que la temperatura de la red sea T=0 K, los electrones estarán quietos en el mínimo nivel de energía por lo tanto, todos estarán en la banda de valencia dejando vacía la banda de conducción., esto lo volveremos a utilizar cuando definamos el nivel de Fermi.
+\subsubsection{\textcolor{red}{Cálculo ``estricto'' de las bandas de energía}} \label{sec: Calculo de bandas}
+Para poder calcular las bandas de energía que presenta una red cristalina utilizamos dos aproximaciones:
+\begin{itemize}
+	\item \textbf{Hipótesis adiabática}: los iones de la red tienen posiciones fijas, únicamente se pueden mover los electrones de la capa de valencia.
+	\item \textbf{Aproximación de partícula única}: se estudia el la dinámica de un électrón sometido a un potencial eficaz global que es periódico $V(\mathbf{r})=V(\mathbf{r+R})$
+\end{itemize}
+Cada elemento del potencial periódico es el potencial de Coulomb \footnote{Modelo de Kronig-Penney} y la ecuación de Schrodinger tiene como solución las conocidas como fucniones de Bloch
+\begin{equation}
+	\left[-\frac{\hbar}{2\,m} \nabla^2+V(\mathbf{r})\right]\psi(\mathbf{r})=E\psi(\mathbf{r}) \xrightarrow{\mathrm{Solucion}} \psi_{n\mathbf{k}}(\mathbf{r})=e^{i\mathbf{k \, r}}u_{n \mathbf{k} \,\sigma}(\mathbf{r})
+	\label{eq: Schrodinger y Bloch}
+\end{equation}
+Como bien sabemos, las celdas del cristal no tienen extensión infinita, por lo que podemos establecer condiciones de contorno (es lo que nos permite obtener estados ligados), de la solución de \ref{eq: Schrodinger y Bloch}, y suponiendo que nos encontramos en un cristal cúbico simple de arista $a$ (es decir una partícula en una caja) la forma del vector $$\mathbf{k}=\frac{\mathbf{p}\, \pi}{N\, a}$$
+\subsubsection{\textcolor{red}{Propiedades de las bandas de energía}}
+
+Vamos a determinar algunas propiedades de los autovalores $E_n(\mathbf{k})$, como únicamente vamos a estudiar la celda unidad, por lo que tiene la periodicidd de la 1ª Zona de Brillouin, además es simétrica en \textbf{k} y en los bordes de la ZB $\nabla_\mathbf{k} E_n(\mathbf{k})=0$.\\
+
+Los autovalores de la energía son formas cuadráticas:
+\begin{equation}
+	E_n(\mathbf{k})=	E_n(\mathbf{k_0})+\frac{1}{2}\left. \sum_{i, \ j} \frac{\partial ^2 E}{\partial k_i \partial k_j}\right |_\mathbf{k_0} (k_i-k_{i0})(k_j-k_{j0})
+ \label{eq: Forma bandas}
+\end{equation}
+Esta expresión corresponde a un elipsoide de revolución (2 coeficientes iguales y uno distinto). Si la forma cuadrática sólo tiene términos diagonales no nulos, adquiere forma de esfera (3 coeficientes iguales). Además la dependencia $E_n \propto \mathbf{k}^2$.
+\subsubsection{\textcolor{red}{Propiedades de las bandas del Si y GaAs}} 
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Standalone/T1_11_Estructura_de_bandas_GaAs_Si.pdf}
+	\caption{Estructura de bandas del GaAs (a) y Si (b)}
+	\label{fig: estructuras de bandas}
+\end{wrapfigure}
+Si analizamos las gráficas de la figura \ref{fig: estructuras de bandas} vemos que hay una clara diferencia entre ambos semiconductores.\\
+Estas figuras se representan sobre el espacio recíproco \textbf{k}. Por lo los desplazamientos horizontales implican que el momento no es constante dentro del cristal.
+\begin{itemize}
+	\item Para el caso del GaAs decimos que el semiconductor es de GAP \textbf{directo}, mientras que para el caso del Si decimos que es de GAP \textbf{indirecto}.
+	\item El GAP directo implica que no hay cambios en el momento del cristal lo que le confiere propiedades ópticas muy interesantes.
+    \item El GAP indirecto implica que debemos tener en cuenta la interacción de los electrones con el crisatal al cambiar de banda entre la banda de condcucción y la de valencia.
+\end{itemize}
+
+\begin{itemize}
+    \item Para el caso del Si, tenemos que el mínimo en la capa de conducción se encuentra en la dirección $\Gamma-\mathrm{X}[1, \ 0, \ 0]$. Y por lo tando tienen forma de elipsoides de revolución (en este caso 6) 
+    \item Para el GaAs tenemos un único mínimo en el punto $\Gamma$, 4 en el punto L y 3 en el punto X que son equivalentes en cada punto, su banda de conducción es esférica.
+    \item Para ambos SC las bandas de valencia tienen forma esférica.
+\end{itemize}
+\noindent Otro ejemplo de GAP indirecto es el Germanio, mientras que otros ejemplos de GAP directo son el GaP y el AlAs.
+
+\section{Conducción eléctrica en sólidos} \label{sec: Conduccion electrica en solidos}
+\subsection{Modelo de enlace} \label{sec: Modelo de enlace}
+Para explicar el modelo de enlace volvemos a la red de Si de la sección 1.1.2 representada en la figura, para ello supongamos que nos encontramos con una temperatura T=0 K. Ahora supongamos que la temperatura aumenta ligeramente, esto hará que alguno de los electrones que se encuentran en la capa de valencia, ganen energía por excitación térmica, esto genera un hueco como muestra en la figura \ref{fig: Red cristalina sin e} lo que los electrones de la capa de valencia ocupen dicho hueco y globalmente observemos que el hueco se desplaza a lo largo de la red en el sentido contrario en el que se desplazan los electrones.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[h]{0.3\textwidth}
+		\includegraphics{Standalone/T1_02_Red_cristalina.pdf}
+		\caption{La red está a T=0 K y los electrones están en la CV.}
+		\label{fig:Red cristalina}
+	\end{subfigure}
+	\hspace{2cm}
+	\begin{subfigure}[h]{0.3\textwidth}
+		\includegraphics{Standalone/T1_03_Red_cristalina_sin_e.pdf}
+		\caption{La red está a $\unit[T>0]{K}$ y hay un hueco en la CV.}
+		\label{fig: Red cristalina sin e}
+	\end{subfigure}
+	\caption{Representación bidimensional de las bandas de valencia de una red de Si.}
+\end{figure}
+\subsection{\textcolor{red}{Dinámica del electrón en el sólido}} \label{sec: Dinamica del electron en el solido}
+
+Como hemos visto en la ecuación \ref{eq: Schrodinger y Bloch}, las funciones de Bloch son solución a dicha ecuación diferencial. Ahora vamos a estudiar la dinámica del electrón en presencia de otras fuerzas, para ello utilizaremos Ecuación de Schrödinger Dependiente del Tiempo
+\begin{equation}
+    (H_i+U(\mathbf{r}))\psi(\mathbf{r},t)=-i\hbar \pdiff[]{\psi(\mathrm{r},t)}{t}
+    \label{eq: ESDT con fuerza externas}
+\end{equation}
+Vamos a utilizar la conocida como \textbf{aproximación semiclásica}
+\begin{itemize}
+    \item Las funciones de Bloch, al formar una base del Espacio de Hilbert, nos permiten expresar la solución de la ecuación \ref{eq: ESDT con fuerza externas} como $$\psi(\mathbf{r},t)=\sum_n \sum_\mathbf{k} \beta (n,\mathbf{k},t) \, \psi_{n\mathbf{k}} (\mathbf{r}) $$
+    \item Supongamos que la fuerza externa no es lo suficientemente fuerte como para que el electrón pueda cambiar de banda.
+    $$\psi(\mathbf{r},t)=\sum_\mathbf{k} \beta (\mathbf{k},t) \, \psi_{n\mathbf{k}} (\mathbf{r}) $$
+    \item Si además suopnemos que la dependencia temporal para las perturbaciones débiles se encuentra de manera implícita en \textbf{k} llegamos a $$\hbar \pdiff[]{\mathbf{k}}{t}=\mathbf{F}=-\nabla U$$
+\end{itemize}
+
+A partir de dicha ecuación podemos calcular los valores esperados de \textbf{v}, \textbf{k} y \textbf{r}.
+\subsubsection{\textcolor{red}{Masa efectiva del electrón. Relación con las bandas de energía entorno a sus extremos.}} \label{sec: Masa efectiva}
+Siguiendo con la aproximación semiclásica, utilicemos la Segunda Ley de Newton
+\begin{equation}
+    \mathbf{F}=m \diff[]{\mathbf{v}}{t} \rightarrow \langle \mathbf{v}\rangle=\frac{1}{\hbar} \nabla_\mathbf{k} E_{n \mathbf{k}} \rightarrow{}\diff[]{}{t} \left[\frac{1}{\hbar}  \pdiff[]{E}{k_i} \right]_i=\frac{1}{\hbar} \sum_j \frac{\partial ^2 E}{\partial k_i \partial k_j} \, \frac{\partial k_j}{\partial t}=\frac{1}{\hbar^2} \sum_j \frac{\partial ^2 E}{\partial k_i \partial k_j} \, F_j
+\end{equation}
+El último término, lo identificamos como un tensor de orden 2, y definimos el tensor de masa efectiva inversa como
+\begin{equation}
+    \left(\frac{1}{m^*}\right)_{i,j}=\frac{1}{\hbar^2} \frac{\partial ^2 E}{\partial k_i \partial k_j} 
+    \label{eq: masa efectiva}
+\end{equation}
+Es decir, de manera general, los electrones se comportn como partículas libres pero su masa depende del estado en el que se encuentran. Físicamente lo interpretamos como la influencia del potencial periódico del cristal en el movimiento de los portadores.
+Además si el tensor es diagonal y sus componentes son iguales se convierte en un escalar.\\
+
+La ecuación \ref{eq: Forma bandas} podemos reescribirla 
+\begin{equation}
+	E_n(\mathbf{k})=	E_n(\mathbf{k_0})\pm\frac{\hbar^2}{2m_0} \sum_{i, \ j} \alpha_{ij} (k_i-k_{i0})(k_j-k_{j0}) 
+ \label{eq: Forma bandas 2}
+\end{equation}
+El signo $\pm$ se utiliza si nos encontramos en el mínimo de BC o en el máximo de BV respectivamente.\\\\
+Donde el nuevo coeficiente $\alpha_{ij}$ lo definimos como el tensor masa efectiva inversa reducida$$\alpha_{ij}=\left |\frac{m_0}{\hbar} \left[  \frac{\partial ^2 E}{\partial k_i \partial k_j}\right]\right|= m_0 \left|\left(\frac{1}{m^*}\right)_{ij}\right| $$
+Que es un tensor simétrico, por lo tanto si escogemos los ejes principales, el tensor se vuelve diagonal y si definimos $m_{ii}^*=m_0\, (a_{ii})^{-1}$, la ecuación \ref{eq: Forma bandas 2}, tiene la forma:
+\begin{equation}
+    E(\mathbf{k})=\sum_i \pm \frac{\hbar^2 \mathbf{k}^2}{2m_{ii}^*}
+\end{equation}
+Es decir, que la energía tiene la misma forma que la partícula libre con $\mathbf{p}=\hbar\, \mathbf{k}$. Si las bandas son esféricas, la masa se vuelve un escalar y la solución para la energía a la ecuación \ref{eq: ESDT con fuerza externas} es la de partícula libre.
+\newpage
+\subsection{\textcolor{red}{Concepto de Hueco}} \label{sec: Concepto de Hueco}
+Volvamos a fijarnos en la Figura \ref{fig: Red cristalina sin e}, y en lo comentado en la sección 1.2.1, este hueco lo podemos modelar utilizando mecánica newtoniana. Supongamos que aplicamos un campo eléctrico en el semiconductor, este campo eléctrico genera una corriente en la banda de valencia $$J=-e \sum_{\mathrm{ocupados}} n_iv_i=-e\sum_{\mathrm{todos}} n_j v_j +e\sum_{\mathrm{vacios}} n_k v_k$$ Pero en la banda de valencia, la densidad de corriente debe ser \textbf{nula} por simetría de bandas\footnote{Para cada \textit{v} existe una \textit{-v}.}, por lo tanto obtenemos que los estados vacíos generan una corriente $$J=+e\sum_{\mathrm{vacios}} n_k v_k$$ Esta corriente se asocia a \textbf{cargas positivas} cuyo número es el de vacantes y tienen la misma velocidad que los electrones en los estados vacíos.\\\\
+Aplicando la Segunda ley de Newton  vemos que ya tenemos signficado físico al signo negativo de la masa, la masa negativa $m_\mathrm{e}^*=-|m^*|$ que resulta de \ref{eq: masa efectiva}, se debe a que la aceleración que experimentan los electrones\footnote{Al tener carga negativa, se mueven en sentido contrario al campo.} y los huecos debe ser la misma, por lo que la dinámica de los huecos se estudiará como partículas de carga +\textit{e} y masa $|m^*|$, en cantidad igual a las vacantes; mientras que los electrones tendrán ambas negativas, en cantidad igual a los estados ocupados.\footnote{Esto siempre es referido al techo de la banda de valencia, en la banda de conducción, el electrón tiene masa positiva y no consideramos huecos.}
+
+\section{\textcolor{red}{Semiconductores intrínsecos y extrínsecos}} \label{sec: Semiconductores intrinsecos y extrinsecos}
+Una vez caracterizados los portadores de carga que existen en los semiconductores podemos diferenciar entre dos tipos de semiconductores en función de si presentan o no impurezas.
+\begin{itemize}
+    \item \textbf{Semiconductores intrínsecos}, son aquellos que son cristalográficamente perfectos ya que no presentan impurezas.
+    \item \textbf{Semiconductores extrínsecos}, contienen impurezas para mejorar la conductividad. Dentro de estos semiconductores, según el tipo de impurezas podemos encontrar semiconductores Tipo N, con impurezas donadoras ($n>p$) y tipo P, con impurezas aceptoras ($n<p$)
+\end{itemize}
+
+ Un ejemplo de un semiconductor extrínseco tipo N es el Si (G IV) dopado con P (G V); al introducir algunos átomos de P dentro del cristal de Si, el 5º electrón del P se encuentra debilmente ligado por lo que la energía térmica es suficiente como para hacer que salte a la capa de conducción como muestra la figura \ref{fig: Impurezas N}, resaltar que cada impureza deja libre un electrón y fijo un ión. Definimos $N_\mathrm{D}=N_\mathrm{D}^++N_\mathrm{D}^0$, como la \textbf{densidad efectiva de donadores} $N_\mathrm{D}^+$ es la densidad de impurezas ionizadas y $N_\mathrm{D}^0$ la densidad de impurezas no ionizadas.\\\\
+ Como ejemplo de semiconductor extrínseco tipo P, tenemos el Si (G IV) dopado con Al (G III), esto nos genera un hueco en el cristal, y por lo tanto nos contribuye a la conducción de manera análoga al semiconductor tipo N (figura \ref{fig: Impurezas P}), la única diferencia es que tratamos con huecos en lugar de electrones.
+ Análogamente definimos $N_\mathrm{A}=N_\mathrm{A}^-+N_\mathrm{A}^0$, como la \textbf{densidad efectiva de aceptadores} $N_\mathrm{A}^+.$ es la densidad de impurezas ionizadas y $N_\mathrm{A}^0$ la densidad de impurezas no ionizadas.
+ \begin{figure}[h!]
+    
+	\centering
+    \begin{subfigure}[h]{0.3\textwidth}
+	\includegraphics{Standalone/T1_04_Impurezas_N.pdf}
+	\caption{Efecto de la ionización en una impureza donadora.}
+        \label{fig: Impurezas N}
+    \end{subfigure}
+    \hspace{2cm}
+    \begin{subfigure}[h]{0.3\textwidth}
+        	\includegraphics{Standalone/T1_05_Impurezas_P.pdf}
+        \caption{Efecto de la ionización en una impureza aceptadora.}
+        \label{fig: Impurezas P}
+    \end{subfigure}
+        \caption{Efecto de las impurezas en las bandas del cristal.}
+        \label{fig: Impurezas}
+\end{figure}
+\subsubsection{\textcolor{red}{Densidad intrínseca de portadores}} \label{sec: Densidad intrinseca de portadores}
+En situaciones reales, el semiconductor estará a una cierta temperatura $T$ y por lo tanto tendrá una contribución de energía térmica $E_\mathrm{th}=\frac{3}{2}k_\mathrm{B}T$, esta energía puede ser lo suficientemente alta como para hacer que algunos electrones que se encuentran en la banda de valencia salten a la banda de conducción y por lo tanto podamos producir corriente eléctrica. Por lo tanto definimos la \textbf{densidad intrínseca} de portadores como el número de electrones que se encuentran en la capa de conducción únicamente generados por la energía térmica. Para semiconductores intrínsecos $n=p=n_i$ mientras que para semiconductores extrínsecos se rige por $n\,p=n_i^2$ \footnote{Las definiciones matemáticas de densidades, así como la ecuación $n\,p=n_i^2$ lo desarrollamos cuando estudiemos las distribuciones de estados.} \newpage
+\subsection{\textcolor{red}{Caracterización energética de los estados.}} \label{sec: Caracterizacion g de los estados}
+Una vez introducidos los dos tipos de semiconductores que existen vamos entonces a caracterizar matemáticamente y a observar cómo se distribuyen los estados en la red cristalina.\\\\
+Para ello vamos a modelar los electrones como si estuvieran confinados en un pozo cuadrado infinito tridimensional.
+La densidad de estados en el recíproco es $g(\mathbf{k})=(4\pi^3)^{-1}$ mientras que en energía será $$g(E)=\frac{1}{4\pi^3} \int_{S(E)} \frac{\mathrm{d}S}{|\nabla_\mathbf{k} E|}$$ Donde $S(E)$ son superficies isoenergéticas esféricas. Además conocemos la forma que tiene la energía dentro del pozo
+\begin{equation}
+    E(\mathbf{k})=E_0\pm \frac{\hbar^2\, \mathbf{k}^2}{2m} \Rightarrow g(E)=\frac{4\pi}
+{h^3} (2m^*)^{3/2}(\pm E \mp E_0)^{1/2}
+\label{eq: Densidad de estados energetica}
+\end{equation}
+El $\pm$ de la energía depende de si nos encontramos en el fondo de la banda de conducción (+) o en el techo de la banda de valencia (-). Este modelo se conoce como \textbf{Estados de Bloch} y corresponde a semiconductores intrínsecos ya que son los estados generados por la periodicidad del cristal (ya lo vimos en 1.1.2).\\\\
+Por otro lado tenemos si introducimos \textbf{impurezas}, por ejemplo fosforo en un cristal de silicio, debemos utilizar la ESIT para poder modelarlo, aquí utilizarmemos que la constante dieléctrica cambia (por aproximación de partícula única)
+\begin{equation}
+    \frac{-\hbar^2}{2m^*}\nabla^2-\frac{e^2}{4\pi \epsilon_\mathrm{SC}r}\psi(\textbf{r})=E\psi(\textbf{r})
+\end{equation}
+Que tiene la forma de un átomo de hidrógeno, por lo que obtenemos que la energía $$E_n=\frac{13.6}{\epsilon_r^2} \frac{m^*}{m_0} \frac{1}{n^2} \ \unit{eV}$$ es aquella que liga el electrón al átomo de la impureza. Por lo que encontramos que estados discretos de energía. Aunque en la práctica se comportan como un solo nivel (estado fundamental) $E_1=E_d$.
+\subsubsection{Resumen}
+
+\begin{table}[h!]
+    \centering
+      \extrarowheight = -0.5ex
+\renewcommand{\arraystretch}{1.43}
+    \begin{tabular}{|c|c|}
+    \hline
+        Estados de Bloch & Estados de impurezas hidrogenoides \\ \hline \hline
+        No están localizados & Localizados espacialmente \\
+        \small{(Generados por la periodicidad del cristal)} & \small{(Localizados con la impureza)}\\ \hline
+        Continuo de estados de energía&  Estados discretos de energía\\\hline
+         Ocupación independiente& Ocupación dependiente \\\hline
+    \end{tabular}
+    \label{tab:Comparacion bloch impurezas 1}
+\end{table}
+\newpage
+\subsection{\textcolor{red}{Estadística de ocupación}} \label{sec: Estadistica de ocupacion}
+
+\begin{wrapfigure}{l}{0.4\textwidth}
+    \centering
+\includegraphics{Standalone/T1_06_representacion_fd.pdf}
+ \caption{Representación de la distribución de Fermi-Dirac. El eje de abcisas tiene como unidad $E_\mathrm{F}$.}
+    \label{fig: representacion fd}
+\end{wrapfigure}
+\noindent Las partículas estudiadas son electrones, es decir, \textit{fermiones} por lo que se rigen por la \textbf{estadística de Fermi-Dirac}, para los \textbf{estados de Bloch} esta distribución en energías
+\begin{equation}
+    f(E)=\frac{1}{1+\exp\left( \frac{E-E_\mathrm{F}}{k_\mathrm{B}T}\right)}
+    \label{eq: Distribucion FD}
+\end{equation}
+Podemos estudiar distintas situaciones en función de la temperatura fijando la energía. Si hacemos $T=0\unit{K}$ observamos que la gráfica tiene la forma punteada mientras que si la energía coincide exactamente con la del nivel de Fermi, y la temperatura está por encima de 0, la distribución toma valor $f(E)=0.5$. \newline
+\\Destacar si la energía de Fermi se encuentra dentro del GAP, no tiene sentido físico y es sólo un parámetro en función del cual se expresa la ocupación.
+Por último podemos expresarla probabilidad de \textbf{no ocupación} como
+\begin{equation}
+    1-f(E)=\frac{1}{1+\exp\left( \frac{-E+E_\mathrm{F}}{k_\mathrm{B}T}\right)}
+    \label{eq: no ocupacion FD}
+\end{equation}
+
+\begin{tcolorbox}[colback=airforceblue!20, colframe=airforceblue, title=Ejemplo]
+Supongamos que tenemos una diferencia entre energías de nivel y Fermi $E-E_\mathrm{F}=3k_\mathrm{B}T$, con $T=\unit[300]{K}$.\\\\
+La ecuación \ref{eq: Distribucion FD}, toma valor $f(E)=0.0474= 4.74 \%$
+\\\\
+\textbf{\textcolor{airforceblue}{Comentario}} Para energías superiores a $E_\mathrm{F}$ la probabilidad de que se produzca un salto entre niveles es residual por lo tanto la razón de electrones que ocupan los estados disponibles es residual.
+\end{tcolorbox}
+\noindent El ejemplo anterior nos permite ``fijar'' un límite para pasar de la estadística de Fermi-Dirac, que es más compleja de utlizar matemáticamente; a la estadística de Maxwell-Boltzmann
+\begin{equation}
+    f(E)\approx \exp \left[\frac{E_\mathrm{F}-E}{k_\mathrm{B}T}\right]
+\end{equation}
+Esta distribución es una distribución clásica (rige la cinética de los gases clásicos). 
+\subsubsection{\textcolor{red}{Nivel de Fermi}} \label{sec: Nivel de Fermi}
+\noindent Definimos la energía de Fermi $E_\mathrm{F}$ como la energía a la que se encuentra el electrón más energético a una temperatura $T=\unit[0]{K}$.
+\newpage
+Ahora bien, no solo tenemos estados de Bloch en nuestros SC sino que también tenemos \textbf{impurezas}, podemos estudiar las densidades de las impurezas en función de las distribuciones de energía.
+
+\subsubsection{Donadoras} \label{sec: Impurezas dondadoras}
+\begin{itemize}
+    \item Mediante la distribución de FD (Ec\ref{eq: Distribucion FD}), vamos a determinar las concentraciones de las impurezas neutras y las ionizadas, como la energía de las impurezas nomrmalmente se comporta como un solo nivel, las impurezas no ionizadas siguen la función de probabilidad
+    \begin{equation}
+        \frac{N_\mathrm{D}^0}{N_\mathrm{D}}=\frac{1}{1+\frac{1}{g_d}\exp\left( \frac{E_\mathrm{D}-E_\mathrm{F}}{k_\mathrm{B}T}\right)}
+        \label{eq: probabilidad no ionizadas d}
+    \end{equation}
+    Donde $g_d$ es el nivel de degeneración. Para el caso de las impurezas donadoras ionizadas tenemos
+    \begin{equation}
+          \frac{N_\mathrm{D}^{+}}{N_\mathrm{D}}=\frac{N_\mathrm{D}-N_\mathrm{D}^0}{N_\mathrm{D}}=\frac{\frac{1}{g_d} \exp \frac{E_\mathrm{D}-E_\mathrm{F}}{k_\mathrm{B} T}}{1+\frac{1}{g_d} \exp \frac{E_\mathrm{D}-E_\mathrm{F}}{k_\mathrm{B} T}}=\frac{1}{1+g_d\exp{\left( \frac{E_\mathrm{F}-E_\mathrm{D}}{k_\mathrm{B}T}\right)}}
+          \label{eq: probabiliad ionizadas d}
+    \end{equation}
+    Por último podemos establecer la relación que hay entre impurezas ionizadas y no ionizadas
+    \begin{equation}
+        \frac{N_\mathrm{D}^+}{N_\mathrm{D}^0}=\frac{1}{g_d} \exp\frac{E_\mathrm{D}-E_\mathrm{F}}{k_\mathrm{B}T}
+        \label{eq: Razon N+N0}
+    \end{equation}
+\end{itemize}
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+	\centering
+    \begin{subfigure}[h]{0.3\textwidth}
+	\includegraphics{Standalone/T1_07_Niveles_N.pdf}
+	\caption{Distribución de niveles de energía en SCE tipo N.}
+        \label{fig: Niveles  N}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.3\textwidth}
+        	\includegraphics{Standalone/T1_08_Niveles_P.pdf}
+        \caption{Distribución de niveles de energía en SCE tipo P.}
+        \label{fig: Niveles P}
+    \end{subfigure}
+        \caption{Niveles de energía de Fermi en las bandas del cristal a $T=\unit[0]{K}$.}
+        \label{fig: Impurezas}
+\end{wrapfigure}
+
+
+\subsubsection{Aceptadoras} \label{sec: Aceptadoras}
+\begin{itemize}
+    \item Análogamente para las impurezas aceptadoras, las expresiones recogen una forma similar.
+    Para las impurezas no ionizadas
+    \begin{equation}
+        \frac{N_\mathrm{A}^0}{N_\mathrm{A}}=\frac{1}{1+\frac{1}{g_d}\exp\left( \frac{E_\mathrm{F}-E_\mathrm{A}}{k_\mathrm{B}T}\right)}
+        \label{eq: probabilidad no ionizadas A}
+    \end{equation}
+    Para las impurezas ionizadas
+    \begin{equation}
+           \frac{N_\mathrm{A}^{-}}{N_A}=\frac{N_\mathrm{A}-N_\mathrm{A}^0}{N_\mathrm{A}}=\frac{\frac{1}{g_d} \exp \frac{E_\mathrm{F}-E_\mathrm{A}}{K_\mathrm{B} T}}{1+\frac{1}{g_d} \exp \frac{E_\mathrm{F}-E_\mathrm{A}}{K_\mathrm{B} T}}=\frac{1}{1+g_d\exp{\left( \frac{E_\mathrm{A}-E_\mathrm{F}}{k_\mathrm{B}T}\right)}}
+          \label{eq: probabiliad ionizadas A}
+    \end{equation}
+    Y la razón entre ionizadas y no ionizadas
+    \begin{equation}
+        \frac{N_\mathrm{A}^-}{N_\mathrm{A}^0}=\frac{1}{g_d} \exp\frac{E_\mathrm{F}-E_\mathrm{A}}{k_\mathrm{B}T}
+        \label{eq: Razon N-N0}
+    \end{equation}
+\end{itemize}
+Debido a que contiene exponenciales, podemos definir la \textbf{ionización total de impurezas} como aquellas en los que los denominadores de las exponenciales son  $$E_\mathrm{D}-E_\mathrm{F}\gg k_\mathrm{B}T \hspace{2cm} E_\mathrm{F}-E_\mathrm{A}\gg k_\mathrm{B}T$$
+\clearpage
+
+
+
+Esto también nos permite determinar la posición del nivel de Fermi
+\begin{itemize}
+    \item Para las impurezas donadoras, $E_\mathrm{F}$ se encuenta por encima de $E_\mathrm{D}$.
+    \item Para las impurezas aceptadoras $E_\mathrm{F}$ se encuenta por debajo de $E_\mathrm{A}$.
+\end{itemize}
+\section{Densidades de portadores libres en equilibrio} \label{sec: Densidaddes de portadores en equilibrio}
+Ya hemos conseguido determinar $N_\mathrm{D}^0(E_\mathrm{F})$ y $N_\mathrm{A}^0(E_\mathrm{F})$, ahora vamos a determinar las \textbf{densidades en la banda de conducción} $n(E_\mathrm{F})$ y $p(E_\mathrm{F})$.
+\subsubsection{Densidad de electrones en la banda de conducción, \textit{n}} \label{sec: Densidad de electrones en la banda de conduccion}
+Si utilizamos la ecuación \ref{eq: Densidad de estados energetica}, y la distribuicón de FD podemos determinar el número de electrones en la banda de conducción, recordar que en este caso cogemos el + de la ecuación.
+\begin{equation}
+    n=\int_{E_\mathrm{C}}^{\infty}g(E)f(E)=\int_{E_\mathrm{C}}^{\infty} \frac{4\pi}
+{h^3} (2m^*)^{3/2}\frac{(E- E_0)^{1/2}}{1+\exp\left( \frac{E-E_\mathrm{F}}{k_\mathrm{B}T}\right)}=N_\mathrm{c} \frac{2}{\sqrt{\pi}} F_{1/2} \left(\frac{E_\mathrm{F}-E_\mathrm{C}}{k_\mathrm{B}T}\right)
+\label{eq: Densidad de portadores}
+\end{equation}
+Con $N_\mathrm{c}=2\left(\frac{2\pi m^* k_\mathrm{B} T}{h^2}\right)^{3/2}$ la densidad equivalente de estados en la banda de conducción y $F_{1/2}$ la intergral de Fermi-Dirac de orden $1/2$
+Gracias a que la densidad de portadores libres incluye la integral de Fermi Dirac podemos determinar algunas propiedades de la BC
+\begin{equation}
+    F_{1/2}=\int_0^\infty \frac{\eta ^{1/2}}{1+\exp{\eta-\eta_\mathrm{F}}} \mathrm{d}\eta \text{   con } \eta_\mathrm{F}=\frac{E_\mathrm{F}-E_\mathrm{C}}{k_\mathrm{B}T}
+\end{equation}
+\begin{itemize}
+    \item Si $\eta_\mathrm{F}<-3$ la integral tiene la forma $F_{1/2}=\frac{\sqrt{\pi}}{2} \exp{\eta_\mathrm{F}}$ y entonces $E_\mathrm{C}-E_\mathrm{F}>3k_\mathrm{B}T \rightarrow E-E_\mathrm{F}>3k_\mathrm{B}T$ para todas las energías en la banda de conducción y como hemos dicho en la sección 1.3.2 es posible aproximar la estadísitca de FD a la de MB.
+\end{itemize}
+Si aplicamos a la ecuación \ref{eq: Densidad de portadores} la condición anterior, obtenemos
+\begin{equation}
+    n=N_\mathrm{c} \exp{\frac{E_\mathrm{F}-E_\mathrm{C}}{k_\mathrm{B}T}}
+    \label{eq: densidad de portadores MB}
+\end{equation}
+\newpage
+\subsubsection{Densidad de huecos en la banda de valencia, \textit{p}} \label{sec: Densidad de huecos enn la banda de valencia}
+Seguiremos considerando superficies isoenergéticas esféricas pero esta vez utilizaremos distribución de probabilidad de \textbf{no ocupación} dada por la equación \ref{eq: no ocupacion FD}, la densidad de huecos tiene la forma
+\begin{equation}
+p=\int_{-\infty}^{E-\mathrm{V}}(1-g(E))f(E)=\int_{-\infty}^{E-\mathrm{V}} \frac{4\pi}
+{h^3} (2m^*)^{3/2}\frac{(E- E_0)^{1/2}}{1+\exp\left( \frac{E_\mathrm{F}-E}{k_\mathrm{B}T}\right)}=N_\mathrm{v} \frac{2}{\sqrt{\pi}} F_{1/2} \left(\frac{E_\mathrm{V}-E_\mathrm{F}}{k_\mathrm{B}T}\right)
+\end{equation}
+\begin{itemize}
+    \item En este caso si el semiconductor es no degenerado tenemos que si $E_\mathrm{V}-E_\mathrm{F}<-3k_\mathrm{B}T$ podemos hacer la aproximación que hemos desarrollado anteriormente y podemos utilizar la estadística de MB en lugar de FD. La densidad equivalente de estados de la banda de valencia es $N_\mathrm{v}=2\left(\frac{2\pi m^* k_\mathrm{B} T}{h^2}\right)^{3/2}$ y por lo tanto
+    \begin{equation}
+           p=N_\mathrm{v} \exp{\frac{E_\mathrm{V}-E_\mathrm{F}}{k_\mathrm{B}T}} 
+           \label{eq: densidad de huecos MB}
+    \end{equation}
+\end{itemize}
+
+\subsection{\textcolor{red}{Densidad intrínseca de portadores}} \label{sec: Densidad intrinseca de portadores}
+Una vez definidas las densidades de huecos y electrones en sus respectivas capas como funciones de la energía de Fermi, vamos a estudiar cómo se relacionan ambas cantidades, esto variará en función de si el semiconductor es intrínseco o extrínseco.Si definimos \begin{equation}
+    n_\mathrm{i}^2=n\cdot p=N_\mathrm{v} N_\mathrm{c} \exp{\frac{E_\mathrm{V}-E_\mathrm{F}}{k_\mathrm{B}T}} \exp{\frac{E_\mathrm{F}-E_\mathrm{C}}{k_\mathrm{B}T}}=N_\mathrm{v} N_\mathrm{c} \exp{\frac{E_\mathrm{V}-E_\mathrm{C}}{k_\mathrm{B}T}}
+    \label{eq: Densidad intrinseca de portadores}
+\end{equation}
+Por lo tanto obtenemos $$n_\mathrm{i}=\sqrt{N_\mathrm{v} N_\mathrm{c}} \exp{\frac{-\mathrm{GAP}}{2k_\mathrm{B}T}}$$
+
+\subsubsection{Semiconductor intrínseco}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \includegraphics{Standalone/T1_09_Gen_Rec.pdf}
+	\caption{Proceso de generación-recombinación.}
+        \label{fig: Gen-Rec}
+    \end{wrapfigure}
+\noindent En los semiconductores intrínsecos, cuando generamos portadores térmicamente se da un proceso que se conoce como \textbf{generación-recombinación} en el cual cuando un electrón deja un hueco en la capa de valencia, es ocupado por otro electrón, a su vez ese electrón deja un hueco en esa posición que puede ser ocupado por un electrón de la banda de conducción, como vemos en la figura.\newline
+
+\noindent Volver a destacar que el nivel de Fermi se encuentra cerca del MIDGAP.
+
+\newpage
+\subsubsection{Semiconductor extrínseco}
+\noindent Supongamos que el semiconductor se encuentra en equilibrio, para el caso de los semiconductores tipo N $n \uparrow \Rightarrow{} p \downarrow$ mientras que para los de tipo P $p \uparrow \Rightarrow{} n \downarrow$. Lo que vamos a desarrollar ahora será con un semiconductor tipo N pero es análogo a un tipo P.
+
+\begin{figure}[h]
+    \centering
+  \includegraphics{Standalone/T1_10_Gen_recom_tipo_N.pdf}
+    \caption{Generación-recombinación en un semiconductor intrínseco tipo N.}
+    \label{fig:Gen-recom tipo N}
+\end{figure}
+
+\noindent Vemos en la figura \ref{fig:Gen-recom tipo N} que en este caso algunos de los huecos que existen en la banda de las impurezas, generan huecos en la banda de valencia, aunque algunos de los electrones destruyen algunos huecos intrínsecos por lo tanto vemos que la densidad de estados equivalente debe tener la forma $N_\mathrm{D}^+=n-p$, si utilizamos la ecuación \ref{eq: Densidad de portadores} queda como $$p+N_\mathrm{D}^+=n=N_\mathrm{c} \exp{\frac{E_\mathrm{F}-E_\mathrm{C}}{k_\mathrm{B}T}}$$
+Por lo tanto cuanto más cerca esté $E_\mathrm{F}$ de la banda de conducción mayor será \textit{n}.
+\subsubsection{Semiconductores degenerados y no degenerados. Localización del nivel de Fermi}
+\noindent A modo de resumen vamos a interpretar físicamente la localización del nivel de Fermi en las bandas de energía.\\
+
+
+\indent   \textbf{Semiconductores no degenerados}
+\begin{itemize}
+    \item Si en la banda de conducción hay pocos estados ocupados, es decir existen menos electrones libres, el nivel de Fermi se encuentra cerca del MIDGAP sólo que desplazado hacia la banda de conducción. Físicamente lo podemos interpretar como $N_\mathrm{D}>N_\mathrm{V}$.
+    \item Si en la banda de valencia hay pocos estados ocupados, es decir existen menos huecos, el nivel de Fermi se encuentra cerca del MIDGAP sólo que desplazado hacia la banda de valencia. Físicamente lo podemos interpretar como $N_\mathrm{A}>N_\mathrm{V}$
+\end{itemize}
+\indent \ \ \  \textbf{Semiconductores degenerados}
+\begin{itemize}
+    \item En este caso el nivel de Fermi puede estar dentro de las bandas de conducción o de valencia, esto se debe a que existe un gran número de electrones o huecos respectivamente.
+    \item Si el nivel de Fermi se localiza dentro de las bandas, lo interpretaremos como que todos los estados están ocupados/vacíos hasta el nivel de Fermi.
+\end{itemize} Por lo que podemos concluir que \textbf{el nivel de Fermi nos indica el tipo de semiconductor}.
+ \newpage
+ \subsection{Densidad de portadores y nivel de Fermi en función de la Temperatura.} \label{sec: Densidad de portadores y nivel de fermi en funcion de la temperatura}
+Como hemos visto, todas las ecuaciones referidas a las densidades de portadores presentan dependencia con la temperatura. Dicha dependencia nos permite estudiar los tipos de semiconductores si son intrínsecos o no o si son tipo N o tipo P y los regímenes en los que nos movemos.
+\subsubsection{Semiconductor intrínseco}
+\noindent Los semiconductores intrínsecos como hemos visto con anterioridad en los SCI la densidad intrínseca de portadores tiene la forma
+\begin{equation}
+    n_\mathrm{i}=\sqrt{N_\mathrm{v} N_\mathrm{c}} \exp{\frac{E_\mathrm{V}-E_\mathrm{C}}{k_\mathrm{B}T}} \xrightarrow{\text{Despejando}} E_\mathrm{Fi}-E_\mathrm{C}=\frac{E_\mathrm{V}-E_\mathrm{C}}{2}+\frac{k_\mathrm{B}T}{2} \ln{\frac{N_\mathrm{V}}{N_\mathrm{C}}}
+    \label{eq: Nivel de Fermi intrínseco}
+\end{equation}
+Si las masas de los portadores y los huecos son iguales entonces el \textbf{nivel de Fermi intrínseco} se encontrará en el centro del GAP.
+\subsubsection{Semiconductor extrínseco}
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \includegraphics{Standalone/T1_12_Concentracion_electrones_frente_a_T.pdf}
+    \caption{Concentración de electrones frente a la temperatura.}
+    \label{fig:Representacion densidad frente temperatura}
+\end{wrapfigure}
+\noindent Si utilizamos las diferentes ecuaciones \ref{eq: Razon N-N0} y \ref{eq: Razon N+N0} podemos construir lo que se conoce como \textbf{condición de neutralidad}:
+\begin{equation}
+    p+N_\mathrm{D}^+=n+N_\mathrm{A}^-
+    \label{eq: condicion de neutralidad}
+\end{equation}
+que además si utilizamos la ecuación \ref{eq: Densidad intrinseca de portadores} podemos determinar lo que se conoce como \textbf{ionización total de impurezas} combinando ambas ecuaciones obtenemos
+\begin{equation}
+        n=\frac{N_\mathrm{D}-N_\mathrm{A}}{2}+ \sqrt{\left(\frac{N_\mathrm{D}-N_\mathrm{A}}{2} \right)+n_\mathrm{i}^2}
+        \label{eq: SCE ionizacion total}
+\end{equation}
+Y tenemos un criterio para determinar si los minoritarios son despreciables frente a las impurezas. 
+\begin{equation}
+  n=p+N_\mathrm{D}^+-+N_\mathrm{A}^- \Rightarrow n>N_\mathrm{D}-N_\mathrm{A} \Rightarrow p=\frac{n_\mathrm{i}^2}{n}< \frac{n_\mathrm{i}^2}{N_\mathrm{D}-N_\mathrm{A}}
+\end{equation}
+\subsubsection{Concentración de portadores en función de la temperatura}
+\noindent Si analizamos las ecuaciones \ref{eq: condicion de neutralidad} y \ref{eq: SCE ionizacion total}, las expresamos como funciones de la temperatura y las representamos en la Figura \ref{fig:Representacion densidad frente temperatura}, la región extrínseca también se conoce como región de agotamiento. Vemos que cuando se alcanza la llanura, consideramos que todas las temperaturas están ionizadas. Como la densidad intrínseca crece como $n_\mathrm{i}\propto T^{3/2}$ llegará un punto en el que comenzará a dominar sobre el resto de portadores. Las regiones estan gobernadas por $$\text{Ioniz Par:} \ \boxed{ n=N_\mathrm{D}^+ \ \ p=\frac{n_\mathrm{i}^2}{N_\mathrm{D}^+}} \ \hfill \text{Extr:} \ \boxed{n=N_\mathrm{D} \ \ p=\frac{n_\mathrm{i}^2}{N_\mathrm{D}}} \ \hfill \text{Intr:} \ \boxed{n=p=n_\mathrm{i}=\sqrt{N_\mathrm{v} N_\mathrm{c}} \exp{\frac{E_\mathrm{V}-E_\mathrm{C}}{2k_\mathrm{B}T}}}$$
+\newpage
+\subsubsection{\textcolor{red}{Nivel de Fermi en función de la temperatura}}
+\noindent Si vemos las ecuaciones \ref{eq: Nivel de Fermi intrínseco} (cambiando los términos de conducción por los de valencia y obtenemos dos ecuaciones), estas ecuaciones como vemos son ecuaciones logarítimicas en la concentración y nos permite establecer las separaciones que tiene el nivel de Fermi en función del tipo de Semiconductor (N ó P) y la temperatura.
+\begin{figure}[h]
+\begin{subfigure}[h]{0.3\textwidth}
+    \includegraphics{Standalone/T1_13_Nivel_de_Fermi_frente_a_T.pdf}
+    \caption{Representación del nivel de Fermi frente a T.}
+\end{subfigure}
+\hspace{3cm}
+\begin{subfigure}[h]{0.3\textwidth}
+    \includegraphics{Standalone/T1_14_Nivel_de_Fermi_frente_a_N.pdf}
+    \caption{Representación del nivel de Fermi frente a n}
+\end{subfigure}
+\end{figure}
+ \section{Propiedades ópticas de los semiconductores} \label{sec: propiedades opticas de los semiconductores}
+ \begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \includegraphics{Standalone/T1_15_Espectro_electromagnetico.pdf}
+    \caption{Espectro de electromagnético frente a long. de onda.}
+    \label{fig:Espectro electromagnetico}
+\end{wrapfigure}
+ Como sabemos el efecto fotoeléctrico nos permite generar electrones libres mediante la irradiación de ondas electromagnéticas en la superficie de un metal. La energía de los fotones que inciden en el metal es $$E=h\nu=h\frac{c}{\lambda}$$ además, recordar que por cada electrón generado, se creará un hueco en la BV.
+
+\subsubsection{Espectro electromagnético y GAP de los principales semiconductores}
+\noindent Como el Si y el GaAs tienen que ser iluminados con luz infraroja, el GaAs$_{1-y}$P$_{y}$ conocido es un semiconductor ternario, admite un amplio rango del espectro; para el resto de semiconductores podemos introducir indio (In) para reducir el tamaño del GAP.
+\clearpage
+\subsubsection{Interacción radiación-semiconductor}
+\noindent La absorción de radiación puede darse por absorción de la red o de los portadores, lo que modifica sus propiedades eléctricas y de emisión de energía. La absorción produce los siguientes efectos:
+\begin{itemize}
+    \item Fotoconductividad, si el semiconductor es homogéneo.
+    \item Efecto fotovoltaico, si el semiconductor es no homogéneo.
+    \item Efecto fotoelectromagnético.
+\end{itemize}
+
+Otra forma de interactuar la radiación y el semiconductor es por recombinación, generando calor (fonones) o radiación óptica (\textbf{luminiscencia}). La recombinación estimulada por fotones nos permite también desarrollar láseres.
+\subsection{Eventos ópticos clásicos. Reflexión, absorción y transmisión} \label{sec: eventos opticos clasicos}
+Cuando incidimos con una onda electromagnética sobre la superficie de un metal, vemos que se producen 3 procesos Reflexión, Transmisión y Absorción $$\frac{I_\mathrm{R}}{I_0}+\frac{I_\mathrm{T}}{I_0}+\frac{I}{I_0}=1$$ para aplicaciones en semiconductores nos interesa que exista únicamente \textbf{absorción}.
+\subsubsection{Reflexión y transmisión}
+\noindent La reflexión reduce la eficiencia de los dispositivos basados en absorción, además hace que la sensibilidad dependa de la frecuencia (óptica I).
+\\\\ \noindent Por otra parte la transmisión depende también de la frecuencia (ópitica I).
+\subsubsection{Absorción de la radiación por un semiconductor. Mecansimos de absorción}
+La absorción se rige por la \textbf{Ley de Bouger-Lambert} $$\mathrm{d} I(x)=-\alpha I(x) \mathrm{d}x \Rightarrow I(x)=I_0\exp{-\alpha\,x}$$Si la representamos, vemos que hay un incremento abrupto cuando $h\nu \geq E_\mathrm{g}$.
+
+\subsubsection{Absorción intrínseca}
+La absorción intrínseca se produce por una fotoexcitación de un electrón desde la banda de valencia hasta la banda de conducción. Si nos fijamos en la Figura \ref{fig: estructuras de bandas} los procesos de transición directa, son los más probables mientras que los de transición indirecta son los menos probables.\\\\
+Consideraciones de diseño:
+\begin{itemize}
+    \item GAP directo: Absorción superficial, zona activa próxima a la superficie.
+    \item GAP indirecto: Absorción en volumen, la zona activa amplia en volumen.
+    \item Nos interesa introducir la \textbf{vida media} $\tau$, que se define como el tiempo medio que los portadores pasan en una banda antes de recombinarse.
+    \item Otro término interesante es la \textbf{Longitud de difusión} $L_\mathrm{p}=\sqrt{D_\mathrm{p} \tau}$, como la longitud media que los portadores recorren antes de recombinarse.
+\end{itemize}
+\subsubsection{Absorción extrínseca}
+Las impurezas absorben los fotones y los picos del espectro de absorción están entorno a la energía de ionización de las impurezas.
+\subsubsection{Absorción por portadores libres}
+Las transiciones de portadores entre niveles dentro de su propia banda, el continuo de niveles energéticos en la banda de conducción y en la banda de valencia generan un nivel de fondo en el espectro.
+\subsubsection{Absorción excitónica}
+Líneas en el espectro correspondients a niveles de excitación del excitón\footnote{Cuasipartícula o excitación elemental de los sólidos formada por un electrón y un hueco ligados a través de la interacción coulombiana.}.
+\subsubsection{Absorción por vibraciones de la red}
+Los fotones son absorbidos por parte de la red en forma de fonones, los picos en el espectro de absorción correspondientes a múltiplos enteros de la energía de los fonones.
+\subsection{Fotoconductividad en semiconductores} \label{sec: fotoconductividad en semiconductores}
+La fotoconductividad se desarrollará más en el siguiente tema, de manera introductoria, observamos un incremento de la conductividad originado por la absorción de radiación.
+\begin{equation}
+    \sigma_\mathrm{L}=\sigma_0 +\Delta \sigma \ \text{con } \sigma_0=q(n_0\mu_{n0}+p\mu_{p0})
+\end{equation}
+Para un semiconductor tipo N tenemos
+\begin{equation*}
+    \sigma_0=q n_0 \mu_{n0} \hspace{1cm} \sigma_0+ \Delta \sigma=q (n_0+\Delta n) (\mu_{n0}+\Delta \mu) \hspace{1cm} \Delta \sigma= q \mu_{n0} \Delta n+ q (n_0+\Delta n)\Delta \mu
+\end{equation*}
+Donde $\Delta n= G\tau $ son los portadores fotogenerados y $\Delta \mu $ es el estado de ionización de impurezas de portadores en sub-bandas con diferente $\mu$.\\\\
+Si hacemos pasar una corriente por un semiconductor que esta siendo iluminado con una radiación capaz de generar electrones. $$I=A\sigma E= A\sigma_0 E+ A\Delta E=I_0+\Delta I$$ que combinando con lo que hemos desarrollado anteriormente, obtenemos $$\Delta I=Aq(n_0\mu_{n0}+p\mu_{p0}) G \tau \frac{V}{L}$$ 
+\subsection{\textcolor{red}{Luminiscencia en semiconductores}} \label{sec: luminiscencia en semiconductores}
+Este proceso se da por pérdida de energía de los electrones excitados, tenemos tres posibles transiciones de desexcitación: interbanda, por impureas o intrabanda.\\\\
+Cuando se emiten electrones estos pueden saltar de una banda a otra, la más probable es la que salta una distancia de energías del GAP. Los semiconductores  más eficientes son intrínsecos y de GAP directo tales que el electrón salte entre bandas de energía y emita un fotón lo más energético posible.\\\\
+Otro aspecto que nos interesa es que queremos que los semiconductores estén entre el grupo III y el V puesto que el GAP es mayor. Para conseguir entrar en el visible, lo que hacemos es dopar con otros semimetales como el Indio para reducir el tamaño del GAP.

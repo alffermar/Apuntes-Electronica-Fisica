@@ -1,0 +1,445 @@
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Tema 4}
+\fancyhead[L]{4º Grado en Física}
+\chapter{Transistor Bipolar}
+Determinadas las características de las uniones PN y las uniones metal-semiconductor, podemos construir diodos, que son dispositivos hechos por una única unión entre un semiconductor tipo P y otro tipo N. Los \textbf{transistores} son dispositivos formados por varias uniones entre semiconductores y metal-semiconductor.\footnote{ Este capítulo sólo estudiaremos el transistor bipolar, mientras que en el siguiente estudiaremos el MOSFET.}
+\section{Transistor bipolar} \label{sec: Transistor bipolar}
+El transistor bipolar es un dispositivo electrónico que está formado por tres regiones diferenciadas, con dos uniones PN. A estas regiones se les conoce como \textbf{terminales} \footnote{Vamos a desarrollar un transistor bipolar PNP pero todo es análogo al NPN.}, estas regiones están dopadas con distintas concentraciones (se justificarán los distintsos motivos de los dopajes a lo largo del capítulo), además supondremos que tenemos \textbf{uniones abruptas}.
+\begin{itemize}
+    \item \textbf{Emisor} (E): Esta región es la que tiene mayor dopaje y es la que nos aporta los electrones.
+    \item \textbf{Base} (B): Es la región con dopaje intermedio y nos controla la transición de los electrones entre emisor y colector.
+    \item \textbf{Colector} (C): Es la región con menor dopaje. Recoge los portadores de carga emitidos por el emisor y es responsable de la corriente de salida.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_01_Transistor_NPN.pdf}
+        \caption{Transistor NPN.}
+        \label{fig: Transistor NPN}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+    \includegraphics{Standalone/T4_02_Transistor_PNP.pdf}
+            \caption{Transistor PNP.}
+            \label{fig: Transistor PNP}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+        \includegraphics{Standalone/T4_03_Concentraciones_de_portadores_en_un.pdf}
+        \caption{Concentraciones de portadores en un transistor PNP.}
+    \end{subfigure}
+    \caption{Geometría de un transistor bipolar}
+    \label{fig:Geometrias transistor}
+\end{figure}
+\newpage
+\subsection{Funcionamiento cualitativo}
+Ahora seguiremos desarrollando para un transistor PNP. En el equilibrio, el transistor bipolar presenta la siguiente estructura.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_04_Distribucion_espacial_equilibrio.pdf}
+        \caption{Distribución espacial del transistor.}
+        \label{fig: Distribucion espacial equilibrio}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+    \includegraphics{Standalone/T4_05_Diagrama_de_bandas_equilibrio.pdf}
+    \caption{Diagrama de bandas de energía.}
+    \label{fig: Diagrama de bandas equilibrio}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+        \includegraphics{Standalone/T4_06_Distribucion_concentraciones_equilibrio.pdf}
+        \caption{Concentraciones de portadores en un transistor PNP.}
+        \label{fig: Distribucion concentraciones equilibrio}
+    \end{subfigure}
+    \caption{Distribuciones y geometrías de un transistor bipolar PNP en equilibrio.}
+    \label{fig: Distribuciones de un transistor equilibrio}
+\end{figure}
+\noindent La figura \ref{fig: Distribuciones de un transistor equilibrio} nos muestra las distribuciones espacial, de bandas de energía y de concentraciones de un transistor tipo PNP. Ahora bien, expliquemos la figura \ref{fig: Distribucion espacial equilibrio}
+\begin{itemize}
+    \item Las líneas \textcolor{red}{\textbf{rojas punteadas}}, nos indican los límites de los distintos terminales del transistor.
+    \item Las líneas \textcolor{blue}{\textbf{azules punteadas}}, nos indican los límites de las zonas de carga espacial en la base y nos delimitan la \textbf{zona neutra de la base}.
+    \item Las líneas \textbf{negras punteadas}, nos indican los límites de las zonas de carga espacial en el emisor y el colector respectivamente.
+    \item Realizamos la aproximación de \hyperref[sec: Vaciamiento total]{\textbf{vaciamiento total}} en las ZCE's.
+\end{itemize}
+Vemos que los límites de los terminales los de la zona neutra de la base no coinciden. Esto lo solucionamos haciendo una asimetría entre las concentraciones de los terminales ya que nos hacen más repentinas las caídas/subidas que hemos visto en las figuras \ref{fig: Diagrama de bandas equilibrio} y \ref{fig: Distribucion concentraciones equilibrio}. Es decir, \textbf{la concentración de portadores, afecta a la anchura en las ZCE's}, concretamente es inversamente proporcional; a mayor dopaje, menor será la anchura \footnote{Anchura efectiva}.
+\subsubsection{\textcolor{red}{Unión bajo polarización}}
+Si existe una diferencia de potencial entre el colector y el emisor, ya no nos encontramos en equilibrio y la geometría de las uniones del transistor hace que aparezcan distintas polarizaciones en cada una de las uniones.\\\\
+Si polarizamos un transistor PNP, $V_\mathrm{C}-V_\mathrm{E}=V_\mathrm{CE}<0$, la unión entre \textbf{emisor} y \textbf{base}, tiene polarización \textbf{directa} mientras que la unión \textbf{base}, \textbf{colector}, tiene polarización \textbf{inversa}.
+\newpage
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_07_Distribucion_espacial_polarizacion.pdf}
+        \caption{Distribución espacial del transistor.}
+        \label{fig: Distribucion espacial polarizacion}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+    \includegraphics{Standalone/T4_08_Diagrama_de_bandas_polarizacion.pdf}
+    \caption{Diagrama de bandas de energía.}
+    \label{fig: Diagrama de bandas polarizacion}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+        \includegraphics{Standalone/T4_09_Distribucion_concentraciones_polarizacion.pdf}
+        \caption{Concentraciones de portadores en un transistor PNP.}
+        \label{fig: Distribucion concentraciones polarizacion}
+    \end{subfigure}
+    \caption{Distribuciones y geometrías de un transistor bipolar PNP bajo polarización\\ $V_\mathrm{CE}<0$.}
+    \label{fig: Distribuciones de un transistor polarizacion}
+\end{figure}
+
+\noindent Si consideramos que las uniones son independientes tenemos $W\gg L_{p\mathrm{B}}$, mientras que si no son independientes $W \ll L_{p\mathrm{B}}$\footnote{Linea punteada roja de la figura \ref{fig: Distribucion concentraciones polarizacion}.}.\\\\
+Los diagramas de la figura \ref{fig: Distribuciones de un transistor polarizacion}, nos muestran que en un transistor PNP, los huecos inyectados por el emisor en la base llegan por difusión a la unión colectora (antes de recombinarse) y son arrastrados por el campo eléctrico por lo que aumenta la densidad de corriente.\\\\
+En las uniones no independientes, la base pierde electrones ya que los inyecta en el emisor a través de la unión BE que está en directa y pierde electrones y huecos por recombinación, además inyecta electrones para mantener el exceso de huecos. \\\\
+La base inyecta entonces los portadores mayoritarios, por lo que para anular las contribuciones de los minoritarios, hacemos que las uniones sean asimétricas ya que esto hace que sólo tengamos contribuciones de portadores mayoritarios en los terminales.Para mantener el exceso de electrones, utilizamos la \textbf{corriente de base} que es la corriente necesaria para mantener en directa la unión BE.
+\subsubsection{Transistor NPN}
+En este caso tendremos la misma disposición que antes pero trabajaremos con huecos y tendremos que polarizar con $V_\mathrm{CE}>0$, nuestro diagrama de bandas en este caso en lugar de ser dos pozos finitos, son dos barreras y cambiamos la posición de los cuasiniveles de Fermi de forma análoga a la figura \ref{fig: Union metalsemiconductor tipo P, curva hacia abajo}. 
+\newpage
+\subsection{\textcolor{red}{Regiones de polarización}}
+\begin{wrapfigure}{r}{0.3\textwidth}
+\centering
+\includegraphics{Standalone/T4_10_Modos_de_operacion.pdf}
+\caption{Modos de operación de los transistores en función de los voltajes entre terminales.}
+\label{fig: Modos de operacion}
+\end{wrapfigure}
+Ya hemos visto que aunque tengamos una polarización global en un transistor, tenemos diferentes polarizaciones en las uniones, por ello en función de las distintas polarizaciones que tengamos entre los terminales, obersevaremos distintos fenómnos.\\\\
+La figura \ref{fig: Modos de operacion}, nos muestra cómo en función de las diferentes polarizaciones de las uniones base-emisor, colector-base.  Vamos a estudiar cómo sería para un \textbf{transistor PNP} \label{sec: Reg Polarizacion trns PNP}, aunque solo vamos a centrarnos en las regiones de la base.
+
+\subsubsection{Región Activa Directa}
+\noindent Esta se da cuando tenemos polarización directa en la unión Base-Emisor y polarización inversa en la unión Colector-Base.\\
+\begin{figure}[h]
+\centering
+    \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_11_Region_activa_directa.pdf}
+        \caption{$V_\mathrm{EB}=\text{cte}>0; V_\mathrm{CB}^\text{var}<0$}
+    \end{subfigure}
+    \hfill
+        \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_12_Region_activa_directa.pdf}
+        \caption{$V_\mathrm{EB}^\text{(var)}>0; V_\mathrm{CB}=\text{cte}<0$}
+    \end{subfigure}
+    \hfill 
+        \begin{subfigure}[h]{0.3\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_13_Region_activa_directa.pdf}
+        \caption{$V_\mathrm{EB}>0; V_\mathrm{CB}<0$}
+    \end{subfigure}
+    \caption{Concentración de portadores minoritarios de la base en la región activa directa.}
+    \label{fig: Region activa directa}
+\end{figure}
+
+
+\begin{minipage}{0.45\textwidth}
+\subsubsection{Región Activa Inversa}
+  Decimos que el transistor se encuentra en la región activa inversa cuando tenemos polarización directa en la unión Colector-Base y polarización inversa en la unión Emisor-Base. $V_\mathrm{EB}=\text{cte}<0; V_\mathrm{CB}^\text{var}>0$
+  \begin{center}
+    \includegraphics{Standalone/T4_14_Region_activa_inverasa.pdf}
+        \captionof{figure}{Concentración de portadores minoritarios de la base.}
+        \label{fig: Region activa inverasa}
+  \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\subsubsection{Región de Corte}
+Decimos que el transistor se encuentra en la región de corte cuando tenemos polarización inversa en ambas uniones. En este caso tenemos que $V_\mathrm{EB}<0;V_\mathrm{CB}<0$ \vspace{13pt}
+  \begin{center}
+    \includegraphics{Standalone/T4_15_Region_de_corte.pdf}
+        \captionof{figure}{Concentración de portadores minoritarios de la base.}
+        \label{fig: Region de corte}
+  \end{center}
+\end{minipage}
+
+\subsubsection{Región de Saturación}
+Decimos que el transistor está en saturación cuando ambas uniones están en directa.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.4\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_16_Region_saturacion.pdf}
+        \caption{$V_\mathrm{EB}^\text{(var)}>0; V_\mathrm{CB}^\text{(var)}>0;V_\mathrm{EB}>V_\mathrm{CB}$}
+    \end{subfigure}
+    \hspace{2cm}
+        \begin{subfigure}[h]{0.4\linewidth}
+    \centering
+        \includegraphics{Standalone/T4_17_Region_saturacion.pdf}
+        \caption{$V_\mathrm{EB}^\text{(var)}>0; V_\mathrm{CB}^\text{(var)}>0;V_\mathrm{EB}<V_\mathrm{CB}$}
+    \end{subfigure}
+    \caption{Concentración de portadores minoritarios de la base en la región saturación.}
+    \label{fig: Region saturacion}
+\end{figure}
+Para un \textbf{transistor NPN} \label{sec: Regiones de polarizacion trns NPN}, observamos que la concentración de portadores minoritarios en la base sigue las mismas curvas que para el transistor PNP.
+\section{Comportamiento estático: características corriente-tensión. Modelo de Ebers-Moll}
+A la hora de estudiar la corriente, utilizaremos el siguiente sistema de coordenadas y criterio de signos (desarrollamos para un PNP).
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[h]{0.4\textwidth}
+    \includegraphics{Standalone/T4_18_Sistema_de_coordenadas_en_un.pdf}
+    \caption{Sistema de coordenadas.}
+    \label{fig:Sistema de coordenadas en un transistor}        
+    \end{subfigure}
+    \hspace{2cm}
+\begin{subfigure}[h]{0.4\textwidth}
+    \centering
+    \includegraphics{Standalone/T4_19_Transistor_PNP.pdf}
+            \caption{Criterio de signos.}
+            \label{fig: Transistor PNP}    
+            \end{subfigure}
+            \caption{Geometría del modelo de Ebers-Moll.}
+            \label{fig: Modelo de Ebers-Moll}
+\end{figure}
+
+El \textbf{modelo de Ebers-Moll} tiene las siguientes características:
+\begin{itemize}
+    \item Es un modelo \textbf{unidimensional}.
+    \item Nos encontramos en \textbf{bajo nivel de inyección}, por lo que las relaciones de Boltzmann son válidas.
+    \item Tenemos \textbf{ausencia de generación-recombinación} en las ZCE's.
+    \item  Consideraremos que las ZCE's \textbf{no varían con la polarización}.
+    \item  Las corrientes serán \textbf{de difusión} de los minoritarios en los bordes de ZCE y serán \textbf{constantes} dentro de la ZCE. La suma de las corrientes es nula $\sum_i I_i=0$.
+\end{itemize}
+\newpage
+\subsection{Distribuciones de minoritarios en las zonas neutras}
+Supongamos que el emsior y el colector son largos, es decir que sus longitudes de difusión son mucho menores que la longitud física de los terminales. Por lo que las concentraciones de minoritarios son 
+\begin{equation}
+    n_\mathrm{E}(x^\prime)=n_\mathrm{E0}+n_\mathrm{E0}\left( \exp{\left( \frac{eV_\mathrm{EB}}{k_\mathrm{B}T}\right)-1}\right) \exp{\left( \frac{-x^\prime}{L_{n\mathrm{E}}} \right)} \ \ \text{Emisor}
+    \label{eq: Minoritarios emisor}
+\end{equation}
+\begin{equation}
+    n_\mathrm{C}(x^{\prime \prime})=n_\mathrm{C0}+n_\mathrm{C0}\left( \exp{\left( \frac{eV_\mathrm{CB}}{k_\mathrm{B}T}\right)-1}\right) \exp{\left( \frac{-x^\prime}{L_{n\mathrm{C}}} \right)} \ \ \text{Colector}
+    \label{eq: minoritarios colector}
+\end{equation}
+Supongamos también que la base es corta, por lo que de la ecuación de continuidad \ref{eq: ecuacion ambipolar de difusion}, solo tendremos en cuenta la contribución de difusión.
+\begin{equation*}
+    D_{p \mathrm{B}} \diff[2]{ p_\mathrm{B}(x)}{x}=0 \quad p_\mathrm{B}(x)=A x+B
+    \left\{\begin{aligned}
+&x=0 \rightarrow p_\mathrm{B}(0)=p_{\mathrm{B} 0} \exp{\frac{e V_\mathrm{EB}}{k_\mathrm{B} T}} \\\\
+&x=W \rightarrow p_\mathrm{B}(W)=p_{\mathrm{B} 0} \exp{\frac{e V_\mathrm{CB}}{k_\mathrm{B} T}}
+\end{aligned}\right.
+\end{equation*}
+Resultando
+\begin{equation}
+    p_\mathrm{B}(x)=p_\mathrm{B0}\, \frac{W-x}{W}\, \exp{\left(\frac{e V_\mathrm{EB}}{k_\mathrm{B} T}\right)} +p_\mathrm{B0}\, \frac{x}{W}\, \exp{\left(\frac{e V_\mathrm{CB}}{k_\mathrm{B} T}\right)}
+\end{equation}
+\subsection{\textcolor{red}{Corrientes en los terminales. Ecuaciones de Ebers-Moll}}
+Si consideramos que las corrientes son positivas al entrar en el transistor, la corriente de emisor será
+
+\begin{equation}
+\begin{aligned}
+    I_\mathrm{E}=&e S\left(-\left.D_{p \mathrm{B}} \frac{\mathrm{d} p_\mathrm{B}(x)}{\mathrm{d} x}\right|_{x=0}-\left.D_{n \mathrm{E}} \frac{\mathrm{d} n_\mathrm{E}\left(x^{\prime}\right)}{\mathrm{d} x^{\prime}}\right|_{x^{\prime}=0}\right)=\\&e S\left[\left(D_{p \mathrm{B}} \frac{p_{\mathrm{B} 0}}{W}+D_{n \mathrm{E}} \frac{n_{\mathrm{E} 0}}{L_{n \mathrm{E}}}\right)\left(\exp{\left(\frac{e V_\mathrm{EB}}{k_\mathrm{B}T}\right)}-1\right)-\frac{D_{p \mathrm{B}}}{W} p_{\mathrm{B} 0}\left(\exp{\left(\frac{e V_\mathrm{CB}}{k_\mathrm{B}T}\right)}-1\right)\right] 
+    \end{aligned}
+\end{equation}
+
+Mientras que para el colector la corriente es:
+
+\begin{equation}
+\begin{aligned}
+ I_C=&e S\left(+\left.D_{p \mathrm{B}} \frac{\mathrm{d} p_\mathrm{B}(x)}{\mathrm{d} x}\right|_{x=W}-\left.D_{n \mathrm{E}} \frac{\mathrm{d} n_\mathrm{C}\left(x^{\prime \prime}\right)}{\mathrm{d} x^{\prime \prime }} \right|_{x^{\prime \prime}=0}\right)=\\&e S\left[\left(D_{p \mathrm{B}} \frac{p_{\mathrm{B} 0}}{W}+D_{n \mathrm{C}} \frac{n_{\mathrm{C} 0}}{L_{n \mathrm{C}}}\right)\left(\exp{\left(\frac{e V_\mathrm{CB}}{k_\mathrm{B}T}\right)}-1\right)-\frac{D_{p \mathrm{B}}}{W} p_{\mathrm{B} 0}\left(\exp{\left(\frac{e V_\mathrm{EB}}{k_\mathrm{B}T}\right)}-1\right)\right] 
+ \end{aligned}
+\end{equation}
+
+Siendo $S$ la sección tranversal del terminal. Si utilizamos la ecuación de malla, obtenemos la expresión para $I_\mathrm{B}=-I_\mathrm{C}-I_\mathrm{E}$
+\newpage
+\noindent Si definimos unas corrientes conocidas como\\
+\begin{minipage}{0.45 \textwidth}
+    \begin{equation}
+        I_\mathrm{CS}=eS\left(D_{p \mathrm{B}} \frac{p_{\mathrm{B} 0}}{W}+D_{n \mathrm{E}} \frac{n_{\mathrm{E} 0}}{L_{n \mathrm{E}}}\right)
+    \end{equation}
+    Corriente inversa de saturación de colector, con la unión emisora en cortocircuito.
+\end{minipage}
+\hfill
+\begin{minipage}{0.45 \textwidth}
+    \begin{equation}
+        I_\mathrm{ES}=eS\left(D_{p \mathrm{B}} \frac{p_{\mathrm{B} 0}}{W}+D_{n \mathrm{E}} \frac{n_{\mathrm{E} 0}}{L_{n \mathrm{E}}}\right)
+    \end{equation}
+    Corriente inversa de saturación de emisor, con la unión colectora en cortocircuito.
+\end{minipage}
+\\\\\\
+Obtenemos las \textbf{ecuaciones de Ebers-Moll}
+\begin{equation}
+    I_\mathrm{E}=I_\mathrm{ES} \left(\exp{\left(\frac{eV_\mathrm{EB}}{k_\mathrm{B}T} \right)}-1 \right)-\alpha_\mathrm{R} I_\mathrm{CS}\left( \exp \frac{eV_\mathrm{CB}}{k_\mathrm{B}T}-1 \right)
+    \label{eq:Corriente de Emisor EbersMoll}
+\end{equation}
+\begin{equation}
+    I_\mathrm{C}=-\alpha_\mathrm{F}I_\mathrm{ES} \left(\exp{\left(\frac{eV_\mathrm{EB}}{k_\mathrm{B}T} \right)}-1 \right)+ I_\mathrm{CS}\left(\exp \frac{eV_\mathrm{CB}}{k_\mathrm{B}T}-1 \right)
+    \label{eq:Corriente de Colector EbersMoll}
+\end{equation}
+Siendo los parámetros $\alpha_i$ ganancias en corriente definidas por \\
+\begin{minipage}{0.5\textwidth}
+    \begin{equation}
+\alpha_\mathrm{F}=\cfrac{D_{p \mathrm{B}} \cfrac{p_{\mathrm{B} 0}}{W}}{D_{p \mathrm{B}} \cfrac{p_{\mathrm{B} 0}}{W}+D_{p \mathrm{B}} \cfrac{p_{\mathrm{E} 0}}{L_{n\mathrm{E}}}}=-\left. \cfrac{I_\mathrm{C}}{I_\mathrm{E}}\right |_{V_\mathrm{CB}=0}
+\label{eq: Ganancia directa en corriente}
+    \end{equation}
+    \textbf{Ganancia directa en corriente} \\ con la unión colectora en cortocircuito.
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+    \begin{equation}
+\alpha_\mathrm{R}=\cfrac{D_{p \mathrm{B}} \cfrac{p_{\mathrm{B} 0}}{W}}{D_{p \mathrm{B}} \cfrac{p_{\mathrm{B} 0}}{W}+D_{p \mathrm{B}} \cfrac{p_{\mathrm{C} 0}}{L_{n\mathrm{C}}}}=-\left. \cfrac{I_\mathrm{E}}{I_\mathrm{C}}\right |_{V_\mathrm{EB}=0}
+\label{eq: Ganancia inversa en corriente}
+    \end{equation}
+    \textbf{Ganancia inversa en corriente} \\ con la unión emisora en cortocircuito.
+\end{minipage}
+\\\\\\
+El parámetro $\alpha_\mathrm{F}$ nos interesa que sea muy próximo a uno, es decir, este parámetro nos indica qué tan bueno es nuestro transistor. Para ello, si analizamos la ecuación \ref{eq: Ganancia directa en corriente} podemos reducir mucho $W$, lo cual hace que los diferentes efectos no ideales cobren mayor relevancia; o podemos \textbf{impurificar mucho el emisor},lo que justifica lo expuesto en la sección \ref{sec: Transistor bipolar}
+\subsection{Puntos de operación. Características de entrada y salida de un transistor bipolar}
+Las ecuaciones de Ebers-Moll \ref{eq:Corriente de Emisor EbersMoll} y \ref{eq:Corriente de Colector EbersMoll}, nos relacionan dos tensiones con dos corrientes. Además por las ecuaci ones de Kirchoff, si conocemos también dos de las corrientes y dos de las tensiones, conoceremos las restantes.\\\\
+Con dos de las magnitudes involucradas (corrientes ó tensiones), \textbf{fijamos el punto de operación} del transistor.\\\\
+El problema del transistor se reduce entonces a trabajar con dos gráficas, que relacionan tres variables (dependiente, independiente y una que actúa como parámetro).
+\subsubsection{Referencia de tensión}
+Tomamos como referencia el emisor $(V_\mathrm{CE},V_\mathrm{BE})$, por lo que nuestras tensiones son \textbf{características en emisor común}.
+\subsubsection{Caracterísiticas de entrada}
+En la entrada tomamos como variable independiente $V_\mathrm{BE}$ y $V_\mathrm{CE}$ como parámetro, por lo que $I_\mathrm{B}=I_\mathrm{B}(V_\mathrm{BE},V_\mathrm{CE})$ es la variable dependiente.
+A partir de las ecuaciones de \hyperref[eq:Corriente de Emisor EbersMoll]{Ebers-Moll}
+\begin{equation}
+I_\mathrm{B}=-I_\mathrm{ES} (1-\alpha_\mathrm{F})\left(\exp{\left(\frac{-eV_\mathrm{BE}}{k_\mathrm{B}T} \right)}-1 \right)-I_\mathrm{CS}(1-\alpha_\mathrm{R})\left(\exp{\left(e\frac{V_\mathrm{CE}-V_\mathrm{BE}}{k_\mathrm{B}T}\right )}-1 \right)
+\label{eq: Corriente de base caracteristica de entrada}
+\end{equation}
+\subsubsection{Características de salida}
+En la salida tomamos como variable independiente $V_\mathrm{CE}$ y $I_\mathrm{B}$ como parámetro, por lo que $I_\mathrm{C}=I_\mathrm{C}(V_\mathrm{CE},I_\mathrm{B})$ es la variable dependiente.
+A partir de las ecuaciones de \hyperref[eq:Corriente de Emisor EbersMoll]{Ebers-Moll}
+\begin{equation}
+I_\mathrm{C}=I_\mathrm{B} \frac{\alpha_\mathrm{F}}{1-\alpha_\mathrm{F}}+\frac{I_\mathrm{CO}}{1-\alpha_\mathrm{F}}\left(\exp{\left(e\frac{V_\mathrm{CE}-V_\mathrm{BE}}{k_\mathrm{B}T}\right )}-1 \right) \quad \text{con} \quad I_\mathrm{CO}=I_\mathrm{CS}(1-\alpha_\mathrm{F}\alpha_\mathrm{R})
+\label{eq: Corriente de base caracteristica de entrada}
+\end{equation}
+\subsection{Regiones de polarización. Corrientes en los terminales}
+\subsubsection{Región Activa Directa}
+En la región activa directa, tenemos la unión emisora en directa $(V_\mathrm{BE}<0)$ mientras que la colectora está en inversa $(V_\mathrm{CB}<0)$, por la relación $V_\mathrm{CE}=V_\mathrm{CB}+V_\mathrm{BE}$, concluimos que $|V_\mathrm{CE}|>|V_\mathrm{BE}|$\\\\
+\begin{minipage}{0.65\textwidth}
+\begin{equation}
+        I_\mathrm{B}=-I_\mathrm{ES} (1-\alpha_\mathrm{F})\left(\exp{\left(\frac{-eV_\mathrm{BE}}{k_\mathrm{B}T} \right)}-1 \right)+I_\mathrm{CS}(1-\alpha_\mathrm{R})
+        \label{eq: Corriente de base en directa}
+\end{equation}    
+Que es la expresión de la corriente de base y vemos que siempre es negativa. La región activa directa en la base presenta un efecto no ideal y es la tensión umbral en la unión base-emisor.
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+\begin{center}
+    \includegraphics{Standalone/T4_20_Caracteristica_I_V_ideal_de.pdf}
+    \captionof{figure}{Característica I-V ideal de la base.}
+\end{center}
+\end{minipage}
+
+\begin{equation}
+            I_\mathrm{C}=I_\mathrm{B} \frac{\alpha_\mathrm{F}}{1-\alpha_\mathrm{F}}+\frac{I_\mathrm{CO}}{1-\alpha_\mathrm{F}}=\beta_\mathrm{F}I_\mathrm{B}-(\beta_\mathrm{F}+1)I_\mathrm{CO}\approx \beta_\mathrm{F}I_\mathrm{B} \quad \text{con} \quad \beta_\mathrm{F}=\left. \frac{I_\mathrm{C}}{I_\mathrm{B}}\right|_{V_\mathrm{CB}=0}=\frac{\alpha_\mathrm{F}}{1-\alpha_\mathrm{F}}
+            \label{eq: Corriente de colector en directa}
+\end{equation}
+\begin{wrapfigure}{r}{0.3\textwidth}
+\flushright
+    \includegraphics{Standalone/T4_21_Caracterisitica_real_I_V_del.pdf}
+    \caption{Caracterísitica real I-V del colector.}
+\end{wrapfigure}
+
+Siendo $\beta_\mathrm{F}$ la \textbf{ganancia directa en corriente}. La corriente de colector también es negativa en la región activa directa. Los efectos reales que presenta la corriente de colector son
+\begin{itemize}
+    \item \textcolor{red}{\textbf{Efecto Early}}, en el que observamos que las pendientes son no nulas en las corrientes de base, por lo que la suposición de que las ZCE son constantes no se puede aplicar a un transistor real.
+    \item \textbf{Alta inyección}, conforme aumentan el valor de las corrientes, se van acumulando en un valor de $I_\mathrm{C}$.
+\end{itemize}
+\clearpage
+\subsubsection{Región Activa Inversa}
+En la región activa inversa, la unión emisora está en inversa ($V_\mathrm{BE}>0$), mientras que la colectora está en directa $(V_\mathrm{CB}>0)$. La caida de potencial $V_\mathrm{CE}>0$ por lo tanto obtenemos $|V_\mathrm{CE}|>|V_\mathrm{BE}|$ \\
+\begin{minipage}{0.7\textwidth}
+    La expresión para la corriente de base es
+    \begin{equation}
+        I_\mathrm{B}=I_\mathrm{ES} (1-\alpha_\mathrm{F})-I_\mathrm{CS}(1-\alpha_\mathrm{R})\left(\exp{\left(e\frac{V_\mathrm{CE}-V_\mathrm{BE}}{k_\mathrm{B}T}\right )}-1 \right)
+        \label{eq: Corriente de base en inversa}
+    \end{equation}
+    En la región activa inversa, la corriente de base es negativa.
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+\begin{center}
+    \includegraphics{Standalone/T4_22_Caracteristica_I_V_ideal_en.pdf}
+    \captionof{figure}{Característica I-V ideal en la base.}
+\end{center}
+\end{minipage}
+
+\noindent La corriente de colector la podemos expresar como 
+\begin{equation}
+    I_\mathrm{C}=I_\mathrm{B} \frac{\alpha_\mathrm{R}}{1-\alpha_\mathrm{R}}+\frac{I_\mathrm{CO}}{1-\alpha_\mathrm{R}} \left(\exp{\left(\frac{-eV_\mathrm{BE}}{k_\mathrm{B}T}\right )}-1 \right)=\beta_\mathrm{R}I_\mathrm{B}-(\beta_\mathrm{R}+1)I_\mathrm{EO}
+    \label{eq: Corriente de colector en inversa}
+\end{equation}
+Siendo $I_\mathrm{EO}=I_\mathrm{ES}(1-\alpha_\mathrm{F}\alpha_\mathrm{R})$ y $\beta_\mathrm{R}$ la ganancia inversa en corriente cuya expresión es similar a la dada en la ecuación \ref{eq: Corriente de base en directa}. 
+\subsubsection{Región de Saturación}
+Ambas uniones están en directa $(V_\mathrm{BE}<0, V_\mathrm{CB}>0)$ y $V_\mathrm{CE}\approx 0$. $I_\mathrm{C}$ la determina el circuito en que esté el transistor $|\beta_\mathrm{F}I_\mathrm{B}>I_\mathrm{C\,max}| \xrightarrow{} I_\mathrm{C}=I_\mathrm{C\,max}=I_\mathrm{C}(V_\mathrm{CE}=0)$
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+\flushright
+    \includegraphics{Standalone/T4_23_Caracterisitica_real_I_V_del.pdf}
+    \caption{Caracterísitica real I-V del colector.}
+\end{wrapfigure}
+\subsubsection{Región de Corte}
+
+Ambas uniones están en inversa $(V_\mathrm{BE}>0, V_\mathrm{CB}<0)$ y $I_\mathrm{C}\approx0$. $V_\mathrm{CE}$ la determina el circuito en el que está el transistor.
+Las expresiones para las corrientes de emisor, colector y base toman expresiones más sencillas que las descritas anteriormente siendo la corriente de emisor
+\begin{equation}
+    I_\mathrm{E}=-I_\mathrm{ES}(1-\alpha_\mathrm{F})
+\end{equation}
+La corriente de colector
+\begin{equation}
+    I_\mathrm{C}=-I_\mathrm{CS}(1-\alpha_\mathrm{R})
+\end{equation}
+Y para la corriente de base
+\begin{equation}
+    I_\mathrm{B}=-I_\mathrm{ES}(1-\alpha_\mathrm{F})+I_\mathrm{CS}(1-\alpha_\mathrm{R})
+\end{equation}
+\clearpage
+
+\section{Comportamiento dinámico: señales débiles de baja frecuencia}
+Supongamos que las señales de baja frecuencia tienen la siguiente forma, $$X_i(t)=X_{i0}+x_i(t)$$ donde las $X_{i0}$ representan los puntos de operación estacionarios y $x_i(t)$, representan las contribuciones dependientes del tiempo; la $i=\{\text{E, B, C} \}$, representa al terminal. Por lo que tenemos las siguientes expresiones para la intensidad y el voltaje de los terminales
+\begin{equation}
+\begin{aligned}
+&I_\mathrm{E}(t)=I_{\mathrm{E} 0}+i_\mathrm{E}(t) ; \quad I_\mathrm{C}(t)=I_{\mathrm{C} 0}+i_\mathrm{C}(t) ; \quad I_\mathrm{B}(t)=I_{\mathrm{B} 0}+i_\mathrm{B}(t) \\\\
+&V_{\mathrm{C} \mathrm{E}}(t)=V_{\mathrm{C} \mathrm{E} 0}+v_{\mathrm{C} \mathrm{E}}(t) ; \quad V_{\mathrm{C} \mathrm{B}}(t)=V_{\mathrm{C} \mathrm{B} 0}+v_{\mathrm{C} \mathrm{B}}(t) ; \quad V_{\mathrm{B} \mathrm{E}}(t)=V_{\mathrm{B} \mathrm{E} 0}+v_{\mathrm{B} \mathrm{E}}(t) \\\\
+&i_\mathrm{E}+i_\mathrm{C}+i_\mathrm{B}=0 \quad v_{\mathrm{C} \mathrm{B}}=v_{\mathrm{C} \mathrm{E}}-v_{\mathrm{B} \mathrm{E}}
+\end{aligned}
+\label{eq: Ecuaciones de los terminales en baja señal}
+\end{equation}
+El modelo de pequeña señal nos permite establecer dos ecuaciones lineales ($f_1(i_1,i_2,v_1,v_2)=0$) y ($f_2(i_1,i_2,v_1,v_2)=0$) que relacionen entre las cuatro variables.\\\\
+En este caso tenemos un \textbf{cuadripolo} ya que nuestro dispositivo esta siendo sometido a dos intensidades y a dos tensiones.\\\\
+Tenemos seis combinaciones según qué variables escojamos como independientes y dependientes, ya que si nos fijamos en las relaciones lineales y en las últimas de las ecuaciones \ref{eq: Ecuaciones de los terminales en baja señal}, sólo nos hacen falta escoger dos de los 3 terminales, tomando el terminal que falta como referencia. Por lo que tenemos 18 posibilidades en total para determinar  cuatro coeficientes de las relaciones $f_i$. Es decir que sólo hace falta determinar 4 coeficientes independientes.\\\\
+Vamos a determinar las relaciones $f_i$ considerando lo que se conoce como \textbf{parámetros híbridos}, si consideramos como variables dependientes $v_1$ y $i_2$; y $v_2$ y $i_1$ como independientes.
+
+El sistema de ecuaciones que obtenemos es entonces
+\begin{equation}
+    \left\{ \begin{aligned}
+        & v_1=h_{11}i_1+h_{12}v_2\\
+        & i_2=h_{21}i_1+h_{22}v_2\\
+    \end{aligned}\right.
+\end{equation}
+Donde el sentido físico de los parámetros híbridos es\footnote{Todos estos parámetros son para las componentes alternas. Recordar también que independientemente de los terminales que escojamos para resover tenemos que tener un terminal de referencia común.}:
+\begin{itemize}
+    \item $h_{11}$ \textbf{impedancia de entrada}. con la salida en cortocircuito.
+    \item  $h_{12}$ \textbf{ganancia inversia en tensión}, con la entrada en circuito abierto.
+    \item $h_{21}$ \textbf{ganancia directa en corriente}, con la salida en cortocircuito.
+    \item $h_{22}$ \textbf{admitancia de salida}, con la entrada en circuito abierto.
+\end{itemize}
+\newpage
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\textwidth]{Standalone/T4_24_Representacion_circuital_transistor_BJT.pdf}
+\caption{Representación circuital de un transistor}
+\label{fig: Representacion circuital transistor BJT}
+\end{figure}
+Los parámetros dependen del punto de operación y de la frecuencia y por lo general serán números complejos, pero al trabajar en baja frecuencia, son reales e independientes de la misma.\\\\ La figura \ref{fig: Representacion circuital transistor BJT} es una representación equivalente de un transistor. En baja frecuencia y en la región activa, podemos sustituir las impedancia por resistencias, ya que el comportamiento del circuito\footnote{Podríamos escoger 1=B y 2=C} será lineal. Para el régimen de alta frecuencia, debemos considerar las contribuciones capacitivas de las uniones PN.
+\subsection{Conmutación del BJT}
+Cuando cambiamos bruscamente la polaridad del circuito de un transistor bipolar, no esperamos que los cambios sean inmediatos por lo que definimos una serie de tiempos que nos especifican hasta qué valor de frecuencia podemos utilizar el transistor.
+\begin{itemize}
+    \item $t_\mathrm{d}$ \textbf{tiempo de retardo}, es el tiempo que tarda la unión BE en pasar de inversa a borde de directa.
+    \item $t_\mathrm{r}$ \textbf{tiempo de subida}, es el tiempo que tarda la unión BE de estar en el borde de directa al borde de saturación.
+    \item $t_\mathrm{s}$ \textbf{tiempo de almacenamiento}, este es el que nos limita la velocidad de conmutación del transistor; y es el tiempo necesario para extraer la carga en exceso almacenada en la base cuando nos encontramos en saturación.
+    \item $t_\mathrm{f}$ \textbf{tiempo de caída}, es el tiempo que tarda la unión BE en estar en el borde de saturación a estar en el bode de inversa, es decir de extraer la carga total.
+\end{itemize}

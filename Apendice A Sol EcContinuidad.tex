@@ -1,0 +1,178 @@
+\chapter{Soluciones de la Ecuación de Continuidad} \label{sec: Soluciones de la Ecuacion de Continuidad}
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Apéndice A}
+\fancyhead[L]{4º Grado en Física}
+La Ecuación de Continuidad que hemos desarrollado, depende altamente de las condiciones iniciales. Normalmente trabajaremos en condiciones estacionarias y despreciando el término del campo eléctrico.
+\begin{equation}
+    \pdiff[]{\delta n}{t}=D_n \nabla_\mathbf{r}^2 \delta n+ \mu_n \nabla_\mathbf{r} (\delta n\mathbf{E})-\frac{\delta n}{\tau_n}+g_\mathrm{L}
+\end{equation}
+Para ello vamos a estudiar las soluciones de diferentes casos de interés:
+\begin{itemize}
+    \item \textbf{Presencia de generación externa en volumen}: Para obtener esta solución, vemos que la ecuación diferencial a resolver es lineal con coeficientes constantes, por lo tanto la solución será una $\mathcal{S}=\mathcal{S_\mathrm{Homog}}+\mathcal{S_\mathrm{Part}}$ de la ecuación \ref{eq: continuidad exceso de electrones} toma entonces la forma
+    \begin{equation}
+        D_n\pdiff[2]{\delta n}{x} -\frac{\delta n}{\tau_n} + G=0 \hspace{0.5cm} \xrightarrow{\text{Solución}} \hspace{0.5cm} \delta n (x)=\underbrace{G\tau_n}_{\mathcal{S_\mathrm{Part}}}+\underbrace{A\exp{\frac{x}{L_n}}+B\exp{-\frac{x}{L_n}}}_{\mathcal{S_\mathrm{Homog}}}
+        \label{eq: Cont Generacion en volumen}
+    \end{equation}
+    \item \textbf{Ausencia de generación externa}: Es una ecuación diferencial lineal, homogénea, (es la versión homogénea de la ecuación anterior)  $D_n\partial^2_x\delta n-\delta n/\tau_n=0$, y tiene como solución 
+    \begin{equation}
+        \delta n (x)= A\exp{\frac{x}{L_n}}+B\exp{-\frac{x}{L_n}}
+        \label{eq: Cont No generacion en volumen}
+    \end{equation}
+    \item \textbf{Ausencia de generación-recombinación y presencia de generación externa en volumen}: Para resolver este caso vamos a suponer que la distancia del material es menor que la distancia de recombinación. 
+    \begin{equation}
+         D_n\pdiff[2]{\delta n}{x} + G=0 \xrightarrow{\text{Integrando dos veces}} \delta n(x)=-\frac{G}{2D_n}x^2+Ax+B
+         \label{eq: Cont No gen-rec}
+    \end{equation}
+    \item \textbf{Ausencia de generación-recombinación y de generación externa}: Esta ecuación representa un caso en el que sólo tenemos difusión. En este caso, al eliminar la constante obtenemos como solución una recta 
+    \begin{equation}
+    \delta n (x)=Ax+B
+    \label{eq: Cont No gen-rec no generacion en volumen}
+    \end{equation}
+\end{itemize}
+\newpage
+\section{Condiciones de contorno}
+En general vamos siempre a considerar que $\delta n(x)$ es una función continua, para ello vamos a utilizar las definiciones de que hicimos en la sección 2.2.3 \footnote{Definimos \textbf{contacto metal/óhmico} a aquella disrrupción en la que $s\rightarrow{} \infty$ y \textbf{superficie ideal} a aquella en la que $s\rightarrow{} 0$.}. Distinguimos dos condiciones
+\begin{itemize}
+    \item \textbf{Valor fijo del exceso en $x_0$}, el valor de $\delta n(x_0)=\delta n_{x_0}$ es constante y conocido.
+    \item \textbf{Contacto óhmico en $x_0$}: no tenemos exceso en $x_0$. $\delta n(x_0)=0$
+\end{itemize}
+\subsection{Recombinación superficial en $x_0$} \label{sec: Recombinacion superficial}
+Primero ilustraremos los flujos de corriente que hay en las distintas regiones de la superficie del semiconductor
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.3\linewidth}
+\includegraphics{Standalone/ApA_01_flujo_de_corriente_i.pdf}
+        \caption{Diagrama del flujo de corriente en la región del límite izquierdo de un semiconductor}
+        \label{fig: flujo de corriente i}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+            \includegraphics{Standalone/ApA_02_flujo_de_corriente_g.pdf}
+        \caption{Diagrama de flujo de corriente en una región interna del semiconductor}
+        \label{fig: flujo de corriente g}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+    \includegraphics{Standalone/ApA_03_flujo_de_corriente_d.pdf}
+    \caption{Diagrama del flujo de corriente en la región del límite derecho de un semicondutor}
+    \label{fig: flujo de corriente d}
+    \end{subfigure} 
+    \caption{Diagrama de flujos de corriente en distintas regiones de un semiconductor}
+    \label{fig: flujo de corriente}
+\end{figure}
+
+Recordar que las corrientes generadas por la recombinación superficial, son \textbf{corrientes de difusión}. Vamos a fijar el sentido de la corriente de izquierda a derecha, y estudiaremos dichas condiciones en el punto $x=x_0$.
+\subsubsection{Caso general. Posición en el interior de la muestra}
+\noindent Está representado por la figura \ref{fig: flujo de corriente g}. Por conservación de la corriente 
+\begin{equation}
+J_\mathrm{dI}(x_0)=J_\mathrm{rec}(x_0)+J_\mathrm{dII}(x_0) \left \{
+\begin{aligned}
+    &e^- \xrightarrow{} eD_n \left. \diff[]{n_\mathrm{I}}{x}\right|_{x=x_0}=-es\delta n (x_0)+eD_n\left. \diff[]{n_\mathrm{II}}{x}\right|_{x=x_0} \\
+    &h^+ \xrightarrow{} -eD_p \left. \diff[]{p_\mathrm{I}}{x}\right|_{x=x_0}=es\delta p (x_0)-eD_p\left. \diff[]{p_\mathrm{II}}{x}\right|_{x=x_0}
+\end{aligned}
+\right.
+\end{equation}
+Vemos que tenemos signo + en los $e^-$ y signos - en los $h^+$ en las corrientes de difusión.
+\subsubsection{Casos en los límites izquierdo y derecho.}
+Están representados por la figura \ref{fig: flujo de corriente i} y \ref{fig: flujo de corriente d}. En estos casos sólo tenemos una corriente de difusión, que en el caso izquierdo describen
+\begin{equation}
+   0=J_\mathrm{rec}(x_0)+J_\mathrm{d}(x_0) \left \{
+\begin{aligned}
+    &e^- \xrightarrow{} 0=-es\delta n (x_0)+eD_n\left. \diff[]{n}{x}\right|_{x=x_0} \\
+    &h^+ \xrightarrow{} 0=es\delta p (x_0)-eD_p\left. \diff[]{p}{x}\right|_{x=x_0}
+\end{aligned} \right.
+\end{equation}
+Mientras que en el caso derecho
+\begin{equation}
+   J_\mathrm{rec}(x_0)=J_\mathrm{d}(x_0) \left \{
+\begin{aligned}
+    &e^- \xrightarrow{} eD_n\left. \diff[]{n}{x}\right|_{x=x_0}=-es\delta n (x_0)+eD_n \\
+    &h^+ \xrightarrow{} -eD_n\left. \diff[]{p}{x}\right|_{x=x_0}=es\delta p (x_0)-eD_p
+\end{aligned} \right.
+\end{equation}
+
+
+
+\subsection{Generación superficial en $x_0$}
+La siguiente figura nos ilustra los distintos flujos de corriente que se dan en la superficie de un semiconductor.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.3\linewidth}
+\includegraphics{Standalone/ApA_04_flujo_de_corriente_i_gen.pdf}
+        \caption{Diagrama del flujo de corriente en la región del límite izquierdo de un semiconductor}
+        \label{fig: flujo de corriente i gen}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+            \includegraphics{Standalone/ApA_05_flujo_de_corriente_g_gen.pdf}
+        \caption{Diagrama de flujo de corriente en una región interna del semiconductor}
+        \label{fig: flujo de corriente g gen}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+    \includegraphics{Standalone/ApA_06_flujo_de_corriente_d_gen.pdf}
+    \caption{Diagrama del flujo de corriente en la región del límite derecho de un semicondutor}
+    \label{fig: flujo de corriente d gen}
+    \end{subfigure} 
+    \caption{Diagrama de flujos de corriente en distintas regiones de un semiconductor}
+    \label{fig: flujo de corriente gen}
+\end{figure}
+
+\noindent En este caso la generación viene representada por el coeficiente \textit{M} que es el número de pares $e^- \, h^+$ que se generan por unidad de superficie y tiempo y vemos que es independiente del exceso de concentración $J_\mathrm{gen}(x_0)=qM$.
+\subsubsection{Caso general. Posición en el interior de la muestra}
+\noindent Está representado por la figura \ref{fig: flujo de corriente g gen}. Por conservación de la corriente 
+\begin{equation}
+J_\mathrm{dI}(x_0)+J_\mathrm{gen}(x_0)=J_\mathrm{dII}(x_0) \left \{
+\begin{aligned}
+    &e^- \xrightarrow{} eD_n \left. \diff[]{n_\mathrm{I}}{x}\right|_{x=x_0}+(-e)M=eD_n\left. \diff[]{n_\mathrm{II}}{x}\right|_{x=x_0} \\
+    &h^+ \xrightarrow{} -eD_p \left. \diff[]{p_\mathrm{I}}{x}\right|_{x=x_0}+eM (x_0)=-eD_p\left. \diff[]{p_\mathrm{II}}{x}\right|_{x=x_0}
+\end{aligned}
+\right.
+\end{equation}
+Vemos que tenemos signo + en los $e^-$ y signos - en los $h^+$ en las corrientes de difusión.
+\newpage
+\subsubsection{Casos en los límites izquierdo y derecho.}
+Están representados por la figura \ref{fig: flujo de corriente i} y \ref{fig: flujo de corriente d}. En estos casos sólo tenemos una corriente de difusión, que en el caso izquierdo describen
+\begin{equation}
+   J_\mathrm{gen}(x_0)=J_\mathrm{d}(x_0) \left \{
+\begin{aligned}
+    &e^- \xrightarrow{} eD_n \left. \diff[]{n}{x}\right|_{x=x_0}=-eM \\
+    &h^+ \xrightarrow{} -eD_n \left. \diff[]{p}{x}\right|_{x=x_0}=eM
+\end{aligned} \right.
+\end{equation}
+
+Mientras que en el caso derecho
+\begin{equation}
+   0=J_\mathrm{gen}(x_0)+J_\mathrm{d}(x_0) \left \{
+\begin{aligned}
+    &e^- \xrightarrow{} 0=-eM+eD_n\left. \diff[]{n}{x}\right|_{x=x_0} \\
+    &h^+ \xrightarrow{} 0=eM-eD_p\left. \diff[]{p}{x}\right|_{x=x_0}
+\end{aligned} \right.
+\end{equation}
+\subsection{Superficie (ideal) sin recombinación ni generación superficial}
+Supongamos que tenemos un semiconductor que esta siendo iluminado en un lado, mientras que en otro no. Por ser una superficie ideal, supondremos que no hay más que las corrientes generadas por el exceso de portadores.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.3\linewidth}
+\includegraphics{Standalone/ApA_07_flujo_de_corriente_i_gen.pdf}
+        \caption{Diagrama del flujo de corriente en la región del límite izquierdo de un semiconductor}
+        \label{fig: flujo de corriente i gen}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+            \includegraphics{Standalone/ApA_08_flujo_de_corriente_g_id.pdf}
+        \caption{Diagrama de flujo de corriente en una región interna del semiconductor}
+        \label{fig: flujo de corriente g id}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.3\linewidth}
+    \includegraphics{Standalone/ApA_09_flujo_de_corriente_d_id.pdf}
+    \caption{Diagrama del flujo de corriente en la región del límite derecho de un semicondutor}
+    \label{fig: flujo de corriente d id}
+    \end{subfigure} 
+    \caption{Diagrama de flujos de corriente en distintas regiones de un semiconductor}
+    \label{fig: flujo de corriente id}
+\end{figure}
+
+Este último caso únicamente nos exige buscar que $\partial_x \delta n (x)$ sea continua en $x=x_0$, para el caso descrito en la figura \ref{fig: flujo de corriente g id} y nula en los casos descritos por las figuras \ref{fig: flujo de corriente id}\ref{fig: flujo de corriente d id}

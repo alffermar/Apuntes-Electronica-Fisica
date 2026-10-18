@@ -1,0 +1,117 @@
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Tema 6}
+\fancyhead[L]{4º Grado en Física}
+
+\chapter{Dispositivos Optoelectrónicos}
+Una vez determinadas las propiedades de los dispositivos electrónicos fundamentales, basados esencialmente en las propiedades electromagnéticas de los semiconductores. Ya hemos estudiado qué sucede cuando irradiamos con ondas electromagnéticas un semiconductor, como vimos en la sección \ref{sec: procesos de generacion-recombinacion}; o las condiciones descritas en el apéndice \ref{sec: Recombinacion superficial}. Estudiaremos entonces dispositivos basados en las \textbf{propiedades ópticas}.
+
+\section{Dispositivos detectores de luz. Fotodetectores}
+\subsection{\textcolor{red}{Fotodiodos}}
+Un \textbf{fotodiodo PN} es una unión PN en la que la corriente inversa aumenta con el flujo de fotones incidente. Este dispositivo presenta las siguientes características
+\begin{itemize}
+    \item En las proximidades de la unión PN existe un campo eléctrico intenso.
+    \item Este campo es capaz de separar rápidamente los pares de portadores generados, \textbf{disminuyendo} así la probabilidad de que se produzcan \textbf{recombinaciones} que impidan su contribución a la fotocorriente.
+\end{itemize}
+Los que nos interesa para un correcto funcionamiento es que el flujo de fotones incida en la zona próxima a la unión (zona de transición) para conseguir la mayor eficiencia, aunque normalmente es estrecha.\\
+
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics{Standalone/T6_01_Esquema_de_un_fotodiodo.pdf}
+    \captionof{figure}{Esquema de un fotodiodo.}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    Si no iluminamos la intensidad de manera general viene dada por
+    \begin{equation}
+        I=I_0\left(\exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1 \right )
+        \label{eq: Intensidad fotodiodo}
+    \end{equation}
+    Mientras que si iluminamos tenemos que sumarle la contribución de la generación de fotones
+    \begin{equation}
+        I=-I_\mathrm{ph}+I_0\left(\exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1 \right )
+        \label{eq: Intensidad fotodiodo con fotocorriente}
+    \end{equation}
+\end{minipage}
+\newpage
+
+Si incidimos con luz de manera uniforme en toda la unión generaremos una cantidad $G_\mathrm{L}$ de pares $e^-h^+$ por unidad de volumen y tiempo. La corriente que obtenemos tendrá varias contribuciones
+$$J=J_\mathrm{L1}+J_{n1}+J_{p1}++J_\mathrm{ph}$$
+Siendo $J_\mathrm{L1}$ la más significativa si aumentamos mucho $W$. Las expresiones son 
+\begin{equation*}
+    J_\mathrm{L1}=eG_\mathrm{L}W \quad J_{n1}=eG_\mathrm{L}L_n+\frac{eD_nn_{p0}}{L_n} \quad  J_{p1}=eG_\mathrm{L}L_p+\frac{eD_np_{n0}}{L_p} \quad 
+    J_\mathrm{ph}=eG_\mathrm{L}(W+L_n+L_p)
+\end{equation*}
+
+Se usan en el \textbf{tercer cuadrante de las características I-V} y su diseño está orientado a lograr que la sensibilidad a la luz sea máxima. De la siguiente manera
+\begin{itemize}
+    \item Para mejorar las prestaciones, aumentamos el tamaño (área) de la zona de transición.
+    \item El semiconductor está expuesto a la luz a través de una cobertura de cristal, a veces en forma de lente.
+    \item Por su diseño y construcción será especialmente sensible a la incidencia de la luz visible o infrarroja.
+\end{itemize}
+\subsection{Fotodiodos PIN}
+Se construyen añadiendo una región intrínseca larga de longitud $W$, donde toda la región intríseca es de zonas de vaciamiento. Gracias a añadir dicha región, reducimos la capacidad de la unión y se mejora la velocidad de respuesta. Es más sensible a las variaciones de longitudes de onda ya que no las absorbe todas con la misma eficiencia.
+\subsection{\textcolor{red}{Fotodiodos de avalancha}}
+Es como un fotodiodo PN o PIN pero con polarización inversa muy intensa. En este caso tenemos generación de pares $e^-h^+$ en la zona de transición. Los portadores generados por los fotones, originan pares $e^-h^+$ adicionales por \textbf{ionización por impacto}. Obteniendo \textbf{amplificación de la fotocorriente} generada por la absorción de la luz (no es útil para el tratamiento de señales débiles pues nos genera un mayor ruido que otros fotoreceptores).
+\subsection{Fototransistores}
+La idea de los fototransistores consiste en amplificar $I_\mathrm{ph}$, haciendo que forme parte de la corriente de base.\\\\ Denominamos \textbf{base flotante} a la base que no está polarizada, por lo que $$I_\mathrm{B}=0 \Rightarrow I_\mathrm{C}=-I_\mathrm{E}$$ De las ecuaciones de Ebers-Moll para un transistor NPN tendremos que la corriente de colector es
+
+\begin{equation}
+    I_\mathrm{C}=-\alpha_\mathrm{F}I_\mathrm{E}-I_\mathrm{CO}\left(\exp{\left(\frac{-eV_\mathrm{CB}}{k_\mathrm{B}T} \right)}-1 \right)
+\end{equation}
+Si iluminamos la unión colectora le debemos añadir la fotocorriente.
+Si consideramos $V_\mathrm{CB}>0$ tendremos que 
+\begin{equation}
+    I_\mathrm{C}=-\alpha_\mathrm{F}I_\mathrm{E}-I_\mathrm{CO}+I_\mathrm{ph} \Rightarrow \boxed{I_\mathrm{C}=\frac{I_\mathrm{CO}+I_\mathrm{ph}}{1-\alpha_\mathrm{F}}=(1+\beta_\mathrm{F})(I_\mathrm{CO}+I_\mathrm{ph})}
+\end{equation}
+\section{\textcolor{red}{Células solares}}
+Las células solares son uniones PN, que pueden ser de Si, Si amorfo u otros semiconductores, sin polarizar y sólo con una resistencia $R_\mathrm{L}$ de carga. La expresión para su corriente es la dada por la ecuación \ref{eq: Intensidad fotodiodo con fotocorriente} y la caída de potencial será $V=-IR_\mathrm{L}$.
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \flushright
+    \includegraphics{Standalone/T6_02_Caracteristica_I_V_de_una.pdf}
+    \caption{Característica I-V de una célula solar.}
+\end{wrapfigure}
+
+Nos encontramos en el cuarto cuadrante, si tenemos un circuito abierto, $I=0$ tendremos una tensión $V_\mathrm{OC}=\frac{k_\mathrm{B}T}{e} \ln{\left(1+\frac{I_\mathrm{ph}}{I_\mathrm{0}} \right)}$ mientras que si tenemos un circuito cerrado $V=0$ y $I_\mathrm{L}=-I_\mathrm{ph}$.\\\\ Si calculamos la \textcolor{red}{potencia de salida} mediante
+\begin{equation}
+    P=IV=VI_0 \left( \exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1\right )-I_\mathrm{ph}V
+\end{equation}
+Podremos calcular la tensión para obtener la máxima potencia mediante la expresión $\partial_V P=0$ que resolviendo dicha ecuación obtenemos que la intenisad para maximizar la potencia es
+\begin{equation}
+    I_\mathrm{mp}=I_0\left( \exp{\left( \frac{eV_\mathrm{mp}}{k_\mathrm{B}T}\right)}-1\right )-I_\mathrm{ph}
+\end{equation}
+También podemos definir la \textbf{eficiencia de conversión} como
+\begin{equation}
+    \eta=\frac{P_\mathrm{m}}{P_\mathrm{in}}=\frac{V_\mathrm{mp}I_\mathrm{mp}}{P_\mathrm{in}}
+\end{equation}
+\subsection{Célula solar en heterounión}
+Están construidas con materiales de GAP ancho que actúa como una ventana óptica para los fotones con energía $E_\mathrm{gP}<h\nu<E_\mathrm{gN}$, que hace que se absorban en la ZCE del semiconductor de GAP estrecho, proporcionando \textbf{mayor eficiencia}.\\\\
+Las heterouniones permiten localizar la absorción de los fotones que itenteresan en la ZCE de la unión PN. Los semiconductores utilzados para hacer las heterouniones son los de los grupo III y V, de ahí que tengan un coste elevado.
+\subsection{Célula solar de Si amorfo}
+Este dispositivo es de fabricación más barata y con mucha mayor superficie. Encontramos estados electrónicos dentro del GAP, pero con muy baja movilidad. Se pueden modificar los bordes de movilidad con impurezas. El Si amorfo presenta un coeficiente de absorción muy elevado, por lo que las \textbf{capas son muy finas}.
+Es menos eficiente que el Si cristalino, pero el coste es \textbf{mucho menor}.
+\section{Dispositivos emisores de luz}
+\subsection{Diodos emisores de luz. LED's}
+Se basan en la \textbf{luminiscencia de inyección} y están formados por una unión PN en directa, esto provoca un exceso de portadores, por lo que tendremos recombinación que nos emite luz. Si recordamos la figura \ref{fig:Espectro electromagnetico} y la sección \ref{sec: Procesos banda a banda}, $h\nu\approx \text{GAP}$. No nos interesa sólo en el visible sino que tiene otras muchas aplicaciones como por ejemplo la comunicación a través de fibras ópticas que se utilizan en el \textbf{infrarrojo}.\\\\
+Para poder crear dispositivos en el rango visible ha sido necesario ``fabricar'' semiconductores con GAP's elevados.\\\\
+Para obtener luz Blanca, lo podemos hacer de dos maneras, mezclando tres LED's con diferentes colores (RGB). O utilizando un LED de InGaN que nos da \textbf{luz azul}, recubierto con una capa de fósforo que nos genera el \textbf{rojo} y el \textbf{verde}. \\\\
+La ventaja de los LED's es que al funcionar en polarización directa consumen mucho menos que las bombillas corrientes y apenas se calienta, por lo que tienen mayor duración.
+\\\\
+En los LED's se da \textbf{recombinación espontánea}, donde los fotones son emitidos aleatoriamente y en todas las direcciones (no es luz coherente). Los parámetros característicos de los LED's son
+\begin{itemize}
+    \item \textbf{Eficiencia cuántica interna}: Es la fracción de la corriente que circula por el diodo que produce luminiscencia. Depende de la eficiencia de inyección del diodo y del porcentaje de recombianciones radiativas frente al total.
+    \item \textbf{Eficiencia cuántica externa}: Es la fracción de fotones generados que son realmente emitidos al exterior. Muchos de los fotones son reabsorbidos por el semiconductor o no llegan a salir de él por fenómeno de refracción o de reflexión.
+\end{itemize}
+Para optimizar ambas eficiencias hay que diseñar adecuadamente los diodos.
+\subsection{Diodo LED de heterounión}
+El lado N (GaAl$_{0.7}$As$_{0.3}$) (de mayor GAP) inyecta electrones que e lado P (GaAl$_{0.6}$As$_{0.4}$) (de menor GAP), donde se producen recombinaciones radiativas.\\\\
+Como $h\nu \approx E_\mathrm{gP}<E_\mathrm{gN}$, los fotones son emitidos a través del semiconductor tipo N sin apenas absorción.\\\\
+El material tipo N actúa como una ventana óptica y \textbf{la eficiencia cuántica externa mejora}.
+\subsection{Diodo LASER}
+Los LASER's son unas fuentes de luz monocromática y coherente. Los LASER funcionan a través de la \textbf{emisión estimulada}, los fotones emitidos están en fase y con la misma energía. Para que la emisión estimulada predomine sobre la emiisión espontánea, incorporamos la \textbf{cavidad resonante}.\\\\ Para que la emisión estimulada supere a la absorción la concentracion del nivel superior $n_2$ debe ser superior a la del inferior $n_1$.
+\begin{itemize}
+    \item La \textbf{inversión de ocupación} nos hace emitir fotones en el rango de $E_\mathrm{g}<h\nu<E_\mathrm{Fn}-E_\mathrm{Fp}$.
+    \item Los modos resonantes de la \textbf{cavidad resonante óptica} vienen dados por \begin{equation}
+        N \left(\frac{\lambda}{2} \right)=L
+    \end{equation}
+\end{itemize}
+Por último cabe mencionar que el diodo láser de doble heteroestructura favorece la formación de la cavidad resonante. Existe una \textbf{corriente umbral} para que comience la emisión láser.

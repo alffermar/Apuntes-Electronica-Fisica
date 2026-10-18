@@ -1,0 +1,386 @@
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Tema 2}
+\fancyhead[L]{4º Grado en Física}
+\chapter{Fenómenos de transporte de carga en Semiconductores}
+Hasta ahora hemos estudiado semiconductores homogéneos en equilibrio termodinámico, caracterizados por $n_0\cdot p_0=n_\mathrm{i}^2$ e $I=0$. Si nos vamos a situaciones fuera del equilibrio (ya sea homogéneo o no), cuando haya una presencia de \textit{I}. Fuera del equilibrio, las concentraciones de portadores ya no son constantes, por lo tanto $$n_0 \xrightarrow{} n(\mathbf{r},t) \hspace{2cm} p_0 \xrightarrow{} p(\mathbf{r},t)$$.
+\section{Corrientes de Arrastre y Difusión. Estructura de los niveles de Fermi en el no-equilibrio} \label{sec: Corrientes de difusión y arrastre}
+\subsection{\textcolor{red}{Corriente de Arrastre}} \label{sec: Corriente de arrastre}
+Supongamos que aplicamos un campo $\mathbf{E}=E_x \ \mathbf{\hat{\imath}}$ en la red cristalina. Dentro de la red, la concentración de portadores de carga $n$\footnote{Podríamos poner p} se mueve con una velocidad media $\langle v_x \rangle$, por lo tanto podemos definir una densidad de corriente de portadores y una intensidad de corriente
+\begin{equation}
+    J_x=qn\langle v_x \rangle \rightarrow{} I=J_xA
+    \label{eq: Densidad de corriente de portadores}
+\end{equation}
+Si recordamos la sección 1.2.2, en ella vimos que podemos considerar el movimiento del electrón dentro de la red cristalina como si fuera una única partícula libre pero con masa $m^*$ sin embargo, las redes cristalinas pueden presentar \textbf{impurezas} o incluso por el mero hecho de estar a una cierta temperatura encontramos \textbf{fonones}, tanto las impurezas como los fonones interactúan con los electrones (en este caso tratados como partículas libres) lo cual hace que no puedan ser aceleradas indefinidamente debido al campo $E_x$, lo que se conocen com \textbf{mecanismos de scattering} que se dan cada tiempo medio $\tau$.\\\\
+Por lo tanto el movimiento de los portadores serán una secuencia de recorridos de partículas libres y mecanismos de scattering que se propagan en la dirección del campo eléctrico.
+\newpage
+En un recorrido libre de duación t, la velocidad instantánea será 
+\begin{equation}
+    v_x=v_0+\frac{qE_xt}{m^*} \xrightarrow{\text{Promedio}} \langle v_x\rangle=v_\mathrm{d}=0+\frac{q \tau}{m^*} E_x  
+    \label{eq: Velocidad de desplazamiento}
+\end{equation}
+en este caso por scattering $\langle v_\mathrm{d} \rangle=0$. El factor de proporcionalidad que existe entre la velocidad de arrastre $v_\mathrm{d}$ y el campo eléctrico lo definimos como \textbf{movilidad} $\unit{[cm^2 \, V^{-1} \, s^{-1}]}$. En términos generales, la movilidad es un tensor (aunque solo lo vamos a considerar un escalar)
+\begin{equation}
+   \mathbf{v}=\mu_{ij} \mathbf{E}=\left (\frac{q\tau}{m^*}\right)_ {ij} \mathbf{E}
+    \label{eq: movilidad tensor}
+\end{equation}
+Donde $q=\pm e$ \footnote{El signo - no lo tenemos en cuenta dentro del escalar sino fuera, ya que representa el sentido en el que se mueven los electrones.}en función de si son huecos o electrones y etiquetaremos con \textit{p} o \textit{n} a la movilidad para referirnos a huecos o electrones, respectivamente A partir de ahora consideraremos que la corriente es solo en la dirección $x$ salvo que se indique lo contrario.\\\\
+Vamos a estudiar los efectos que produce en la corriente, de las ecuaciones \ref{eq: Densidad de corriente de portadores} y \ref{eq: movilidad tensor} obtenemos
+\begin{equation}
+    J_{\mathrm{a}n x}=en\mu_n^{(xx)}E_x=\sigma_n^{(xx)}E_x \hspace{2cm}J_{\mathrm{a}p x}=en\mu_p^{(xx)}E_x=\sigma_p^{(xx)}E_x 
+\end{equation}
+Donde $\sigma_{n/p}$ es la \textbf{conductividad} $[\unit{(\Omega \, cm)^-1}]$ que de nuevo es un tensor por el carácter tensorial de la movilidad. Por lo que podemos definir la densidad de corriente de arrastre como  \footnote{En este caso da igual donde situemos los índices, únicamente están para indicar que son tensores, de aquí en adelante los omitiremos ya que los trataremos como escalares.}
+\begin{equation}
+    \mathbf{J}_\mathrm{a}=\mathbf{J}_{\mathrm{a}n}+\mathbf{J}_{\mathrm{a}p}=(\sigma_n^{ij}+\sigma_p^{ij})\textbf{E}=e(n\mu_n^{ij}+p\mu_p^{ij})\mathbf{E}=\sigma_{ij}\mathbf{E}
+    \label{eq: conductividad de semiconductor}
+\end{equation}
+La \textbf{conductividad del semiconductor} $\sigma$ es el que nos indica si el semiconductor es buen conductor o no.
+\subsubsection{\textcolor{red}{Ley de Ohm. Origen microscópico}}
+Supongamos que tenemos una barra paralelepípeda, por la que hacemos pasar una corriente.
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \includegraphics{Standalone/T2_01_barra_de_semiconducor.pdf}
+    \caption{Barra de un semiconductor atravesada como una corriente. Funciona como una resistencia}
+    \label{fig: barra de semiconducor}
+\end{wrapfigure}
+\\ En las ecuaciones \ref{eq: movilidad tensor} y \ref{eq: conductividad de semiconductor} observamos relaciones lineales. Lo que conocemos \textbf{\textcolor{blue}{Ley de Ohm microscópica}} de donde podemos deducir la \textbf{\textcolor{red}{Ley de Ohm macroscópica}} (trabajamos en módulo)
+\begin{equation}
+\begin{aligned}
+    &\textcolor{blue}{J=\frac{I}{W\,H}=\sigma E=\sigma \frac{V}{L}} \Rightarrow{}\\ &\textcolor{red}{V=\frac{1}{\sigma} \frac{L}{W\,H}I=\rho \frac{L}{W\,H}I=R\,I}
+\end{aligned}
+\end{equation}
+Estas ecuaciones sólo y las ecuaciones \ref{eq: movilidad tensor} y \ref{eq: conductividad de semiconductor} (tratadas como escalares) solo son válidas para campos bajos.
+\clearpage
+\subsubsection{\textcolor{red}{Comparación entre los semiconductores de los grupos IV, III-V en un diagrama v-E}}
+\noindent Una vez determinada las ecuaciones de la corriente tanto microscópicas como macroscópicas, para campos bajos, veamos cómo afecta el aumento del campo eléctrioco a la velocidad de la corriente en semiconductores intrínsecos.\\\\Supongamos que tenemos un cristal de Silicio (G IV) a una temperatura $T=\unit[300]{K}$, si le aplicamos un campo eléctrico, vemos que la velocidad aumenta de manera lineal, esto hace que la energía de los $e^-$ aumente por lo que aumentan los procesos de scattering dentro de la red, lo que hace que la energía se pierda en vibraciones (fonones). Que aumenten los procesos de scattering implica que el tiempo de relajación $\tau$ sea cada vez menor hasta que se queda estático la velocidad se satura y se mantiene constante como vemos en la relación de la ecuación \ref{eq: Velocidad de desplazamiento}.\\\\
+Vamos a fijarnos también en un cristal GaAs (G III-V), vemos que exsite una movilidad diferencial negativa, es decir, $\mu =\partial_E\,v<0$ cuando pasamos del punto de saturación. En este caso los elecrones ganan energía y pasan a otros mínimos de la BC que tienen mayor masa, en la Figura \ref{fig: estructuras de bandas} (a) en lugar de estar en el mínimo central estará en uno de los mínimos de los lados, Es decir hay transiciones a mínimos superiores de la banda de conducción, que tienen mayor masa efectiva (Ecuación \ref{eq: masa efectiva}).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{Standalone/T2_11_Velocidad_frente_a_campo.pdf}
+    \caption{Velocidad de la corriente de arrastre frente al campo eléctrico para Si, Ge y GaAs hiperpuros.}
+    \label{fig: Velocidad vs E}
+\end{figure}
+\newpage
+\subsubsection{\textcolor{red}{Dependencia de la movilidad con la concentración de impurezas}}
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+    \centering
+    \includegraphics{Standalone/T2_12_Movilidad_frente_a_impurezas.pdf}
+    \caption{Movilidad de los electrones y los huecos frente a la concentracion de impurezas para Ge, Si y GaAs. Con $T=\unit[300]{K}$ }
+    \label{fig: movilidad vs impurezas}
+\end{wrapfigure}
+\noindent Como hemos visto con anterioridad, los portadores sufren dos mecanismos de scattering, el scattering generado por la red y por las impurezas, si los estudiamos por separados tenemos
+
+\begin{itemize}
+    \item \textbf{Scattering de red / Scattering de fonones}. Vamos a suponer que tenemos una red cristalina en la que sólo tenemos scattering de fonones. Como dichas interacciones son funciones de la temperatrua, podemos denotar la movilidad $\mu_\mathrm{F}$ como la movilidad que observamos debida a la interacción con los fonones. A primer orden (según la teoría de scattering)$$\mu_\mathrm{F} \propto T^{-3/2}$$ Por lo que vemos que esta movilidad aumenta conforme disminuye la temperatura. si nos extendemos a ordenes superiores el exponente sigue siendo negativo pero distinto de $\nicefrac{-3}{2}$. 
+    \item \textbf{Scattering de impurezas ionizadas}. Del mismo modo que hemos modelizado para las interacciones de fonones, las interacciones con las impurezas ionizadas (interacciones coulombianas) tienen asociada una movilidad $\mu_\mathrm{I}$, a primer orden \begin{equation}
+        \mu_\mathrm{I}\propto \frac{T^{3/2}}{N_\mathrm{D}^++N_\mathrm{A}^-}
+    \end{equation} 
+\end{itemize}
+\noindent Por lo que si aumentamos la temperatura, aumentamos la velocidad de la corriente, lo que nos reduce el tiempo entre interacciones, esto hace que se reduzca el efecto de scattering y que sea un valor mayor al esperado. Si por otro lado aumentamos el número de impurezas, tendremos un mayor número de interacciones por lo que se reduce el valor de $\mu_I$.\\\\
+Si denotamos como $\tau_i$ al tiempo entre interacciones (ya sean con fonones o impurezas), tenemos que $\mathrm{d}t/\tau_i$ es la probabilidad de que ocurra una de las interacciones. Por lo tanto definimos el tiempo de relajación $\tau$ como la probabilidad de que se de una interacción $$\frac{\mathrm{d}t}{\tau}=\frac{\mathrm{d}t}{\tau_\mathrm{I}}+\frac{\mathrm{d}t}{\tau_\mathrm{F}}$$ y de la ecuación \ref{eq: movilidad tensor}
+\begin{equation}
+    \frac{1}{\mu}=\frac{1}{\mu_\mathrm{I}}+\frac{1}{\mu_\mathrm{F}}
+    \label{eq: Movilidad total}
+\end{equation}
+\subsubsection{\textcolor{red}{Dependencia de la movilidad con la termperatura}}
+Si analizamos la ecuación \ref{eq: Movilidad total} debido al gran número de impurezas, la movilidad se mantiene casi invariante con \textit{T} por lo que mientras sólo tengamos términos de primer orden, encontraremos que hasta la región de saturación es casi constante por ello vemos la aproximación de la recta en la figura \ref{fig: Velocidad vs E}.
+\subsection{\textcolor{red}{Corriente de difusión}} \label{sec: Corrientes de difusión}
+Ya hemos estudiado qué ocurre si aplicamos un campo eléctrico en un semiconductor, ahora vamos a estudiar qué implica que el semiconductor sea \textbf{no homogéneo}, es decir que $n=n(\mathbf{r})$ y $p=p(\mathbf{r})$, una analogía clásica la encontramos en un volumen $V$ subdividido en dos volúmenes  $V/2$ por una membrana. En el que uno de ellos, tiene $n$ partículas en estado gaseoso y el otro está vacío, retiramos la membrana, observamos que hay un flujo de partículas hacia el lado vacío ocupando todo el volumen. En el caso de los semiconductores no homogéneos, tienden a crear flujos de partículas buscando que la concentración de las mismas sea homogénea.\\\\
+Los fenómenos de difusión están modelizados por la \textbf{ley de Fick} 
+\begin{equation}
+    F_x=-D\diff[]{N}{x}  \xrightarrow{\text{En 3D}} \mathbf{F}=-D\nabla N
+    \label{eq: difusion}
+\end{equation}
+Donde $\textbf{F}$ es el flujo, $D$ es el coeficiente de difusión y $N$ la concentración de partículas ($e^-$ o $h^+$), dicho flujo induce una corriente $\mathbf{J}=q\mathbf{F}$ que en función de si son electrones o huecos será:
+\begin{equation}
+    \mathbf{J}_{\mathrm{d}n}=eD_n\nabla n \hspace{2cm} \mathbf{J}_{\mathrm{d}p}=-eD_n\nabla p
+    \label{eq: correinte de difusion}
+\end{equation}
+Donde los coeficientes de difusión están definidos por lo que se conoce como \textbf{relaciones de Einstein}.
+\begin{equation}
+    D_n=\frac{k_\mathrm{B}T}{e} \mu_n \hspace{2cm} D_p=\frac{k_\mathrm{B}T}{e} \mu_p
+\end{equation}
+Destacar que en este caso el signo - está cambiado frente a las ecuaciones \ref{eq: movilidad tensor} ya que la difusión tiene sentido contrario al gradiente (menor concentración a mayor concentración), este signo implica que si tenemos un mismo gradiente de concentración de electrones y huecos, se generará una corriente de difusión en el mismo sentido.\\\\
+Si sumamos las contribuciones de la corriente de arrastre y la de difusión, tenemos que la corriente total será 
+\begin{equation}
+\boxed{
+\mathbf{J}=\mathbf{J}_n+\mathbf{J}_p\left\{\begin{array}{l}
+\mathbf{J}_n=\mathbf{J}_{\mathrm{a} n}+\mathbf{J}_{\mathrm{d} n}=e \mu_n n \mathbf{E}+e D_n {\nabla} n \\
+\mathbf{J}_p=\mathbf{J}_{\mathrm{a} p}+\mathbf{J}_{\mathrm{d} p}=e \mu_p p \mathbf{E}-e D_p {\nabla} p
+\end{array}\right.
+} %
+\label{eq: Densidad de corriente total}
+\end{equation}
+\newpage
+\subsection{Nivel de Fermi. Relación con las Corrientes de Difusión y Arrastre} \label{sec: Nivel de Fermi. Relacion con las corrientes de difusion y arrastre}
+ En el capítulo anterior hemos observado la relevancia del nivel de Fermi a la hora de determinar los distintos niveles de energía. Una de las suposiciones que hicimos es que el nivel de Fermi era constante frente a la posición, (debida a la homogeneidad del cristal).
+\begin{tcolorbox}[colback=applegreen!20, colframe=applegreen, title=Demostración: En equlibrio termodinámico el nivel de Fermi es constante con la posición.]
+Supongamos que en el semiconductor existe un potencial eléctrico $V(x)$, por lo que la energía de la banda de conducción es $E_\mathrm{C}=E_\mathrm{C0}-eV(x)$. El término de la energía eléctrica está superpuesto al término de la del Hamiltoniano del cristal.\\\\
+En un semiconductor tipo N, los electrones se encuentran innicialmente en $E_\mathrm{F}=E_\mathrm{F}(x)$, de la ecuación \ref{eq: densidad de portadores MB} obtenemos
+$$n(x)=N_\mathrm{c} \exp{\frac{E_\mathrm{F}(x)-E_\mathrm{C}(x)}{k_\mathrm{B}T}}$$ El campo eléctrico, supongamos que es electroestático, tendrá la forma$$E_x(x)=\frac{1}{e}\diff[]{E_\mathrm{C}(x)}{x}$$
+De la ecuación \ref{eq: Densidad de corriente total} para los portadores $$J_n^{(x)}=e \mu_n n E_x+e D_n \diff[]{n}{x}=e\mu_n n\frac{1}{e}\diff[]{E_\mathrm{C}(x)}{x} +e\frac{k_\mathrm{B}T}{e}\mu_n \frac{n}{k_\mathrm{B}T} \left( \diff[]{E_\mathrm{F}}{x}-\diff[]{E_\mathrm{C}}{x}\right)=n\mu_n \diff[]{E_\mathrm{F}}{x}$$
+Con lo que tenemos que la corriente de portadores total es $$\mathbf{J_n}=n\mu _n \nabla E_\mathrm{F}$$ Como en el equilibrio térmico $J_n=0$ entonces $E_\mathrm{F}=\text{cte}$
+\end{tcolorbox}
+\noindent Si unimos dos materiales con diferente nivel de Fermi, se produce una \textbf{redistribución de portadores} entre ambos hasta que se igualan los niveles de Fermi y se alcanza el equilibrio térmico. Alcanzar dicho equilibrio genera un desequilibrio de carga y por ende, dependencia de los extremos de la banda con la posición. 
+\newpage
+\subsubsection{Cuasi-Niveles de Fermi}
+\begin{itemize}
+    \item \textbf{En el equilibrio} tenemos un \textbf{único nivel de Fermi} y las densidades de portadores vienen dados por las ecuaciones \ref{eq: densidad de portadores MB} y \ref{eq: densidad de huecos MB} y la densidad de portadores intrínseca es \ref{eq: Densidad intrinseca de portadores} que tienen como expresión alterna en función del nivel de Fermi intrínseco
+\begin{equation}
+    n_0=n_\mathrm{i}\exp{\frac{E_\mathrm{F}-E_\mathrm{Fi}}{k_\mathrm{B}T}} \hspace{2cm} p_0=n_\mathrm{i}\exp{\frac{E_\mathrm{Fi}-E_\mathrm{F}}{k_\mathrm{B}T}}
+    \label{eq: densidad intrinseca, nivel de fermi}
+\end{equation}
+    \item \textbf{Fuera del equilibrio} no podemos definir $E_\mathrm{F}$ no es definible y las expresiones $n(E_\mathrm{F})$ y $p(E_\mathrm{F})$ de equilibrio no son válidas. En la figura \ref{fig: niveles de fermi tipo N y P} representamos dichos niveles cuando están en equilibrio.
+    \begin{figure}[h]
+	\centering
+    \begin{subfigure}[h]{0.3\textwidth}
+	\includegraphics{Standalone/T2_02_Niveles_N.pdf}
+	\caption{Distribución de niveles de energía en SCE tipo N.}
+        \label{fig: Niveles  N}
+    \end{subfigure}
+    \hspace{3cm}
+    \begin{subfigure}[h]{0.3\textwidth}
+        	\includegraphics{Standalone/T2_03_Niveles_P.pdf}
+        \caption{Distribución de niveles de energía en SCE tipo P.}
+        \label{fig: Niveles P}
+    \end{subfigure}
+        \caption{Diagrama de las bandas de energía en equilibrio térmico.}
+        \label{fig: niveles de fermi tipo N y P}
+\end{figure}
+    
+    Para poder estudiar cómo se comportan las concentraciones de portadores en el no equilibrio, definimos \textbf{dos cuasi-niveles de Fermi}, uno para $e^-$ y otro para $h^+$.
+    \begin{equation}
+        n_0+\delta n= n_\mathrm{i}\exp{\frac{E_{\mathrm{F}n}-E_{\mathrm{F}i}}{k_\mathrm{B}T}} \hspace{2cm} p_0+\delta p= n_\mathrm{i}\exp{\frac{E_{\mathrm{F}i}-E_{\mathrm{F}p}}{k_\mathrm{B}T}}
+        \label{eq: cuasiniveles de fermi}
+    \end{equation}
+    La concentración de portadores total es entonces función de los cuasi-niveles de Fermi.
+\end{itemize}
+\section{Procesos de generación-recombinación} \label{sec: procesos de generacion-recombinacion}
+Los procesos de \textbf{generación-recombinación}, provocan variación local de las densidades de portadores, como hemos visto en la sección \ref{sec: Densidad intrinseca de portadores} los procesos de generación se dan cuando aportamos energía; mientras que los de recombinación se dan cuando se cede energía.\\\\
+Estos procesos los podemos identificar con la dependencia temporal de la densidad de portadores $n=n(t)$, $p=p(t)$
+\begin{equation}
+    \left. \pdiff[]{n}{t} \right)_{\mathrm{g-r}}=G_\mathrm{ext}-\frac{n-n_0}{\tau_n}
+    \label{eq: generacion recombinacion}
+\end{equation}
+Donde $G_\mathrm{ext}$ es la excitación externa y $\tau_n$ es el tiempo de vida media del exceso de portadores. De la ecuación \ref{eq: generacion recombinacion}, obtenemos dos expresiones para $\delta n$.
+\begin{equation}
+    \underbrace{\delta n =G_\mathrm{ext}\tau_n}_{\text{condiciones estacionarias}} \hspace{1cm} \underbrace{\delta n=G_\mathrm{ext} \tau_n \exp - \frac{t}{\tau_n}}_{\text{al cesar la excitación}}
+\end{equation}
+\newpage
+\subsection{Procesos banda a banda} \label{sec: Procesos banda a banda}
+Al incidir con luz, podemos observar diferentes procesos mostrados en la Figura \ref{fig: Procesos de gen recomb}, la generación se puede dar por \textbf{procesos térmicos}, responsables de devolver las concentraciones a los valores de equilibrio, donde $G_\mathrm{th}, \ R_\mathrm{th} \Rightarrow n_0\cdot p_0>n_\mathrm{i}^2$. Por \textbf{perturbaciones externas, inyección (óptica, eléctrica)} $G_\mathrm{L} \Rightarrow n\cdot p = n_\mathrm{i}^2$, donde $$n=n_0+\delta n \hspace{2cm} p=p_0+\delta p \hspace{2cm} 
+\text{   con } \delta n \cong \delta p $$
+La última ecuación se da ya que por cada $e^-$ generado se genera un $h^+$. Otros procesos de recombinación se los incluimos en \textit{U}.
+Destacamos que la generación no es superficial, sino que es en todo el volumen por lo que las unidades de $[G,R]=\unit{[cm^{-3} \, s^{-1}]}=[\delta N/\tau_N]$
+
+\begin{figure}[h]
+    \centering
+  \includegraphics{Standalone/T2_04_Procesos_de_gen_recomb.pdf}
+    \caption{Distintos procesos de generación recombinación.}
+    \label{fig: Procesos de gen recomb}
+\end{figure}
+\noindent Las perturbaciones externas, están caracterizadas por el la densidad de estados \textbf{libres} $N_i-n$. Si suponemos que teenemos perturbaciones débiles, es decir $n\ll N_\mathrm{c}$ y $p \ll N_\mathrm{v}$ tenemos 
+\begin{equation}
+    \left. \pdiff[]{n}{t} \right)_{\mathrm{g-r}}=\left. \pdiff[]{p}{t} \right)_{\mathrm{g-r}}= G(N_\mathrm{v}-p)(N_\mathrm{c}-n)-cnp\approx e-cnp
+    \label{eq: coef emision y captura}
+\end{equation}
+Donde \textit{c} y $e=GN_\mathrm{c}N_\mathrm{v}$ son los coeficientes de captura y emisión respectivamente y son independientes de \textit{n} y \textit{p}. Distinguimos dos casos
+\begin{itemize}
+    \item \textbf{En equilibrio}: La ecuación \ref{eq: coef emision y captura}, se hace nula y obtenemos
+    \begin{equation*}
+        e=cn_0p_0=cn_\mathrm{i}^2 \Rightarrow \left. \pdiff[]{n}{t} \right)_{\mathrm{g-r}}=\left. \pdiff[]{p}{t} \right)_{\mathrm{g-r}}=-c(np-n_\mathrm{i}^2)=-\frac{n-n_0}{\tau_n}=-\frac{p-p_0}{\tau_p}
+    \end{equation*}
+    Operando obtenemos el tiempo de vida medio del exceso de portadores en funcion de las concentraciones de portadores
+    \begin{equation}
+        \tau_n=\tau_p=\tau= \frac{1}{c} \frac{n-n_0}{np-n_\mathrm{i}}=\frac{1}{c} \frac{p-p_0}{np-n_\mathrm{i}^2}
+    \end{equation}
+    \item \textbf{Material extrínseco, débil nivel de inyección}: Esta situacion se da cuando $\delta n=\delta p \ll n_0,p_0$ y utilizamos la concentración de los mayoritarios. De la expresión anterior
+    $$ n p-n_i^2=\left(n_o+\delta n\right)\left(p_o+\delta p\right)-n_i^2=\left(p_o+n_o\right) \delta p+\delta p^2 \cong\left(p_o+n_o\right) \delta p $$ Obteniendo que el tiempo de vida medio es
+    \begin{equation}
+        \tau =\frac{1}{c} \frac{1}{p_0+n_0} \xrightarrow{\text{Mayoritarios}}     \left\{\begin{aligned}
+          &\tau_{np^+}=\frac{1}{cp_0} \ \ \text{SCE tipo P}\\
+          &\tau_{pn^+}=\frac{1}{cn_0} \ \ \text{SCE tipo N}\end{aligned} \right.
+    \end{equation}
+\end{itemize}
+\newpage
+\subsection{Procesos a través de centros}
+Cuando introducimos impurezas o algunas alteraciones en la red cristalina, podemos encontrarnos con que aparecen nuevos nieles de energía permitidos dentro del GAP, estos niveles se denominan \textbf{centros recombinantes} y nos facilitan los procesos de recombinación
+\begin{figure}[h]
+    \centering
+  \includegraphics{Standalone/T2_05_procesos_a_traves_de_centros.pdf}
+    \caption{Cuatro procesos básicos de atrapamiento y emsión para una trampa aceptadora.}
+    \label{fig: procesos a traves de centros}
+\end{figure}
+
+\noindent En la figura \ref{fig: procesos a traves de centros} vemos que cuando se emite un hueco al nivel intermedio, podemos emitir un electrón al nivel de conducción y al revés, cuando el nivel intermedio captura un electrón genera que el nivel de valencia capture un hueco.\\\\
+En condiciones estacionarias ($\delta n= \delta p$) tenemos 
+\begin{equation}
+    \left. \pdiff[]{n}{t} \right)_{\mathrm{g-r}|_{E_\mathrm{T}}}=\left. \pdiff[]{p}{t} \right)_{\mathrm{g-r} |_{E_\mathrm{T}}}= g(t)- 
+\cfrac{(n_0+p_0)\delta n+\delta n^2}{\cfrac{n^1+n_0+ \delta n}{c_p}+\cfrac{p^1+p_0+ \delta p}{c_n}}N_\mathrm{T}
+\ \ \text{con} \ \  \left \{\begin{aligned}
+    &n^1=N_\mathrm{c}\exp{\frac{E_\mathrm{T}-E_\mathrm{c}}{k_\mathrm{B}T}}\\
+    &p^1=N_\mathrm{v}\exp{\frac{E_\mathrm{v}-E_\mathrm{T}}{k_\mathrm{B}T}}
+\end{aligned} \right.
+\label{eq: Ecuacion de Shockley‐Read‐Hall}
+\end{equation}
+Que podemos escribirla como $$\left. \pdiff[]{n}{t} \right)_{\mathrm{g-r}|_{E_\mathrm{T}}}=\left. \pdiff[]{p}{t} \right)_{\mathrm{g-r} |_{E_\mathrm{T}}}=g(t)\frac{\delta n}{\tau}=g(t)-\frac{\delta p}{\tau}$$ Donde el tiempo de vida media es 
+\begin{equation}
+\tau=\textcolor{red}{\frac{1}{N_T c_p}} \frac{n^1+n_o+\delta n}{n_o+p_o+\delta n}+\textcolor{blue}{\frac{1}{N_T c_n}} \frac{p^1+p_o+\delta n}{n_o+p_o+\delta n}=\textcolor{red}{\tau_{p n^{+}}} \frac{n^1+n_o+\delta n}{n_o+p_o+\delta n}+\textcolor{blue}{\tau_{n p^{+}}} \frac{p^1+p_o+\delta n}{n_o+p_o+\delta n}
+\label{eq: tiempo de vida medio proceso a traves de centro}
+\end{equation}
+Que volviendo a aplicar las condiciones de \textbf{débil nivel de inyección} ($\delta n=\delta p \ll n_0,p_0$) para un material extrínseco las concentraciones en semiconductores extrínsecos tienen vidas medias en este caso de los \textbf{portadores minoritarios}
+\begin{equation}
+    \underbrace{\tau_{np^+}=\frac{1}{N_\mathrm{T}c_p}}_{\text{SCE tipo N}} \hspace{2cm}
+    \underbrace{\tau_{pn^+}=\frac{1}{N_\mathrm{T}c_n}}_{\text{SCE tipo P}}
+\end{equation}
+Por lo que para conseguir $\tau$ pequeñas necesitamos $N_\mathrm{T}\uparrow$ y $E_\mathrm{T} \approx \mathrm{MIDGAP}\Rightarrow n^1,p^1 \downarrow$
+\newpage 
+\subsection{Recombinación superficial}
+Debido a su gran tamaño, los semiconductores se tratan como si no tuvieran límites físicos, aunque los estados ligados se crean por las condiciones de contorno que hemos visto en la sección \ref{sec: Modelo de enlace}\footnote{Para el modelo de Kroning-Pennney utilizamos la normalización de caja}. En esta sección, estudiamos la celda como un sistema y aplicamos el Teorema de Bloch, lo que hace que no tengamos en cuenta la finitud del cristal debido a que su tamaño es mucho mayor que cualquiera de las distancias intermoleculares de la red.\\
+
+\noindent Como hemos en la sección anterior, introducir imperfecciones en la red cristalina nos permite crear niveles de energía en el interior del GAP, esto se debe a que las imperfecciones introducen perturbaciones en la periodicidad de la red y es cuando se interrumpe de manera abrupta esa periodicidad cuando se generan dichos centros recombinantes. Cuando llegamos a la superficie del cristal, pasa exáctamente lo mismo, el potencial periódico se interrumpe de manera abrupta lo que hace que aparezcan estados de energía dentro del GAP.
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering\includegraphics{Standalone/T2_06_estados_superficie.pdf}
+ \caption{Distribución de los estados de la superficie en la banda del GAP.}
+ \label{fig: estados superficie}
+\end{wrapfigure}
+
+\noindent Las ecuaciones \ref{eq: Ecuacion de Shockley‐Read‐Hall} y \ref{eq: tiempo de vida medio proceso a traves de centro} nos muestran el ratio de recombinación y el tiempo de vida de los portadores minoritarios así que si consideramos un SCE tipo N, en este caso la densidad de supercficie de los minoritarios será $$p_\mathrm{s}=p_\mathrm{s0}+\delta$$ Por lo que si volvemos a utilizar el débil nivel de inyección, obtenemos que 
+\begin{equation}
+   R_\mathrm{s}=\frac{(n_0+p_0)\delta n}{\frac{n^1+n_0}{c_p}+\frac{p^1+p_0}{c_n}}N_\mathrm{s}
+\end{equation}
+
+\noindent Con lo que podemos definir la velocidad de recombinación superficial como $$s=\frac{R_\mathrm{s}}{\delta}=\frac{1}{\tau}$$ que para un semiconductor extrínseco corresponde
+\begin{equation}
+\underbrace{s_{np^+}=c_{n\mathrm{s}}N_\mathrm{s}}_{\text{SCE tipo P}} \hspace{2cm} \underbrace{s_{pn^+}=c_{p\mathrm{s}}N_\mathrm{s}}_{\text{SCE tipo N}}
+ \label {eq: Velocidad de recombinación}   
+\end{equation}
+Este proceso de recombinación nos genera una corriente, conocida como \textbf{corriente de recombinación superficial}
+\begin{equation}
+    J_\mathrm{rec}=qR_\mathrm{s}=qs\delta
+    \label{eq: corriente de recombinacion superficial}
+\end{equation}
+Esta expresión se utiliza como condición de contorno para resolver la ecuación de continuidad ya que las corrientes de difusión y recombinación han de ser iguales.\\\\ Por último, vamos a definir como \textbf{contacto metal/óhmico} a aquella disrrupción en la que $s\rightarrow{} \infty$ y \textbf{superficie ideal} a aquella en la que $s\rightarrow{} 0$
+\section{Ecuación de Continuidad}
+Las modificaciones de las concentraciones de portadores, nos generan corrientes, ya sean de arrastre o de difusión, así como los procesos de generación-recombinación, que influyen en estas últimas. Por ello queremos estudiar cómo se comportan dichas concentraciones cuando combinamos ambos efectos, corrientes (i.e campos eléctricos y gradientes de concentración) con generación-recombinación. En el Apéndice \ref{sec: Soluciones de la Ecuacion de Continuidad} se detallan todas las soluciones.
+\begin{figure}[h]
+    \centering
+    \includegraphics{Standalone/T2_07_flujo_de_corriente_en_un.pdf}
+    \caption{Variación de corriente al atravesar un elemento de volumen de un semiconductor.}
+    \label{fig: flujo de corriente en un diferencial de volumen}
+\end{figure}
+
+Para construir la ecuación de continuidad vamos a combinar las ecuaciones \ref{eq: Densidad de corriente total} y \ref{eq: generacion recombinacion}, para combinarlas separamos entre $e^-$ y $h^+$. Primero calculamos la variación del flujo de portadores, recordamos que el flujo en este caso es $\Phi=\mathbf{J}\cdot \mathbf{\hat{n}}\,A$
+\begin{equation}
+    A\mathrm{d}x \pdiff[]{n}{t}=\left [\frac{J_n(x)}{q}-\frac{J(x+\mathrm{d}x)}{q}+ \left. \pdiff[]{n}{t} \right )_{g-r} \right ] A \mathrm{d}x
+\end{equation}
+Que extendiendo a 3D y eliminando las partes correspondientes al volumen
+\begin{equation}
+    \pdiff[]{n}{t}=-\frac{1}{q} \nabla_{\mathbf{r}}\cdot \mathbf{J} + \left. \pdiff[]{n}{t} \right )_{g-r}
+\end{equation}
+Mediante las ecuaciones \ref{eq: Densidad de corriente total} y \ref{eq: generacion recombinacion} obtenemos finalmente la ecuación de continuidad para $e^-$ y $h^+$
+\begin{equation}
+\pdiff[]{n}{t}=D_n \nabla_\mathbf{r}^2 n+ \mu_n \nabla_\mathbf{r} (n\mathbf{E})-\frac{n-n_0}{\tau_n}+g_\mathrm{L}
+\label{eq: continuidad electrones}
+\end{equation}
+
+\begin{equation}
+    \pdiff[]{p}{t}=D_p \nabla_\mathbf{r}^2 p \textcolor{red}{-} \mu_p \nabla_\mathbf{r} (p\mathbf{E})-\frac{p-p_0}{\tau_p}+g_\mathrm{L}
+    \label{eq: continuidad huecos}
+\end{equation}
+Podemos acoplar las ecuaciones a través de la ecuación de Poisson 
+\begin{equation}
+    \nabla_\mathbf{r}\cdot \mathbf{E}=-\frac{e}{\epsilon} (n-p-N_\mathrm{D}^++N_\mathrm{A}^-)
+    \label{eq: ecuacion de poisson huecos y electrones}
+\end{equation}
+Dichas ecuaciones, pueden resolverse mediante aproximaciones razonables.\newpage
+Si además consideramos que $n=n_0\delta n$ y $p=p_0+\delta p$ las ecuaciones de continuidad son
+\begin{equation}
+    \pdiff[]{\delta n}{t}=D_n \nabla_\mathbf{r}^2 \delta n+ \mu_n \nabla_\mathbf{r} (\delta n\mathbf{E})-\frac{\delta n}{\tau_n}+g_\mathrm{L}
+    \label{eq: continuidad exceso de electrones}
+\end{equation}
+\begin{equation}
+    \pdiff[]{\delta p}{t}=D_p \nabla_\mathbf{r}^2 \delta p\textcolor{red}{-} \mu_p \nabla_\mathbf{r} (\delta p\mathbf{E})-\frac{\delta p}{\tau_p}+g_\mathrm{L}
+    \label{eq: continuidad exceso de huecos}
+\end{equation}
+Una vez construidas todas las ecuaciones, vamos a explicar las implicaciones que tienen: si se crea un exceso de $e^-$ y $h^+$ en cierta posición de un semiconductor sobre el que se ha aplicado un campo $E_\mathrm{app}$, los excesos de $e^-$ y $h^+$ tienden a moverse en direcciones opuestas. Esto origina un desequilibrio de carga y un campo interno $E_\mathrm{int}$ que tiende a mantenerlos unido, de modo que $e^-$ y $h^+$ se desplazarán unidos por arrastre o difusión con una única movilidad o coeficiente de difusión efectivos. Es lo que conocemos como \textbf{transporte ambipolar}.
+\begin{figure}[h]
+    \centering
+    \includegraphics{Standalone/T2_08_La_creacion_de_un_campo.pdf}
+    \caption{La creación de un campo eléctrico interno hace que los $e^-$ y los $h^+$ tiendan a juntarse, mientras que el aplicado hace que tiendan a separarse}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Derivación de la ecuación de transporte ambipolar}
+Una vez hecho el análisis cualitativo, vamos a caracterizar las ecuaciones. 
+
+\noindent Como las ecuaciones \ref{eq: ecuacion de poisson huecos y electrones}- \ref{eq: continuidad exceso de huecos}, son muy difíciles de tratar, vamos a hacer algunas aproximaciones, una de ellas es la \textbf{aproximación de cuasi neutralidad}.\\\\
+\noindent El campo eléctrico total $\mathbf{E}=\mathbf{E_\mathrm{int}}+ \mathbf{E_\mathrm{app}}$, si lo aplicamos la ecuación \ref{eq: ecuacion de poisson huecos y electrones} $$\nabla \cdot \mathbf{E}=-\frac{e}{\epsilon} (n_0+\delta n-p_0 -\delta p -N_\mathrm{D}^++N_\mathrm{A}^-)$$
+Podemos asociar al campo interno
+\begin{equation}
+    \nabla \cdot \mathbf{E_\mathrm{int}}=-\frac{e}{\epsilon}(\delta n-\delta p)
+\end{equation}
+Este término solo es interesante sí consideramos la ACN, dada por la siguiente ecuación
+\begin{equation}
+    \delta n =n-n_0 \cong p-p_0 =\delta p
+\end{equation}
+Por lo que el término que corresponde al campo eléctrico interno es despreciable. \newpage
+
+\noindent Queremos eliminar, el término $\nabla \cdot \mathbf{E}$, para ello supongamos que el factor de generación sea el mismo tanto para electrones como para huecos $g_n=g_p\equiv g_\mathrm{L}$. Vamos a operar con las ecuaciones \ref{eq: continuidad electrones} y \ref{eq: continuidad huecos} multiplicando por $\mu_p p$ la primera y $\mu_n n$ la segunda y sumándolas, además asumiremos la aproximación de cuasi-neutralidad y $n=n_0+\delta n$, $p=p_0+\delta p$.
+\begin{equation*}
+\begin{aligned}
+&\mu_p p \cdot \left [\pdiff[]{n}{t}=D_n \nabla_\mathbf{r}^2 n+ \mu_n \nabla_\mathbf{r} (n\mathbf{E})-\frac{n-n_0}{\tau_n}+g_\mathrm{L} \right ] \\
+    &+ \ \mu_n n \cdot \left [ \pdiff[]{p}{t}=D_p \nabla_\mathbf{r}^2 p  \textcolor{red}{- } \mu_p \nabla_\mathbf{r} (p\mathbf{E})-\frac{p-p_0}{\tau_p}+g_\mathrm{L} \right ] \end{aligned}
+\end{equation*}
+Obteniendo la ecuación ambipolar de difusión
+\begin{equation}
+    \boxed{\pdiff[]{\delta n}{t}+ \mu ^* \mathbf{E} \nabla \delta n-D^* \nabla^2 \delta n +\frac{\delta n}{\tau^*}-g_\mathrm{L}=0}
+    \label{eq: ecuacion ambipolar de difusion}
+\end{equation}
+Donde los términos $$\mu^*=\frac{\mu_n \mu_p n_0-\mu_n\mu_p p_0}{\mu_pp+\mu_nn} \hspace{1.5cm} D^*=\frac{D_n\mu_pp+\mu_nD_pn}{\mu_pp+\mu_nn} \hspace{1.5cm} \tau^*=\frac{\tau_n\tau_p(\mu_pp+\mu_nn)}{\mu_pp\tau_p+\mu_nn\tau_n}$$ 
+Que en principio es una ecuación no-lineal, donde los coeficientes dependen de $\delta n$.
+La ecuación \ref{eq: ecuacion ambipolar de difusion} presenta un término del campo eléctrico simplificado, ya que \textbf{E} está fuera del gradiente. En función del material, los coeficientes serán:
+\begin{itemize}
+    \item \textbf{Semiconductores intrínsecos}: $\mu^*$ nula, $D^*$ y $\tau^*$ son independientes del tiempo.
+    \item \textbf{Semiconductores extrínsecos y débil nivel de inyección}: Los parámetros de la ecuación ambipolar coinciden con los de los portadores minoritarios. \textit{Un SCE tipo N.} $$n_0\gg p_0 \hspace{1cm} \delta n\ll n_0 \hspace{0.5cm} \Rightarrow \hspace{0.5cm} D^* \cong D_p \hspace{1.5cm} \tau^*\cong \tau_p \hspace{1.5cm} \mu^*\cong \mu_p$$
+    Para calcular \textit{n} y \textit{p} en un semiconductor extrínseco:
+    \begin{itemize}
+        \item La ecuación de continuidad de minoritarios con término de \textbf{E} despreciable.
+        \item $n=n_0+\delta n$ y $p=p_0+\delta m$
+        \item \textbf{E}: La ecuación de continuidad de los mayoritarios sin despreciar \textbf{E}.
+    \end{itemize}
+\end{itemize}
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \includegraphics{Standalone/T2_09_Inyeccion_de_huecos_en_una.pdf}
+    \caption{Inyección de huecos en una pequeña región de la superficie de un SCE tipo N.}
+\end{wrapfigure}
+
+\subsection{Tiempo de relacación dieléctrico}
+
+Si despreciamos los efectos de los procesos de generación-recombinación y la difusión, vamos a estudiar cuánto tarda un exceso de carga en desaparecer.\\\\
+Supongamos que tenemos una densidad de carga $\rho$ uniforme sobre una cierta distancia próxima a la superficie, inicialmente toma le valor $\rho = e\delta p$, además tenemos que considerar que el material es óhmico $(\mathbf{J}=\sigma \mathbf{E})$. Si utilizamos la ley de Gauss y la Ecuación de continuidad del campo eléctrico. $$\nabla \cdot \mathbf{J}=\sigma \nabla \cdot \mathbf{E}=\frac{\sigma \rho}{\epsilon} \Rightarrow \frac{\sigma \rho}{\epsilon}=-\diff[]{\rho}{t} \Rightarrow \rho (t)=\rho_0 \exp{-\frac{t}{\tau_\mathrm{d}}} \text{ con } \boxed{\tau_\mathrm{d}=\frac{\epsilon}{\sigma}}$$
+\section{\textcolor{red}{Efecto Hall}}
+El Efecto Hall aparece cuando sometemos a un semiconductor por el que pasa una corriente a un campo magnético y no es más que consecuencia de las fuerzas que ejercen los campos eléctrico y magnético.
+\begin{figure}[h]
+    \centering
+    \includegraphics{Standalone/T2_10_efecto_Hall.pdf}
+    \caption{Geometría del Efecto Hall en un semiconductor tipo N.}
+    \label{fig:efecto Hall}
+\end{figure}
+
+\noindent Cuando aparece un campo magnético, la dinámica de la partícula viene dada por la ecuación de la fuerza de Lorentz.
+\begin{equation}
+    \mathbf{F}=q (\mathbf{E}+\mathbf{v} \times \mathbf{B})
+    \label{eq: Fuerza de Lorentz}
+\end{equation}
+Por la geometría que se ve en la Figura \ref{fig:efecto Hall}\footnote{Los ejes son un poco ñeh pero no queria hacer otro dibujo.}, el equilibrio de fuerzas se alcanza cuando sólo tenemos componente Y en el campo eléctrico. Por lo que si trabajamos en módulo $$E_y=v_xB_z$$ que es lo que conocemos como \textbf{campo Hall}, este campo produce una diferencia de potencial llamada \textbf{potencial Hall}
+\begin{equation}
+    V_\mathrm{H}=+E_\mathrm{H}W=\frac{J_xB_z}{qn}W=|R_\mathrm{H}|J_xB_zW \Rightarrow \mathbf{E}=R_\mathrm{H}\mathbf{B}\times \mathbf{J} \Rightarrow R_\mathrm{H}=\frac{1}{qn}
+    \label{eq: Potencial Hall}
+\end{equation}
+El factor $R_\mathrm{H}$ lo definimos como \textbf{coeficente Hall}, que será negativo o positivo en función de si el semiconductor es tipo N o tipo P.\\\\
+Una aplicación del Efecto Hall, es la caracterización de semiconductores, si medimos $V_\mathrm{H}, J_x, B_z$ y por la geometría del semiconductor, podemos determinar la concentración de portadores extrayéndolo de la ecuación \ref{eq: Potencial Hall}. Además si medimos la conductividad, podemos también determinar la movilidad $\mu=\sigma |R_\mathrm{H}|$.\\\\
+Hemos desarrollado para un SC tipo N pero análogamente se puede aplicar con la concentración de $h^+$.

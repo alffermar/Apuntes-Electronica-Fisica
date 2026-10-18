@@ -1,0 +1,103 @@
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Tema 7}
+\fancyhead[L]{4º Grado en Física}
+
+\chapter{Nanodispositivos}
+\section{La nanoescala. Propiedades dependientes del tamaño}
+Los avances en tecnologías de fabricación permiten obtener dispositivos del orden del nanómetro. Es decir, tenemos dimensiones del orden de la longitud de onda de De Broglie. A estas escalas observamos
+\begin{itemize}
+    \item \textbf{Fenómenos de naturaleza cuántica}: cuantización de la energía, de la resistencia, etc...
+    \item \textbf{Transporte balístico}: Los electrones apenas sufren scattering en el medio, por lo que la expresión de la velocidad como la movilidad por el campo ya no es válida ya que el scattering es muy pequeño.
+    \item  Los dispositivos funcionan con principios diferentes a los dispositivos basados en materiales masivos.
+    \item Buena parte de los dispositivos se basan en \textbf{heterouniones} de semiconductores con \textbf{diferente GAP}. Lo que nos permite \textbf{confinar electrones}.
+\end{itemize}
+El confinamiento de los electrones lo podemos modelar según las dimensiones cuantizadas: Pozo Cuántico (2D), Hilo Cuántico (1D), Punto Cuántico (0D).
+\section{Nanoestructuras semiconductoras de baja dimensionalidad}
+\subsection{\textcolor{red}{Ejemplo 1. Pozo cuántico de AlGaAs-GaAs-AlGaAs (pozo rectangular)}}
+\noindent Se fabrica mediante crecimiento epitaxial a través de haces moleculares.\\\\
+Lo consideramos un pozo cuadrado infinito de anchura $a$ (sólo en la dirección $Z$). Mientras que en el plano $XY$ consideraremos que es una partícula libre
+\newpage
+\begin{minipage}{0.45\textwidth}
+\centering
+    \includegraphics{Standalone/T7_01_Representacion_de_un_pozo_cuadrado.pdf}
+    \captionof{figure}{Representación de un pozo cuadrado en las bandas de un semiconductor.}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    En la dirección $Z$ tenemos estados ligados por lo que la energía está cuantizada
+    \begin{equation}
+        E_n=\frac{\hbar^2 \pi^2}{2m^*a^2}n^2 \ \text{con} \ n=1,2...
+    \end{equation}
+    Mientras que en el plano XY la energía es característica de la partícula libre, por lo tanto la energía total es 
+    \begin{equation}
+        E=\frac{\hbar^2}{2m^*}(k_x^2+k_y^2)+E_n
+    \end{equation}
+    Lo que hace que para cada valor de \textit{n} tengamos una \textbf{subbanda de energía}.
+\end{minipage}
+\\
+El número de estados de energía $$Z(E)=\frac{m^*}{\pi \hbar^2 a}$$. Según el número de subbandas para las que haya estados a una energía dada tendremos un número de estados múltipo entero de $Z(E)$. En 3 dimensiones la densidad de estados depende de la energía como $\sqrt{E}$.
+\subsection{Ejemplo 2. Heterounión modulada en dopaje (pozo triangular)}
+Para construirlo utilizamos un semiconductor de GAP ancho muy dopado y un semiconductor de GAP estrecho sin dopar. Los $e^-$ que pasan al GaAs quedan confinados en una región muy estrecha en la que el fondo de la banda de conducción tiene forma triangular.\\\\
+Tenemos confinamiento en la dirección perpendicular a la heterounión. Movimiento libre en las direcciones paralelas a la misma, por lo que tenemos \textbf{subbandas de energía}.\\\\
+Otras posibilidades para construir el pozo triangular son: Si-SiGe, InAlAs-InGaAs, AlGaN-GaN.\\\\
+El pozo triangular es la base de los \textbf{transistores MODFET} (transistor de efecto de campo modulado en dopaje). El transporte tiene lugar en la dirección paralela a la unión (partículas libre). Al disminuir la interacción con impurezas la movilidad es mayor y se consiguen transistores más rápidos, capaces de alcanzar frecuencias de funcionamiento más altas.
+\subsubsection{Heterouniones simétricas - pozos cuánticos - pozos cuánticos múltiples}
+Si la anchura de la heterounión es grande, podremos tener dos pozos triangulares, lo cual hace que tengamos dos canales con $e^-$ junto a las heterouniones.
+\\\\
+Para anchuras pequeñas, tenemos un pozo rectangular lo cual hace que tengamos un único canal de $e^-$ ocupando el pozo.\\\\
+En ambos casos los electrones pueden moverse muy rápidamente en la dirección paralela a las heterobuniones al estar lejos de las impurezas.\\\\
+Para algunas aplicaciones se frabrican estructuras con muchos pozos cuánticos (PCM) independientes (suficientemente separados).
+\subsection{Ejemplo 3. Superredes (minibandas)}
+Es una estructura periódica con muchos pozos cuánticos de anchura $a$ separados por barreras \textbf{muy estrechas} de anchura $b$, por lo tanto, los estados permitidos no están confinados en los pozos, sino que los potenciales/estados de los pozos interaccionan entre sí.\\\\
+La interacción entre pozos proporciona estados que se extienden a lo largo de toda la superred, cuyas energías forman bandas de energía permitidas separadas por bandas prohibidas.\\\\
+Es similar a lo que ocurre con el potencial periódico de un cristal que da lugar a las bandas de energía, pero las bandas son mucho más estrechas (\textit{a} y \textit{b} son mucho mayores que distancias interatómicas, por lo que tenemos periodicidad conrtrolable y podemos ``diseñar bandas a medida'').  Debido a la estrechez de las bandas podemos tener \textbf{tranporte por efecto túnel}, a través de la superred.
+\subsection{Ejemplo 4. Puntos cuánticos (0D) e hilos cuánticos (1D)}
+Requieren técnicas de fabricación más complejas y menos controlables que el crecimiento epitaxial.
+\begin{itemize}
+    \item \textbf{Puntos cuánticos}: Típicamente son nanocristales que contienen muchos átomos (entre $10^4 \ \text{y} \ 10^6$)\footnote{El premio Nobel de Química 2023 se concedió a la síntesis química de puntos cuánticos.}. Las tres dimensiones están cuantizadas y tendremos \textbf{confinamiento físico o electrónico}. Los puntos cuánticos los podemos modelizar como una caja de potencial cerrada
+    \begin{equation}
+        E_{n_1, \, n_2, \, n_3 }=\frac{\hbar^2 \pi^2}{2m^*}\left(\frac{n_1^2}{a_x^2}+\frac{n_2^2}{a_y^2}+\frac{n_3^2}{a_z^2} \right) \ \text{con} \ n_1,n_2,n_3=1,2,3...
+    \end{equation}
+    \begin{itemize}
+        \item Tienen propiedades similares a los átomos individuales.
+        \item Por lo que tienen niveles de energía no bandas y presentan una energía de ionización.
+        \item Presentan efectos interesantes como el \textbf{blocaje de Coulomb}, es un efecto que se da cuando la presencia de un $e^-$ en el pnto cuántico bloquea la entrada de otros. Lo que nos permite utilizar trnasistores de un solo $e^-$.
+        \item Tienen diversas utilidades, en optoeléctronica (detectores, láseres de punto cuántico, emisión fluorescente de distintos colores) o nano electrónica (transistores de un solo $e^-$)
+    \end{itemize}
+    \newpage
+    \item \textbf{Hilos cuánticos}: El movimiento libre sólo es en una dimensión (un ejemplo son los nanotubos de carbono). Tienen menos aplicaciones que los puntos cuánticos, ya que son más difíciles de fabricar controladamente, una posible aplicación es la de interconexiones de circuitos integrados.
+\end{itemize}
+\section{Propiedades de transporte de nanoestructuras}
+\subsection{Tranporte paralelo a las heterouniones}
+Como hemos dicho antes, la movilidad mejora al reducir el scatterring con el medio masivo con impurezas. Tiene utilidad en transistores de efecto campo.\\\\
+Está limitado por los mecanismos de scatterring y la rugosidad de la superficie. La tecnología para desarrollar dispositivos con mejor movilidad está en constante mejora.
+\subsubsection{Conductancia cuántica}
+La conductancia cuántica la definimos como 
+\begin{equation}
+    G=\frac{2e^2}{h}n \ \text{con} \ n=1,2...
+\end{equation}
+La conductancia aumenta según las condiciones en las que se encuentre el nanodispositivo y de la características de entarda:
+\begin{itemize}
+    \item Si el nanodispositivo se encuentar a muy baja temperatura, conseguimos transporte balístico.
+    \item Si aplicamos tensión en las puertas, afectamos a la anchura del canal lo que hace aumenta el número de subbandas qeu contribuyen a la conducción. A medida que tenemos mayor tensión tenemos un mahyor número de subbandas lo que tenemos incrementos de \textit{G}.
+    \item Se observan efectos similares al \textbf{efecto Hall cuántico} (\textit{plateaus} en la tensión y resistencia Hall).
+\end{itemize}
+\subsection{\textcolor{red}{Diodo túnel resonante. Transporte perpendicular a las heterouniones}}
+Es un dispositivo que muestra resistencia incremental negativa, por lo que es útil para aplicaciones de alta frecuencia. Lo modelizamos como dos barreras finitas de potencial, de tal manera que hace que entre barreras se formeun pozo finito. Este pozo \textbf{sólo tiene un nivel permitido} que denominamos como \textbf{nivel resonante}.\\\\
+Cuando aumentamos la tensión, bajamos una de las barreras y el pozo no es plano sino \textbf{lineal}, con esto enfrentamos estados lo que nos genera una probabilidad de conseguir efecto túnel hasta llegar a una resonancia.
+\newpage
+\subsection{Blocaje de Coulomb. Transistor de un único electrón (SET)} 
+En este dispositivo se prentende controlar la carga hasta el límite de un único electrón. Se utiliza un punto cuántico rodeado por dos barreras de potencial o túnel que lo separan de dos electrodos.\\\\
+Esto nos genera una estructura con capacidad muy pequeña $(\unit[\sim 10^{-16}]{F})$ que sirve para poder detectar cambios de potencial asociados a la carga de un único electrón $\Delta V=e/C \sim \unit[1.6]{mV}$\\\\
+En el caso de un condensador con \textbf{capacidad elevada}, la corriente por efecto túnel entre los electrodos suele ser lineal con la tensión.\\\\
+Si el condensador es de \textbf{capacidad pequeña}, el paso de un electrón a través de una barrera requiere la energía que supone añadir una carga \textit{e} a condensador que es $$E=\frac{e^2}{2C}$$ luego hará falta aplicar una tensión \textit{V} que cumpla que $$eV>\frac{e^2}{2C}$$ Para $|V|=\frac{e}{2C}$ no puede circular corriente hacia o desde el punto crítico, a esto lo denominamos \textbf{blocaje de Coulomb}. \\\\
+Para poder observar y controlar estos efectos la energía térmica $k_\mathrm{B}T$ ha de ser menor que la energía del condensador, lo cual supone que $T<e^2/2Ck_\mathrm{B}$, típicamente menor de $\unit[10]{K}$. Para trabajar a temperatura ambiente \textit{C} tendría que ser aún menor, lo que implica un menor tamaño de los dispositivos.
+\subsubsection{Transistor de un único electrón (SET)}
+La tensión de puerta (este terminal es un aislante, no hay corriente) $V_\mathrm{G}$ modifica la capacidad del punto cuántico y controla el número de electrones que puede haber en el punto cuántico.\\\\
+Cada vez que el punto cuántico admite un electrón más hay un pulso de corriente entre fuente y drenador (\textbf{oscilaciones de Coulomb}), lo que resulta muy útil para aplicaciones lógicas.
+\section{Propiedades ópticas de la nanoestructuras}
+Las nanoestructuras tienen propiedades distintas a los semiconductores masivos, al presentar niveles y bandas de energía que depende de la dimensionalidad y el tamaño de las nanoestructuras. Esto \textbf{permite una cierta selección} mediante la fabricación con las dimensones adecuadas.\\\\
+Las transiciones más probables se dan entre electrones y huecos con igual número cuántico \textit{n}.\\\\
+Tienen mayor importancia los \textbf{efectos excitónicos} al estar más próxicmos electrones y huecos debido al confinamiento. La energía de enlace electrón-hueco es mayor, lo que les confiere mayor estabilidad y mayor relevancia en propiedades ópticas.
+\subsubsection{Puntos cuánticos}
+Son nanocristales obtenidos por síntesis química. Mediante su tamaño es posible desplazar en frecuencia su espectro de absorvión, lo que nos permite modificar el color de los nanocristales al aumentar el borde de absorción óptico. Una aplicación importane es la creación de pantallas.

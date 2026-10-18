@@ -1,0 +1,90 @@
+\documentclass[tikz, a4paper,12pt]{book} 
+\usepackage[spanish,es-tabla]{babel}	
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[dvips]{graphicx}      
+\usepackage{float}	  
+\usepackage{biblatex}
+\usepackage[bf]{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{array,tabularx}
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{setspace}
+\usepackage[left=2cm, right=2cm, top=3.54cm, bottom=3cm]{geometry}
+\usepackage{gensymb}
+\usepackage{glossaries}
+\usepackage{wasysym}
+\usepackage[nice]{nicefrac}
+\usepackage{units}
+\usepackage{diagbox}
+\usepackage{wrapfig}
+\usepackage{dsfont}
+\usepackage{cancel}
+\usepackage{blkarray}
+\usepackage{hyperref}
+\usepackage{hyperxmp} % Este paquete gestiona los metadatos avanzados del PDF
+
+\hypersetup{
+    pdfauthor={Alfonso Fernández Martín},
+    pdftitle={Electrónica Física},
+    pdfcopyright={Copyright (c) 2026 Alfonso Fernández Martín. Obra bajo licencia CC BY-NC-SA 4.0},
+    pdflicenseurl={http://creativecommons.org}
+}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usepackage{appendix}
+\usetikzlibrary{circuits.ee}
+
+
+%Colores
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+
+%Redefiniciones y nuevos comandos
+\newcommand{\diff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\mathrm{d}{#2}}{\mathrm{d}{#3}}}%
+	{\frac{\mathrm{d}^{#1} {#2}}{\mathrm{d}{#3}^{#1}}}%
+}%
+
+\newcommand{\pdiff}[3][1]{%
+	\IfBlankTF{#1}{\frac{\partial {#2}}{\partial {#3}}}%
+	{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}%
+}%
+
+
+\graphicspath{{Imagenes/}}
+
+\addbibresource{references.bib}
+
+\bibliography{references}
+
+\setlength{\intextsep}{10pt}
+
+\begin{document}
+%Encabezado
+\frontmatter
+\include{Portada.tex}\thispagestyle{empty}  %QUITAR NUMERACION
+\include{Resumen}
+\tableofcontents 
+\thispagestyle{empty}  %QUITAR NUMERATION
+\mainmatter
+\setcounter{page}{1}
+\part{Propiedades de los materiales Semiconductores}
+\include{Tema 1}
+\include{Tema 2}
+\part{Dispositivos electrónicos fundamentales}
+\include{Tema 3}
+\include{Tema 4}
+\include{Tema 5}
+\part{Dispositivos electrónicos especializados}
+\include{Tema 6}
+\include{Tema 7}
+\appendix
+\thispagestyle{empty}
+\include{Apendice A Sol EcContinuidad}
+\end{document}

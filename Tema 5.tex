@@ -1,0 +1,535 @@
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Tema 5}
+\fancyhead[L]{4º Grado en Física}
+
+\chapter{Transistor de Efecto Campo Metal-Óxido-Semiconductor (MOSFET)}
+Una vez desarrollado el transistor BJT, vamos a estudiar el transistor MOSFET. Este tipo de transistores, se basan en la estructura Metal-Aislante-Semiconductor (MIS), donde el aislante puede ser un óxido (entonces la denominamos MOS)\footnote{Los modelos que vamos a desarrollar son para dispositivos basados en MOS, aunque son igualmente aplicables para la estructura MIS}.\\\\ 
+El MOSFET es un dispositivo de cuatro terminales \textbf{puerta} (G), \textbf{drenador} (D), \textbf{fuente} (S) y \textbf{sustrato} (B).\\
+
+La idea fundamental detrás del MOSFET es controlar la corriente entre fuente y drenador a través de la tensión aplicada a la puerta. Destacar que el sustrato \textbf{siempre} tiene que ser del tipo contrario a la fuente y al drenador.
+\begin{figure}[h]
+\begin{subfigure}{0.45\linewidth}
+\centering
+       \includegraphics{Standalone/T5_01_Transistor_Mosfet.pdf}
+    \caption{Esquema de un transistor MOSFET.}
+    \label{fig:Transistor Mosfet} 
+\end{subfigure}
+\hspace{2cm}
+\begin{subfigure}{0.45\linewidth}
+\centering
+    \includegraphics{Standalone/T5_02_Condensador_Mos.pdf}
+    \caption{Esquema de un condensador MOS.}
+    \label{fig:Condensador Mos}
+\end{subfigure}
+\caption{Representaciones de un MOSFET y un MOS}
+\end{figure}
+\newpage
+\section{Estructura metal-óxido-semiconductor (MOS)}
+En este caso, vamos a eliminar los terminales de fuente y drenador, por lo que tendremos un condensador representado en la figura \ref{fig:Condensador Mos}. Las zonas grises son las zonas donde se encuentran distribuidas las cargas.
+
+\subsection{Situaciones de carga en el semiconductor. Análisis cualitativo de las bandas de energía}
+Supongmaos que el semiconductor es tipo P. Cuando establecemos una diferencia de potencial entre los extremos del condensador MOS, observamos que las bandas de energía se comportan de manera análoga a lo discutido en la sección \ref{sec: Union MSC-P}.
+
+\subsubsection{Acumulación}
+\noindent Si tenemos $V<0$, como se muestra en la figura \ref{fig: Acumulacion MOS}, vemos que el campo eléctrico que nos genera la diferencia de potencial entre extremos del condensador, hace que dentro del semiconductor los huecos se desplacen hacia el óxido. Generando así, dentro del óxido, un campo eléctrico debido a la diferencia de potencial que se crea entre sus extremos. A este estado de la estructura MOS se le conoce como \textbf{acumulación}.
+\subsubsection{Vaciamiento}
+Si tenemos $V>0$ pero siendo pequeña, el campo eléctrico va en sentido contrario al anterior, por lo que tendremos un exceso de carga positiva en el contacto con el metal del óxido y los huecos que se encontraban en la parte superior, se nos desplazarán hacia el contacto inferior del semiconductor, por lo que se nos \textbf{inducirá una zona de carga espacial}, y alrededor de esta se nos formará una región cargada negativamente. A esta estado de la estructura MOS lo conocemos como \textbf{vaciamiento}.
+\begin{figure}[h]
+\centering
+\begin{subfigure}{0.35\linewidth}
+\centering
+    \includegraphics{Standalone/T5_03_Acumulacion_MOS.pdf}
+     \captionsetup{skip=1pt} % Ajusta el espacio vertical aquí
+    \caption{Acumulación de cargas en un MOS.}
+    \label{fig: Acumulacion MOS}
+    \end{subfigure}
+    \hspace{1mm}
+    \begin{subfigure}{0.55\linewidth}
+    \centering
+    \includegraphics{Standalone/T5_04_Acumulacion_MOS.pdf}
+    \caption{Vaciamiento de cargas. En la segunda imágen vemos la ZCE inducida.}
+    \label{fig: Acumulacion MOS}
+    \end{subfigure}
+    \caption{Acumulación y vaciamiento}
+\end{figure}
+\newpage
+\subsubsection{Inversión}
+\begin{minipage}{0.6 \textwidth}
+ \noindent Cuando tenemos un $V>0$ lo suficientemente grande, aumentará la zona de carga inducida, esto hace que las bandas de energía se doblen más hacia abajo, tanto que el cuasinivel de Fermi se encuentra por debajo del nivel de Fermi. Esto implica que la banda de conducción se encuentre más cercano al nivel de Fermi que la banda de conducción por lo que la zona cercana a la superficie del semiconductor se convierte en tipo N, es decir, hemos invertido el tipo de semiconductor. A este estado de la estructura MOS se le denomina \textbf{inversión}.\\\\
+Para la estructura MOS con un semiconductor tipo N las bandas se tornan como lo desarrollado en la sección \ref{sec: Union MSC}
+\end{minipage}
+\hfill
+\begin{minipage}{0.3 \textwidth}
+    \begin{figure}[H]
+\centering
+    \includegraphics{Standalone/T5_05_Inversion_MOS.pdf}
+    \caption{Inversión de cargas.}
+    \label{fig: Inversion MOS}
+\end{figure}
+\end{minipage}
+\subsection{Situacioness de carga en el semiconductor. Análisis cuantitativo de las bandas de energía}
+Si en la figura \ref{fig: Union MSC sin contacto}, entre el metal y es semiconductor introducimos un aislante (óxido), tenemos que la afinidad eletrónica del aislante está más próxima al nivel de vacío que en el semiconductor. Además destacamos que en el óxido no tiene sentido establecer un nivel de Fermi.
+
+\begin{figure}[h!]
+    \centering
+\includegraphics{Standalone/T5_06_Diagrama_de_bandas_de_los.pdf}
+    \caption{Diagrama de bandas de los diferentes materiales aislados.}
+    \label{fig:enter-label}
+\end{figure}
+Vamos a definir el potencial $e\varphi_\mathrm{F}=E_\mathrm{Fi}-E_\mathrm{F}$ que en el caso de semiconductores tipo P es positivo y en semiconductores tipo N es negativo. A partir de ahora supongamos que $\varphi_\mathrm{MS}<0$. Vamos a desarrollar los estados cuando la estructura MOS está en equilibrio y cuando no lo está.
+\subsubsection{Equilibrio}
+En este estado el nivel de Fermi de la unión se es constante y la corriente es nula (debido al aislante). Si nos refermos a los anchos de las zonas de carga espacial, la del metal es mucho menor que la del semiconductor, esto se debe a que en el metal la carga se distribuye por la superficie mientras que en el semiconductor se distribuye en un cierto volumen. Definimos los siguientes potenciales:
+\begin{itemize}
+    \item $V_\mathrm{OO^\prime}$: Caída de tensión en el óxido en equilibrio ($V_\mathrm{OO^\prime}>0$ en la figura).
+    \item $\varphi_\mathrm{SO}$: caída de tensión en el semiconductor en equilibrio ($\varphi_\mathrm{SO}>0$ en la figura).
+    \item  $\varphi(x)$: potencial en una posición genérica $x$ del semiconductor (no lo representamos por simplicidad).
+\end{itemize}
+Si nos damos cuenta, $\phi_\mathrm{MS}=-e(V_\mathrm{OO^\prime}+\varphi_\mathrm{SO})<0$. También vamos a recordar que los potenciales están medidos desde el nivel de vacío (nivel del semiconductor en equilibrio), por lo que cuanto más abajo se encuentre una energía, mayor será el potencial que la genera. El metal se encuentra a mayor potencial (y menor energía) que el semiconductor en $-\phi_\mathrm{MS}>0$.
+%AQUÍ HAY QUE PONER LA FIGURA DE LA HOJA 33 DE LA PRESENTACIÓN
+Dentro del aislante, el campo es constante (es un condensador), por lo que el potencial es lineal através de él.
+\begin{figure}[h]
+    \centering
+    \includegraphics{Standalone/T5_07_Estructura_MOS_en_equilibrio.pdf}
+    \caption{Estructura metal (izq) óxido (central) semiconductor (dcha), en equilibrio siendo un semiconductor de tipo P.}
+    \label{fig:Estructura MOS en equilibrio}
+\end{figure}
+\subsubsection{Fuera del equilibrio}
+\begin{itemize}
+    \item \textbf{Banda plana}\\
+    \indent \indent Definimos el potencial de banda plana $V_\mathrm{FB}=\phi_\mathrm{MS}/e$ como aquel potencial que compensa exactamente la diferencia de potencial de equilibrio. En este caso $I=0$ y $E_\mathrm{F}$ es constante y el potencial que antes era lineal en el óxido ahora también es \textbf{constante}. Esta estructura no presenta acumulaciones de cargas ni caídas de tensión.
+    \begin{figure}[h!]
+    \centering
+    \includegraphics{Standalone/T5_08_Potrencial_de_banda_blana.pdf}
+    \caption{Diagrama de bandas de una estructura MOS cuando el potencial de rejilla es el de banda plana.} 
+    \label{fig: Potrencial de banda blana}
+\end{figure}
+    \item \textbf{Acumulación}\\
+    \indent \indent En este caso el potencial aplicado $V_\mathrm{G}<\phi_\mathrm{MS}/e<0$. Cuando nos encontramos en acumulación, tenemos dos caídas de tensión una el óxido (el potencial es lineal) $V_\mathrm{OX}<0$ y una en el semiconductor $\varphi_\mathrm{S}$ por lo que el metal se encuentra a menor potencial que el semiconductor, resultando \begin{equation}
+        V_\mathrm{G}-\frac{\phi_\mathrm{MS}}{e}=V_\mathrm{OX}+\varphi_\mathrm{S}<0
+    \end{equation}
+    \begin{figure}
+        \centering
+        \includegraphics{Standalone/T5_09_Estructura_MOS_en_acumulacion.pdf}
+        \caption{Diagrama de bandas de una estructura MOS cuando se encuentra en acumulación.}
+        \label{fig:Estructura MOS en acumulacion}
+    \end{figure}
+    \footnote{No incluimos el potencial $\phi_\mathrm{SO}$ por simpificar los esquemas} Como hemos dicho anteriormente, tendremos una acumulación de huecos en la frontera entre el óxido y el semiconductor.
+    \item \textbf{Inversión}\\
+    \indent \indent Cuando aplicamos un $V_\mathrm{G}>0$, lo suficientemente grande nos encontramos en inversión (será la condición necesaria para que exista corriente entre fuente y drenador). En este caso $V_\mathrm{OX}>0$, $\varphi_\mathrm{S}>2\varphi_\mathrm{F}>0$ y el metal se encuentra a mayor potencial que el semiconductor
+    \begin{equation}
+        V_\mathrm{G}-\frac{\phi_\mathrm{MS}}{e}=V_\mathrm{OX}+\varphi_\mathrm{S}>0
+    \end{equation}
+    Como dijimos antes, hay un exceso de electrones, tantos que superan al número de huecos en equilibrio \footnote{Si fuera un SCN sería al revés}. Si vamos aumentando $V_\mathrm{G}$ desde 0, tendremos vaciamiento hasta que \\ $V_\mathrm{G}>2\varphi_\mathrm{F}$ en ese caso tendremos inversión y ambas capas coexistirán en el semiconductor.
+    \begin{itemize}
+    \newpage
+    \begin{figure}[h]
+    \centering
+    \includegraphics{Standalone/T5_10_Estructura_MOS_en_inversion.pdf}
+    \caption{Diagrama de bandas de una estructura MOS en inversión.}
+    \label{fig:Estructura MOS en inversion}
+\end{figure}
+        \item \textbf{Condición de inversión} Ya hemos dicho que necesitamos que $V_\mathrm{G}>\varphi_\mathrm{F}$. Si calculamos las concentraciones de portadores de carga obtenemos
+        \begin{equation}
+            \begin{aligned}
+                &n(x)=N_\mathrm{C} \exp{\left( \frac{E_\mathrm{F}-E_\mathrm{C}+e\varphi(x)}{k_\mathrm{B}T} \right)}=n_\mathrm{i}\exp{\left( \frac{-e(\varphi_\mathrm{F}-\varphi(x))}{k_\mathrm{B}T} \right)}\\
+                &p(x)=N_\mathrm{V} \exp{\left( \frac{E_\mathrm{V}-E_\mathrm{F}+e\varphi(x)}{k_\mathrm{B}T} \right)}=n_\mathrm{i}\exp{\left( \frac{e(\varphi_\mathrm{F}-\varphi(x))}{k_\mathrm{B}T} \right)}
+            \end{aligned}
+        \end{equation}
+        Y si definimos
+        \begin{equation}
+        p_\mathrm{eq}=n_i\exp{\frac{e \varphi_\mathrm{F}}{k_\mathrm{B}T}}
+        \end{equation}
+        Por lo tanto como hemos dicho $n(x)\geq p_\mathrm{eq} \xrightarrow{} \varphi(x) \geq 2\varphi_\mathrm{F}$ que es una condición de inversión en una posición $x$ genérica, por lo tanto para que comience a haber inversión en el semiconductor $\varphi_\mathrm{S}\geq 2\varphi_\mathrm{F}$.\\\\ Si estudiamos las cargas nos encontramos 
+        \begin{equation}
+\begin{aligned}
+& Q_\mathrm{a c} \propto \exp \left[e\left|\varphi_S\right| / k_B T\right] \\
+& Q_\mathrm{i n v} \propto \exp \left[e\left|\varphi_S\right| / k_B T\right] \\
+& Q_\mathrm{v a c} \propto\left|\varphi_S\right|^{1 / 2}
+\end{aligned}
+\label{eq: carga en funcion de los estados de carga}
+\end{equation}
+    \end{itemize}
+\end{itemize}
+\subsubsection{Tensión umbral}
+Definimos la tensión umbral $V_\mathrm{T}$ como la tensión que hay que aplicar al metal para que comience a haber inversión en el semiconductor. A partir de la tensión umbral 
+\begin{equation}
+    V_\mathrm{T}=V_\mathrm{OX}-V_\mathrm{OO^\prime} +\varphi_\mathrm{S}-\varphi_\mathrm{SO}  \ \text{con} \ +\varphi_\mathrm{S}=2+\varphi_\mathrm{F}  \ \text{y} \ V_\mathrm{OO^\prime}+\varphi_\mathrm{SO}=-\frac{\phi_\mathrm{MS}}{e} \label{eq: potencial de contacto definicion}
+\end{equation}
+Recordamos que el óxido se comporta como un condensador 
+\begin{equation}
+V_\mathrm{OX}=E_\mathrm{OX}d=\frac{Q_\mathrm{G}}{\epsilon_\mathrm{OX}}d=\frac{\pm Q_\mathrm{S \ max}}{C_\mathrm{OX}} \ \text{con} \ C_\mathrm{OX}=\frac{\epsilon_\mathrm{OX}}{d}\label{eq: capacidad y potencial del oxido}
+\end{equation}
+Siendo $Q_\mathrm{S \ max}$ la carga máxima de la capa de vaciamiento en el semiconductor (cuando la caída de potencial de $2\varphi_\mathrm{F}$).\\\\
+A partir de la carga máxima podemos calcular la anchura máxima como una función de $\varphi_\mathrm{F}$ en efecto 
+\begin{equation}
+    Q_\mathrm{S \ max}=-eN_\mathrm{A} W_\mathrm{max}= -eN_\mathrm{A} W(2\varphi_\mathrm{F})=-(2eN_\mathrm{A}\epsilon_\mathrm{S} 2\varphi_\mathrm{F})^{1/2} \xrightarrow{}  \boxed{W_\mathrm{max}=-\left( \frac{2\epsilon_\mathrm{S}|2\varphi_\mathrm{F}|}{eN_\mathrm{A}} \right)^{1/2}} \label{eq: anchura maxima}
+\end{equation}
+Obteniendo finalmente que el potencial de contacto lo podemos expresar como \begin{equation}
+    V_\mathrm{T}=-\frac{ Q_\mathrm{S \ max}}{ C_\mathrm{OX}}+2\varphi_\mathrm{F}+\frac{\phi_\mathrm{MS}}{e}
+    \label{eq: Potencial de contacto capacida oxido}
+\end{equation}
+\subsection{Estructura real MOS}
+Hasta ahora, cuando hemos estudiado la estructura MOS hemos supuesto que el óxido es un medio aislante con cargas estáticas, es decir, que simplemente era una zona no conductora en la estructura. Sin embargo, sí que tenemos una presencia de cargas en el óxido, concretamente se distribuyen en la superficie de separación con el semiconductor, si las denotamos como $Q_\mathrm{SS}$ podemos determinar la caída de tensión en el óxido.
+\begin{equation}
+V_\mathrm{SS}=\frac{Q_\mathrm{SS}}{\epsilon_\mathrm{OX}}d=\frac{Q_\mathrm{SS}}{C_\mathrm{OX}}
+    \label{eq: Caida de tension en el oxido}
+\end{equation}
+Esta caída de potencial, influye también en la tensión umbral de nuestro transistor, por lo que si tenemos en cuenta la contribución queda como 
+\begin{equation}
+V_\mathrm{T}=2\varphi_\mathrm{F}-\frac{Q_\mathrm{SS}}{C_\mathrm{OX}}+\frac{\phi_\mathrm{MS}}{e}-V_\mathrm{SS} \left \{\begin{aligned}
+    &V_\mathrm{SS}>0 \xrightarrow{} V_\mathrm{T} \downarrow; \ Q_\mathrm{SS}>0 \ \text{atrae} \ e^-\\
+    &V_\mathrm{SS}<0 \xrightarrow{} V_\mathrm{T} \uparrow ; \ Q_\mathrm{SS}<0 \ \text{atrae} \ h^-\\
+\end{aligned} \right.
+\label{eq: tension umbral real}
+\end{equation}
+El potencial de banda plana será
+\begin{equation}
+    V_\mathrm{FB}=\frac{\phi_\mathrm{MS}}{e}-V_\mathrm{SS} \ \text{genéricamente} \ V_\mathrm{G}=\textcolor{blue}{-\frac{Q_\mathrm{S}}{C_\mathrm{OX}}}+ \textcolor{red}{\varphi_\mathrm{S}+ \frac{\phi_\mathrm{MS}}{e}-V_\mathrm{SS}}= -\frac{Q_\mathrm{S}}{C_\mathrm{OX}}+ \varphi_\mathrm{S}+V_\mathrm{FB}
+\end{equation}
+Que tiene en cuenta la expresión del modelo \textcolor{red}{ideal} y la \textcolor{blue}{caída en el óxido}.
+\section{Comportamiento dinámico. Capacidad de la estructura MIS}
+Para estudiar la capacidad de la estructura MIS, supongamos que tenemos una estructura similar a la figura \ref{fig:Condensador Mos}, de área unidad y con $\phi_\mathrm{MS}=0; \ Q_\mathrm{SS}=0 \Rightarrow V_\mathrm{FB}=0$, con estas condiciones, obtenemos $$V_\mathrm{G}=V_\mathrm{OX}+\varphi_\mathrm{S} \hspace{2cm}
+Q_\mathrm{S}=Q_\mathrm{S}(\varphi_\mathrm{S}) \hspace{2cm} 
+Q_\mathrm{G}=\frac{V_\mathrm{OX}}{d}\epsilon_\mathrm{OX}$$
+Utilizando la definición de capacidad, obtenemos
+\begin{equation}
+    C_\mathrm{OX}=\diff[]{Q_\mathrm{G}}{V_\mathrm{OX}}=\frac{\epsilon_\mathrm{OX}}{d} \hspace{3cm} C_\mathrm{SC}=-\diff[]{Q_\mathrm{S}}{\varphi_\mathrm{S}}
+\end{equation}
+\newpage
+\begin{itemize}
+    \item $C_\mathrm{OX}$: Es una capacidad constante y depende de la geometría de la estructura MIS. \textit{En la figura \ref{fig:Condensador Mos} es un condensador planoparalelo de espesor d y de dieléctrico el óxido}.
+    \item $C_\mathrm{SC}$: Las cargas del semiconductor son función de la caída de tensión en él. En algunos casos depende de la frecuencia.
+\end{itemize}
+A partir de estas definiciones podemos definir una capacidad total, entre los extremos del condensador $C_\mathrm{T}$ que será
+\begin{equation}
+    C_\mathrm{T}=\left(\diff[]{(V_\mathrm{OX}+\varphi_\mathrm{S})}{Q_\mathrm{G}} \right)^{-1}=\left(\frac{1}{C_\mathrm{OX}}+\frac{1}{C_\mathrm{SC}} \right)^{-1}
+\end{equation}
+Es decir, que la estructura MIS la podemos representar como \textbf{dos condensadores en serie}.
+\subsection{Distribuciones de carga en fucnión del estado de carga de la estructura}
+Si nos fijamos en las ecuaciones \ref{eq: carga en funcion de los estados de carga}, ver cómo varían las distintas capacidades en función del potencial de inversión. En las figuras el lado izquierdo representa al metal y el derecho al semiconductor.\\\\
+\begin{minipage}{0.55 \textwidth}
+ Supongamos ahora que tenemos un semiconductor tipo P en \textbf{acumulación}, la capacidad que predomina es la del óxido por lo que
+    \begin{equation}
+    \begin{aligned}
+    &Q_\mathrm{a c} \propto \exp \left[e\left|\varphi_S\right| / k_B T\right] \xrightarrow[]{} \\ &\xrightarrow[]{} C_\mathrm{SC} \uparrow \uparrow \gg C_\mathrm{OX} \xrightarrow[]{} C_\mathrm{T}\approx C_\mathrm{OX}
+    \end{aligned}
+\end{equation}
+Como están en serie, la capacidad predominante será aquella que tiene menor valor. Destacar que en la figura \ref{fig: Dist Carga acumulacion} la carga cuando nos encontramos en acumulación, se encuentra en la superficie, esto se debe a que al curvarse hacia arriba las bandas, tendremos una acumulación de huecos en la banda de valencia.
+\end{minipage}
+\hfill 
+\begin{minipage}{0.4\textwidth}
+\centering
+    \includegraphics{Standalone/T5_11_Dist_Carga_acumulacion.pdf}
+        \captionof{figure}{Distribución de carga en acumulación}
+        \label{fig: Dist Carga acumulacion}
+\end{minipage}
+\\\\\\
+\begin{minipage}{0.55 \textwidth}
+ Supongamos ahora que tenemos un semiconductor tipo P en \textbf{vaciamiento}, ahora la capacidad del semiconductor disminuye, pues sigue la condición 
+    \begin{equation}
+    \begin{aligned}
+    & Q_\mathrm{v a c} \propto\left|\varphi_S\right|^{1 / 2} \xrightarrow[]{} C_\mathrm{SC} \propto |\varphi_\mathrm{S}|^{-1/2} \\ &\xrightarrow[]{} C_\mathrm{SC} \ \text{del orden de } C_\mathrm{OX} \xrightarrow[]{} C_\mathrm{T} \downarrow \ \text{si} \ V_\mathrm{G} \uparrow
+    \end{aligned}
+\end{equation}
+En la figura \ref{fig: Dist Carga vaciamiento} vemos que la carga en el semiconductor se distribuye en el volumen y es de signo contrario al del tipo del semiconductor, es la zona de carga espacial inducida.
+\end{minipage}
+\hfill 
+\begin{minipage}{0.4\textwidth}
+\centering
+    \includegraphics{Standalone/T5_12_Dist_Carga_vaciamiento.pdf}
+        \captionof{figure}{Distribución de carga en vaciamiento}
+        \label{fig: Dist Carga vaciamiento}
+\end{minipage}
+\newpage
+\begin{minipage}{0.55 \textwidth}
+ Supongamos ahora que tenemos un semiconductor tipo P en \textbf{inversión}, la capacidad total en este caso vuelve a predominar la del óxido ya que
+    \begin{equation}
+    \begin{aligned}
+    &Q_\mathrm{a c} \propto \exp \left[e\left|\varphi_S\right| / k_B T\right] \xrightarrow[]{} \\ &\xrightarrow[]{} C_\mathrm{SC} \uparrow \uparrow \gg C_\mathrm{OX} \xrightarrow[]{} C_\mathrm{T}\approx C_\mathrm{OX}
+    \end{aligned}
+\end{equation}
+En la figura \ref{fig: Dist Carga vaciamiento} vemos que la carga en el semiconductor se distribuye tanto en volumen como en superficie (capa de inversión) y es de signo contrario al del tipo del semiconductor.
+\end{minipage}
+\hfill 
+\begin{minipage}{0.4\textwidth}
+\centering
+    \includegraphics{Standalone/T5_13_Dist_Carga_inversion.pdf}
+        \captionof{figure}{Distribución de carga en vaciamiento}
+        \label{fig: Dist Carga inversión}
+\end{minipage}
+\\\\
+Por último vamos a graficar los estados de carga de la estructura MIS en función del tipo de semiconductor que la forme.
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Standalone/T5_14_Estados_de_carga_MOS_N.pdf}
+    \caption{Estados de carga de una estructura MIS cuando el semiconductor es tipo N ($\varphi_\mathrm{F}<0$) }
+    \label{fig:Estados de carga MOS-N}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Standalone/T5_15_Estados_de_carga_MOS_P.pdf}
+    \caption{Estados de carga de una estructura MIS cuando el semiconductor es tipo P ($\varphi_\mathrm{F}>0$) }
+    \label{fig:Estados de carga MOS-P}
+\end{figure}
+\section{Transistor MOSFET}
+El transistor MOSFET está formado por una placa de metal y un semiconductor separados por una zona de óxido de semiconductor que actúa como aislante. Tiene dos regiones muy dopadas de tipo contrario al del semiconductor que forma su sustrato.
+Los electrodos que están conectado a los terminales:
+\begin{itemize}
+    \item \textbf{Puerta} (G): que se conecta a la placa metálica. La corriente en la puerta es nula.
+    \item \textbf{Fuente} (S) y \textbf{drenador} (D): Ambos son simétricos entre sí y están conectados a las zonas muy dopadas.
+    \item \textbf{Sustrato} (B): Es un terminal que puede ser suprimido y se conecta a la placa de metal que se encuentra en la cara inferior del semiconductor.
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.45\linewidth}
+    \centering
+       \includegraphics{Standalone/T5_16_Transistor_Mosfet_CNSP.pdf}
+    \caption{Esquema de un transistor MOSFET canal N y sustrato P.}
+    \label{fig:Transistor Mosfet CNSP} 
+    \end{subfigure}
+    \begin{subfigure}[h]{0.45\linewidth}
+    \centering
+       \includegraphics{Standalone/T5_17_Transistor_Mosfet_CPSPN.pdf}
+    \caption{Esquema de un transistor MOSFET canal P y sustrato N.}
+    \label{fig:Transistor Mosfet CPSPN} 
+    \end{subfigure}
+    \caption{Transistores MOSFET.}
+    \label{fig: Tipos de MOSFET}
+\end{figure}
+La \textbf{idea de funcionamiento} es: controlar la corriente que fluye entre S y D mediante la tensión aplicada a G, para ello es necesario que tengamos capa de inversión debajo del óxido.
+En función del tipo de MOSFET que tengamos tendremos distintos rangos de valores para las tensiones y los terminales\newpage
+\begin{minipage}{0.5\textwidth}
+\textbf{MOSFET canal N y sustrato P} $$I_\mathrm{G}=0 \quad V_\mathrm{GS}>V_\mathrm{T} \quad V_\mathrm{DS}>0 \quad I_\mathrm{D}>0$$    
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+     \textbf{MOSFET canal P y sustrato N} $$I_\mathrm{G}=0 \quad V_\mathrm{GS}<V_\mathrm{T} \quad V_\mathrm{DS}<0 \quad I_\mathrm{D}<0$$
+\end{minipage}
+\subsection{Comportamiento estático del MOSFET}
+Supongamos que en nuestro MOSFET es canal N y sustrato P, y las siguientes características: $\phi_\mathrm{MS}=0; \ Q_\mathrm{SS}=0 \Rightarrow V_\mathrm{FB}=0$. También nos encontramos con que la fuente y el sustrato están cortocircuitados. Las corrientes y los potenciales son 
+$$I_\mathrm{G}=0 \quad V_\mathrm{GS}>V_\mathrm{T} \quad V_\mathrm{DS}>0 \quad I_\mathrm{D}>0$$
+Tomamos como referencia la fuente, por lo que estará conectada a tierra junto con el sustrato y los límites del canal se encuentran en $y=0, \quad y=L$
+\subsubsection{MOSFET en equilibrio}
+Si tenemos que $V_\mathrm{GS}=V_\mathrm{DS}=0, \ I_\mathrm{D}=0$ y con las asumciones anteriores nos encontramos en \textbf{situación de banda plana}.
+\begin{figure}[h!]
+    \centering
+        \includegraphics{Standalone/T5_18_Diagrama_de_bandas_de_un.pdf}
+    \caption{Diagrama de bandas de un MOSFET en equiblibrio con $V_\mathrm{GS}=V_\mathrm{DS}=0, \ I_\mathrm{D}=0$}
+    \label{fig:enter-label}
+\end{figure}
+\newpage
+\noindent Si tenemos que  $V_\mathrm{GS}>0, \ V_\mathrm{DS}=0, \ I_\mathrm{D}=0$ nos encontramos que el nivel de Fermi es constante con la posición, es decir \textbf{si la corriente de drenador es nula el nivel de Fermi es constante con la posición}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Standalone/T5_20_Diagrama_de_bandas_VGS_positivo.pdf}
+    \caption{Diagrama de bandas de energía al aplicar un potencial de rejilla.}
+    \label{fig:Diagrama de bandas para VGS>0}
+\end{figure}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \flushright
+    \includegraphics{Standalone/T5_21_Diagrama_de_bandas_VGS_VDS_positivos.pdf}
+    \caption{Diagrama de bandas de energía al aplicar un potencial de rejilla y una tensión drenador-fuente positivas}
+    \label{fig:Diagrama de bandas para VGS>0 y VDS>0}
+\end{wrapfigure}
+
+Finalmente si tenemos corriente de drenador, el nivel de Fermi ya no es constante, por lo que nos aparecen dos cuasiniveles de Fermi $E_{\mathrm{F}N}$ y $E_{\mathrm{F}P}$ como $J_P=0$ el nivel de Fermi es constante en el canal. Esto se debe a que en el canal no hay corriente de huecos por lo que el nivel de Fermi es constante con la posición.
+El nivel de Fermi del sustrato, será 
+\begin{equation}
+\begin{aligned}
+    &E_\mathrm{FN}=E_\mathrm{FP}-eV(x,y) \quad \text{con}\\ &V(x,y)=\left \{ \begin{aligned}
+        &V(x,0)=0\\
+        &V(x,L)=V_\mathrm{DS}
+    \end{aligned}\right.
+    \end{aligned}
+    \label{eq: Nivel de Fermi sustrato}
+\end{equation}
+Por lo que $eV(x,y)$ es la separación entre cuasiniveles de Fermi. Además cuando $y=0$, la unión se encontrará en directa mientras que cuando $y=L$ la unión se encontrará en inversa.\\\\\\\\
+Si estudiamos la corriente tendremos que 
+\begin{equation}
+    J_n=n\mu_n \nabla E_\mathrm{FN}(x,y)=-en\mu_n \nabla V(x,y)
+    \label{eq: Corriente de arrastre sustrato}
+\end{equation}
+Debido a la presencia del óxido $I_\mathrm{G}=0 \Rightarrow J_x=0$ por lo que $$V(x,y)=V(y)$$ Si recordamos la definición de \textbf{condición de inversión}, obtenemos \begin{equation}
+\varphi_\mathrm{S}\geq 2\varphi_\mathrm{F}+V(y)
+    \label{eq: Condición de inversion MOSFET}
+\end{equation}
+\subsubsection{Potencial umbral}
+Nos vamos a referir a la tensión umbral, como la tensión $V_\mathrm{GS}$ mínima a aplicar para que exista capa de inversión en el canal (con $V_\mathrm{DS}=0$)
+\begin{equation*}
+V_\mathrm{T}=V_\mathrm{OX}+2\varphi_\mathrm{F}+\frac{\phi_\mathrm{MS}}{e}-V_\mathrm{SS}=-\frac{Q_\mathrm{S max}}{\epsilon_\mathrm{OX}}d+2\varphi_\mathrm{F} \ \text{con} \ Q_\mathrm{S max}=-\sqrt{2eN_\mathrm{A}\epsilon_\mathrm{S}2\varphi_\mathrm{F}}
+\end{equation*}
+Concluyendo que 
+\begin{equation}
+V_\mathrm{T}=2\varphi_\mathrm{F}+K(2\varphi_\mathrm{F})^{1/2} \quad \text{con} \quad K^2=\frac{2eN_\mathrm{A}\epsilon_\mathrm{S}}{C^2_\mathrm{OX}}
+\label{eq: tension umbral MOSFET canal n}
+\end{equation}
+Ahora podemos calcular la tensión necesaria para comenzar la inversión en una posición $y$ genérica (con $V_\mathrm{DS}\neq 0$) que tiene como expresión
+\begin{equation}
+V_\mathrm{GS}=2\varphi_\mathrm{F}+V(y)+K(2\varphi_\mathrm{F}+V(y))^{1/2}
+\label{eq: Tension VGS generica para dar inversion}
+\end{equation}
+Se diferencia de la ecuación \ref{eq: tension umbral MOSFET canal n} en que añadimos el término de separación entre los cuasiniveles de Fermi.
+\subsubsection{Características $I_\mathrm{D}-V_\mathrm{DS}$. Equilibrio, no saturación, saturación}
+\begin{wrapfigure}{r}{0.35\textwidth}
+\flushright
+    \includegraphics{Standalone/T5_19_Caracteristica_ID_VDS.pdf}
+    \caption{Característica $I_\mathrm{D}-V_\mathrm{DS}$ de un transistor MOSFET.}
+    \label{fig: Caracteristica ID-VDS}
+\end{wrapfigure}
+Si tenemos una capa de inversión uniforme nos encontramos con que $V_\mathrm{DS}=0$, además la zona de vaciamiento se encontrará entorno al drenador.\\\\
+Si nos encontramos al borde de obtener inversión, es decir $V_\mathrm{DS}=V_\mathrm{Dsat}$, el potencial aumenta conforme nos acercamos al drenador, la zona de vaciamiento aumenta. Si el potencial cae más que una cantidad $2\varphi_\mathrm{F}$, comienza a caer en la zona de vaciamiento.\\\\
+Si tenemos $V_\mathrm{DS}>V_\mathrm{Dsat}$, vemos que existe una separación entre la capa de inversión y el drenador. El orígen de la corriente de saturación es que los pocos electrones que hay en $L^\prime$, y que pasan al drenador, son acelerados por el campo que es muy intenso en esa pequeña separación, por lo que mantiene la corriente constante. La expresión para la separación es 
+\begin{equation}
+\Delta L=L-L^{\prime}=\left[\frac{2 \varepsilon_\mathrm{S}\left(V_\mathrm{DS}-V_{\text {Dsat }}\right)}{e N_\mathrm{A}}\right]^{1 / 2}
+\end{equation}
+En la figura \ref{fig: Caracteristica ID-VDS}, podemos ver quecuando el potencial de puerta es menor que la tensión umbral, la intensidad de drenador crece de manera lineal. Y comienza a curvarse más y más a medida que crece $V_\mathrm{GS}$ hasta que alcanzamos el potencial de saturación en el que se mantiene constante la corriente.
+\newpage
+\subsubsection{Tensión de Saturación}
+Dada una $V_\mathrm{GS}$ constante, el punto $y$ del canal que está justo al borde de inversión siempre cumple la condición dada por \ref{eq: Tension VGS generica para dar inversion}. La saturación comienza en $y=L \Rightarrow V(L)=V_\mathrm{DS}=V_\mathrm{DSat}$ De la expresión \ref{eq: Tension VGS generica para dar inversion} obtenemos
+\begin{equation}
+V_\mathrm{GS}=2\varphi_\mathrm{F}+V(L)+K(2\varphi_\mathrm{F}+V(L))^{1/2}=2\varphi_\mathrm{F}+V_\mathrm{DSat}+K(2\varphi_\mathrm{F}+V_\mathrm{DSat})^{1/2}
+\label{eq: Tension de puerta al comienzo de saturacion}
+\end{equation}
+El potencial de puerta será entonces
+\begin{equation}
+    V_\mathrm{DSat}=V_\mathrm{GS}-2\varphi_\mathrm{F}+\frac{K^2}{2}\left(1-\sqrt{1+\frac{4V_\mathrm{GS}}{K^2}}\right) \ \text{con} \ K^2=\frac{2eN_\mathrm{A}\epsilon_\mathrm{S}}{C^2_\mathrm{OX}}
+    \label{eq: Tension de saturacion}
+\end{equation}
+Si $K$ es pequeña tendremos $V_\mathrm{T}\approx 2\varphi_\mathrm{F}$ y $V_\mathrm{DSat}\approx V_\mathrm{GS}-V_\mathrm{T}$.
+\subsection{Expresiones analíticas para características de salida: $I_\mathrm{D}-V_\mathrm{DS}$ con $V_\mathrm{GS}$ constante}
+Utilizaremos la aproximación de canal gradual en el que $\partial^2_{xx} \varphi \gg \partial^2_{yy} \varphi \Rightarrow \partial_xE_x \gg \partial_yE_y \Rightarrow E_y\approx \text{cte}$. Si \textbf{no estamos en saturación} la corriente de drenador será
+
+\begin{equation}
+    I_\mathrm{D}=\mu_n \textcolor{red}{\frac{Z C_\mathrm{OX}}{L}} \left [ \left( V_\mathrm{GS}-2\varphi_\mathrm{F} -\frac{V_\mathrm{DS}}{2}\right)V_\mathrm{DS}-\frac{2}{3}K\left( (V_\mathrm{DS}+2\varphi_\mathrm{F})^{3/2}- (2\varphi_\mathrm{F})^{3/2} \right ) \right ]
+    \label{eq: Corriente de drenador en no saturacion general}
+\end{equation}
+Siendo $Z$ la anchura del transistor y $L$ la longitud del canal. Que depende de un \textcolor{red}{\textbf{factor geométrico}} y observamos que si $I_\mathrm{D}(V_\mathrm{DS}=0)=0$ y $V_\mathrm{DS} \uparrow \Rightarrow I_\mathrm{D} \uparrow$ y $V_\mathrm{GS} \uparrow \Rightarrow I_\mathrm{D} \uparrow$.\\\\
+Si nos encontramos en \textbf{saturación} la corriente de drenador será  
+\begin{equation}
+    I^{'}_\mathrm{D}=\frac{Z\mu_nC_\mathrm{OX}}{L^{'}} \left [ \left( V_\mathrm{GS}-2\varphi_\mathrm{F} -\frac{V_\mathrm{DSat}}{2}\right)V_\mathrm{DSat}-\frac{2}{3}K\left( (V_\mathrm{DSat}+2\varphi_\mathrm{F})^{3/2}- (2\varphi_\mathrm{F})^{3/2} \right ) \right ]
+    \label{eq: Corriente de drenador en saturacion general}
+\end{equation}
+Justo en la unión de las dos zonas $L=L^{'}$, por lo que $I_\mathrm{D}(V_\mathrm{DSat})=I^{'}_\mathrm{D}(V_\mathrm{DSat}) \xrightarrow{}  V_\mathrm{GS} \uparrow \Rightarrow I_\mathrm{D} \uparrow$ que depende de $V_\mathrm{DS}$ a través de $L^{'}$. Recordamos que cuando estamos en saturación la anchura del canal disminuye.\\\\
+Si tenemos que $V_\mathrm{DS}$ es pequeño ó $K$ es pequeño, no podremos encontrarnos en saturación y la corriente de drenador es
+\begin{equation}
+    I_\mathrm{D}=\mu_n \frac{Z C_\mathrm{OX}}{L} \left [ ( V_\mathrm{GS}-V_\mathrm{T})V_\mathrm{DS}-\frac{V_\mathrm{DS}^2}{2} \right ]
+    \label{eq: Corriente de drenador para VDS pequeño o K pequeño}
+\end{equation}
+Si nos encontramos que $V_\mathrm{DS}$ es muy pequeño, el comportamiento de la corriente de drenador será lineal y lo podemos controlar con la tensión de rejilla. La corriente de drenador será
+\begin{equation}
+        I_\mathrm{D}=\mu_n \frac{Z C_\mathrm{OX}}{L} ( V_\mathrm{GS}-V_\mathrm{T})V_\mathrm{DS}
+        \label{eq: Corriente de drenador para VDS muy pequeño}
+\end{equation}
+Si sólo tenemos $K$ pequeño y nos encontramos en saturación la corriente de drenador será
+\begin{equation}
+    I^{'}_\mathrm{D}=\frac{Z\mu_nC_\mathrm{OX}}{L^{'}} \frac{(V_\mathrm{GS}-V_\mathrm{T})^2}{2}
+    \label{eq: Corriente de drenador para K pequeño en saturaicon}
+\end{equation}
+Por último vamos a definir los siguientes parámetros
+\begin{itemize}
+    \item \textbf{Conductancia de salida} 
+    \begin{equation}
+        g_\mathrm{D}= \left. \pdiff[]{I_\mathrm{D}}{V_\mathrm{DS}} \right |_{V_\mathrm{GS}=\mathrm{cte}} \quad g^{'}_\mathrm{D}= \left. \pdiff[]{I^{'}_\mathrm{D}}{V_\mathrm{DS}} \right |_{V_\mathrm{GS}=\mathrm{cte}}
+        \label{eq: conductancia de salida}
+    \end{equation}
+    \item \textbf{Transconductancia}:
+    \begin{equation}
+        g_\mathrm{m}=\left. \pdiff[]{I_\mathrm{D}}{V_\mathrm{GS}} \right |_{V_\mathrm{DS}=\mathrm{cte}}=\frac{Z\mu_nC_\mathrm{OX}}{L}V_\mathrm{DS} \quad g^{'}_\mathrm{m}= \left. \pdiff[]{I^{'}_\mathrm{D}}{V_\mathrm{GS}} \right |_{V_\mathrm{DS}=\mathrm{cte}}=\frac{Z\mu_nC_\mathrm{OX}}{L^{'}}(V_\mathrm{GS}-V_\mathrm{T})
+    \end{equation}
+\end{itemize}
+Siendo $g^{'}_\mathrm{m}$ el parámetro más importante del mosfet pues os indica si es un buen transistor o no.
+\subsection{Comportamiento dinámico. Señales débiles de baja frecuencia}
+Cuando tenemos señales débiles tenemos tres contribuciones para la corriente de drenador
+\begin{equation}
+i_\mathrm{d}=\left.\frac{\partial I_\mathrm{D}}{\partial V_\mathrm{G S}}\right|_{\substack{V_\mathrm{D S}=\mathrm{cte} \\ V_\mathrm{B S}=\mathrm{cte}}} v_\mathrm{g s}+\left.\frac{\partial I_\mathrm{D}}{\partial V_\mathrm{D S}}\right|_{\substack{V_\mathrm{G S}=\mathrm{cte} \\ V_\mathrm{B S}=\mathrm{cte}}} v_\mathrm{d s}+\left.\frac{\partial I_\mathrm{D}}{\partial V_\mathrm{B S}}\right|_{\substack{V_\mathrm{D S}=\mathrm{cte} \\ V_\mathrm{G S}=\mathrm{cte}}} v_\mathrm{b s}
+\end{equation}
+La expresión depende de las conductancias y de las transconductancias.
+\begin{equation}
+i_\mathrm{d}=g_\mathrm{m}v_\mathrm{gs}+g_\mathrm{d}v_\mathrm{ds}+g_\mathrm{mb}v_\mathrm{mb}  
+\end{equation}
+En este caso podemos representarlo por un circuito equivalente
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.45\linewidth}
+    \centering
+    \includegraphics{Standalone/T5_22_Circuito_MOSFET_baja_frecuencia.pdf}
+    \caption{Representación circuital de un MOSFET con señal de baja frecuencia.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[h]{0.45\linewidth}
+    \centering
+        \includegraphics{Standalone/T5_23_Circuito_MOSFET_alta_frecuencia.pdf}
+        \caption{Representación circuital de un MOSFET con señal de alta frecuencia.}
+    \end{subfigure}
+    \caption{Representación circuital del MOSFET.}
+    \label{fig: Representacion circuito MOSFET}
+\end{figure}
+\section{MOSFET real}
+Hasta ahora no hemos tenido en cuenta el efecto de la caída de potencial en el metal y el semiconductor; ni tampoco el efecto de las cargas en el óxido $V_\mathrm{SS}$, para ello tenemos que sustituir el potencial de puerta $$V_\mathrm{G}\xrightarrow[]{} V_\mathrm{GS}-V_\mathrm{FB}=V_\mathrm{GS}-\left ( \frac{\phi_\mathrm{MS}}{e}-V_\mathrm{SS}\right )$$
+También tenemos que tener en cuenta el efecto de la polarización del sustrato ($V_\mathrm{BS}\neq 0$) que hasta ahora lo consideramos nulo. Para el caso de un transistor canal N\footnote{Uniones PN$^+$ B-S y B-D en inversa, $I_\mathrm{B}=0$} $V_\mathrm{BS}<0$ por la forma en la que tenemos conectado el MOSFET.
+
+En este caso tenemos que sustituir $$
+V_\mathrm{GS} \xrightarrow[]{} V_\mathrm{GS}-V_\mathrm{BS}=V_\mathrm{GB} \quad  \quad  2\varphi_\mathrm{F} \xrightarrow[]{} 2\varphi_\mathrm{F}-V_\mathrm{BS}$$
+
+Con estos cambios la tensión umbral resulta
+\begin{equation}
+    V_\mathrm{T}=V_x+K(2\varphi_\mathrm{F}-V_\mathrm{BS})^{1/2} \ \text{con} \ V_x=2\varphi_\mathrm{F}+\frac{\phi_\mathrm{MS}}{e}-V_\mathrm{SS}
+\end{equation}
+
+Ahora podemos volver a estudiar las corrientes de drenador, como expresión general en \textbf{no saturación}
+\begin{equation}
+    I_\mathrm{D}=\frac{Z \mu_n  C_\mathrm{OX}}{L} \left [ \left( V_\mathrm{GS}-V_x -\frac{V_\mathrm{DS}}{2}\right)V_\mathrm{DS}-\frac{2}{3}K\left( (V_\mathrm{DS}+2\varphi_\mathrm{F}-V_\mathrm{BS})^{3/2}- (2\varphi_\mathrm{F}-V_\mathrm{BS})^{3/2} \right ) \right ]
+    \label{eq: Corriente de drenador en no saturacion general real}
+\end{equation}
+
+Si tenemos que $V_\mathrm{DS}$ ó $K$ pequeño, $V_\mathrm{T}=V_x=2\varphi_F-V_\mathrm{FB}$ recuperamos la ecuación \ref{eq: Corriente de drenador para VDS pequeño o K pequeño}. Mientras que si $V_\mathrm{DS}$ es muy pequeño recuperamos \ref{eq: Corriente de drenador para VDS muy pequeño}.\\\\
+Si nos encontramos en \textbf{saturación} la corriente de drenador será 
+\begin{equation}
+    I^{'}_\mathrm{D}=\frac{Z \mu_n  C_\mathrm{OX}}{L^{'}} \left [ \left( V_\mathrm{GS}-V_x -\frac{V_\mathrm{DS}}{2}\right)V_\mathrm{DS}-\frac{2}{3}K\left( (V_\mathrm{DS}+2\varphi_\mathrm{F}-V_\mathrm{BS})^{3/2}- (2\varphi_\mathrm{F}-V_\mathrm{BS})^{3/2} \right ) \right ]
+    \label{eq: Corriente de drenador en no saturacion general real}
+\end{equation}
+Mientras que si $K$ es pequeño recuperamos la ecuación \ref{eq: Corriente de drenador para K pequeño en saturaicon}.\\\\
+Como estas expresiones son bastante complejas, podemos aproximarlas (de manera bastante precisa) mediante
+\begin{equation}
+    I_\mathrm{D}=\beta \left [(V_\mathrm{GS}-V_\mathrm{T})V_\mathrm{DS}-\frac{V^2_\mathrm{DS}}{2} \right ]
+    \label{eq: corriete de drenador con ganancia}
+\end{equation}
+Para no saturación y para saturación
+\begin{equation}
+    I^{'}_\mathrm{D}=\frac{\beta}{2}(V_\mathrm{GS}-V_\mathrm{T})^2
+\end{equation}
+
+\section{\textcolor{red}{Tipos de MOSFET y representación}}
+Como hemos mostrado en la figura \ref{fig: Tipos de MOSFET}, tenemos dos tipos de MOSFET que los denominamos canal N y canal P. Cada uno de ellos funciona con unas características distintas, vamos a ver en qué se diferencian
+\begin{itemize}
+    \item \textbf{MOSFET canal N y sustrato P} Este MOSFET tiene como caracteristica $$I_\mathrm{D}-V_\mathrm{DS}; \quad I_\mathrm{D}>0 \ V_\mathrm{DS}>0$$; $\quad$  y conducen corriente si $V_\mathrm{GS}>V_\mathrm{T}$. Además para $K\approx 0$ tenemos 
+    \begin{equation}
+K \approx 0\left\{\begin{array}{l}
+V_\mathrm{DS}<V_\mathrm{GS}-V_\mathrm{T}=V_\mathrm{DSat} \quad \text{no hay saturación} \\
+V_\mathrm{DS}>V_\mathrm{GS}-V_\mathrm{T}=V_\mathrm{DSat} \quad \text{hay saturación}
+\end{array}\right.
+\end{equation}
+    \item \textbf{MOSFET canal N y sustrato P} Este MOSFET tiene como caracteristica $$I_\mathrm{D}-V_\mathrm{DS}: \quad I_\mathrm{D}<0V_\mathrm{DS}<0$$, y conducen corriente si $V_\mathrm{GS}<V_\mathrm{T}$. Además para $K\approx 0$ tenemos 
+\begin{equation}
+K \approx 0\left\{\begin{array}{l}
+V_\mathrm{DS}>V_\mathrm{GS}-V_\mathrm{T}=V_\mathrm{DSat} \quad \text{no hay saturación} \\
+V_\mathrm{DS}<V_\mathrm{GS}-V_\mathrm{T}=V_\mathrm{DSat} \quad \text{hay saturación}
+\end{array}\right.
+\end{equation}
+\end{itemize}
+La tensión umbrál toma la expresión
+\begin{equation}
+V_\mathrm{T}=V_x+K(2\varphi_\mathrm{F}-V_\mathrm{BS})^{1/2} \quad \text{con} \quad V_x=2\varphi_\mathrm{F}+\frac{\phi_\mathrm{MS}}{e}-V_\mathrm{SS}
+\end{equation}
+$V_\mathrm{T}$ puede ser positivo o negativo y es \textit{controlable} a través de $\phi_\mathrm{MS}$ y $V_\mathrm{SS}$.
+\subsubsection{Transistores de realce y vaciamiento}
+Decimos que un transistor es de \textbf{realce} cuando $V_\mathrm{T}>0$ para el canal N y $V_\mathrm{T}<0$ para canal P, tenemos ausencia de capa de inversión para $V_\mathrm{GS}=0$. \\\\
+Decimos que un transistor es de \textbf{vaciamiento} cuando $V_\mathrm{T}<0$ para el canal N y $V_\mathrm{T}>0$ para canal P, tenemos presencia de capa de inversión para $V_\mathrm{GS}=0$.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Standalone/T5_24_Tipos_de_MOSFET.pdf}
+    \captionof{table}{Tabla con los tipos de MOSFET, según si son de realce o vaciamiento y qué canal tienen.}
+    \label{fig:Tipos de MOSFET}
+\end{figure}

@@ -1,0 +1,585 @@
+\pagestyle{fancy}
+\fancyhead[R]{Electrónica Física: Tema 3}
+\fancyhead[L]{4º Grado en Física}
+\chapter{Diodos}
+Una vez estudiado del comportamiento de los portadores de carga en equilibrio térmico, determinado el nivel de Fermi. Después hemos estudiado situaciones fuera del equilibrio térmico, en las que tenemos excesos en las concentraciones de portadores de carga. Queremos estudiar qué ocurre cuando hacemos contacto entre dos semiconductores, uno tipo P y uno tipo N.
+\section{\textcolor{red}{Unión PN. Comportamiento estático y dinámico}}
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+	\centering
+    \begin{subfigure}[h]{0.3\textwidth}
+	\includegraphics{Standalone/T3_01_Diodo.pdf}
+	\caption{Representación de un diodo PN, con polaridad               positiva.}
+        \label{fig: Diodo}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.3\textwidth}
+        \includegraphics{Standalone/T3_02_Transferencia_de_y_en_una.pdf}
+        \caption{Transferencia de $e^-$ y $h^+$ en una unión PN idealmente uniforme.}
+    \end{subfigure}
+        \caption{Representación de una uníon PN.}
+        \label{fig: Representacion union PN}
+\end{wrapfigure}
+
+Para poder formar una unión PN, no podemos hacerlo de cualquier manera, la estructura cristalina del semiconductor debe mantenerse. Por ello la unión PN nos dará un \textbf{único cristal}, dividido en dos regiones, una unión con un exceso de huecos, que denominamos \textbf{región P}; y otra con un exceso de electrones que denominamos \textbf{región N}.\\\\
+La figura \ref{fig: Representacion union PN}, las concentraciones de portadores de cargas son uniformes en cada región pero hay cambio abrupto en la unión, ya que pasamos de tener huecos a electrones, esto se conoce como \textbf{unión abrupta}.\\\\
+Si analizamos la figura \ref{fig: Diodo}, considerando $I=0$, inicialmente tenemos una gran concentración de electrones y huecos en sus respectivas regiones. Como el sistema tiende a estar en equilibrio aparecen fuerzas de difusión que hace que haya un flujo de electrones y huecos entre ambas regiones. Este movimiento de cargas nos genera una diferencia de potencial cerca de la unión metalúrgica y por ende un campo eléctrico, en la dirección de la región positiva (N) a la negativa (P).
+\clearpage
+\textbf{¿Por qué la región en N es positiva y en P negativa?}, como la difusión es un transporte de portadores de carga, al haber difusión, los electrones se irán depositando en una región cercana a la unión metalúrgica, por lo que la zona positiva es se encuentra más cerecana a la región N mientras que la negativa estará más cercana a a la región P. Como se muestra en la figura \ref{fig:Zona de carga espacial}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{Standalone/T3_03_Zona_de_carga_espacial.pdf}
+    \caption{La zona de carga espacial (ZCE), el campo eléctrico y las fuerzas que actúan sobre los portadores} 
+    \label{fig:Zona de carga espacial}
+\end{figure}
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \begin{subfigure}[h]{0.35\textwidth}
+    \includegraphics{Standalone/T3_04_flujos_de_corriente_PN.pdf}
+    \caption{Representación de flujos de corriente en una unión PN.}
+    \label{fig: flujos de corriente PN}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.35\textwidth}
+        \includegraphics{Standalone/T3_05_representacion_IV_PN.pdf}
+ \caption{Representación ideal I-V de un diodo de unión PN.}
+    \label{fig: representacion IV PN}
+    \end{subfigure}
+\end{wrapfigure}
+
+\noindent Cuando este sistema alcance el equilibrio, las furezas eléctricas y las de difusión se compensan, por lo que la corriente en el interior será nulo. 
+
+\subsubsection{Descripción cualitativa del flujo de corriente}
+
+En la figura \ref{fig: flujos de corriente PN}, vemos qué ocurre cuando existe una diferencia de potencial externa entre las regiones del semiconductor. 
+\begin{itemize}
+    \item $V_\mathrm{P} - V_\mathrm{N}=V_\mathrm{PN} >0$: Disminuye el campo de equilibrio, la contribución de la difusión es superior al arrastre por lo que I aumenta con V. Es lo que denominaremos \textbf{polarización directa}.
+    \item $V_\mathrm{P} - V_\mathrm{N}=V_\mathrm{PN} <0$: El campo externo  tiene la misma dirección  que el campo de equilibrio, por lo que la difusión es menor que el arrastre. En este caso la intensidad es muy baja e independiente de V. La denominaremos \textbf{polarización inversa}.
+\end{itemize}
+\clearpage
+\subsection{Unión PN en equilibrio} \label{sec: Union PN en equilibrio}
+Cuando las regiones PN están aisladas y en equilibrio, demostramos en la sección 2.1.3 que el nivel de Fermi no varía con la posición. Esto se mantendrá cuando las regiones estén unidas y la unión esté en equilibrio.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[H]{0.5\textwidth}
+\includegraphics{Standalone/T3_06_Niveles_de_energia_y_Fermi.pdf}
+    \caption{Niveles de energía en la unión PN.}
+    \label{fig:Niveles de energia y Fermi}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.4\textwidth}
+\includegraphics{Standalone/T3_07_concentraciones_PN.pdf}
+    \caption{Concentraciones de portadores en diferentes zonas.}
+    \label{fig: concentraciones PN}
+\end{subfigure}
+\caption{Representación de los niveles de energía y de las densidaades de portadores.}
+\end{figure}
+
+\noindent Como el nivel de Fermi tiene que mantenerse constante en el equilibrio, al cambiar las densidades de portadores, necesariamente cambiarán los niveles de la banda de conducción y de valencia. Los electrones en la banda de conducción están sometidos a una barrera de potencial $V_\mathrm{B}$ que denominamos potencial de contacto. Es esta barrera de potencial la que mantiene el equilibrio en las densidades de electrones en la región P y la N y análogamente para los huecos, por lo que no tenemos corrientes en ZCE.
+\subsubsection{\textcolor{red}{Potencial de contacto}}
+
+Como acabamos de indicar el potencial de contacto \textbf{sólo aparece en el lado N}. Por estar en equilibrio, $I=0$, si usamos la ecuación \ref{eq: continuidad electrones}, tendrá la forma
+\begin{equation*}
+    -D_n\diff[]{n}{x}=n\,\mu_nE \ \text{con } \ D_n=\mu_n \frac{K_\mathrm{B}T}{e}
+\end{equation*}
+Despejando obtenemos
+\begin{equation}
+    E=-\frac{K_\mathrm{B} T}{e} \frac{1}{n} \diff[]{n}{x} \Rightarrow \boxed{V_\mathrm{B}=\frac{K_\mathrm{B} T}{e} \int_{n_{p0}}^{n_{n0}} \frac{\mathrm{d} n}{n}=\frac{k_\mathrm{B} T}{e} \ln{\frac{n_{n0}}{n_{p0}}}=\frac{k_\mathrm{B} T}{e} \ln{\frac{N_\mathrm{D}N_\mathrm{A}}{n_\mathrm{i}^2}}}
+    \label{eq: Potencial de contacto}
+\end{equation}
+Donde $$n_{n0}=N_\mathrm{c}\exp \frac{(E_\mathrm{F}-E_\mathrm{C})_\mathrm{N}}{k_\mathrm{B}T} \hspace{2cm} p_{p0}=N_\mathrm{c}\exp \frac{(E_\mathrm{F}-E_\mathrm{C})_\mathrm{P}}{k_\mathrm{B}T}$$
+si sustituimos en la ecuación \ref{eq: Potencial de contacto} finalmente obtenemos que el potencial de contacto siempre es positivo y lo podemos expresar en función de las diferencias de los niveles de Fermi de las regiones P y N.
+\begin{equation}
+    V_\mathrm{B}=\frac{E_\mathrm{FN}-E_\mathrm{FP}}{e}
+\end{equation}
+\newpage
+\subsubsection{\textcolor{red}{Campo eléctrico y potencial. Aproximación de vaciamiento total}} \label{sec: Vaciamiento total}
+Hasta ahora hemos estudiado el potencial de contacto en ausencia de campo eléctrico. Si aplicamos un campo eléctrico, éste podrá aumentar o disminuir. Para estudiar cómo afecta el campo externo haremos la siguiente aproximación: la densidad de portadores libres en la zona de transición es despreciable frente a la concentración de impurezas ionizadas, conocida como \textbf{aproximación de vaciamiento total}.\\
+
+\begin{wrapfigure}{r}{0.27\textwidth}
+    \includegraphics{Standalone/T3_08_densidad_de_carga_asimetrica.pdf}
+    \caption{La densidad de carga tiene que ser la misma en ambas regiones aunque la zona de transición es asimétrica.}
+    \label{fig: densidad de carga asimetrica}
+\end{wrapfigure}
+En la zona de carga espacial:
+\begin{itemize}
+    \item $0<x<x_n \rightarrow{} \rho=eN_\mathrm{D}$.   
+    \item $x_p<x<0 \rightarrow{} \rho=-eN_\mathrm{A}$.
+    \item Tenemos una condición extra, la condición de neutralidad $$N_\mathrm{D}x_n=N_\mathrm{A}x_p$$
+\end{itemize}
+Para estudiar cómo afecta el campo eléctrico al potencial y a las concentraciones de portadores. Para ello vamos a utilizar la ley de Gauss del campo eléctrico, vamos a desarrollar un modelo unidimensional.
+\begin{equation}
+    \diff[]{E}{x}=\frac{\rho}{\epsilon} \xrightarrow{\text{Campo conservativo}} \diff[2]{V_\mathrm{j}}{x}=-\frac{\rho}{\epsilon}
+\end{equation}
+Si dividimos en las regiones $x_p<x<0$ y $0<x<x_n$ obtenemos\\
+\begin{equation}
+    \begin{aligned}
+        &x_p<x<0 \xrightarrow{} \diff[]{E}{x}=-\frac{eN_\mathrm{A}}{\epsilon} \xrightarrow[]{} E=-\frac{eN_\mathrm{A}(x-x_p)}{\epsilon}\\
+        &0<x<x_n \xrightarrow{} \diff[]{E}{x}=\frac{eN_\mathrm{D}}{\epsilon}\xrightarrow[]{} E=\frac{eN_\mathrm{D}(x-x_n)}{\epsilon}\\
+    \end{aligned}
+    \label{eq: campo electrico en union PN}
+\end{equation}
+
+\begin{wrapfigure}{r}{0.27\textwidth}
+    \includegraphics{Standalone/T3_09_Los_campos_son_lineales_como.pdf}
+    \caption{Los campos son lineales como hemos visto en las ecuaciones.}
+\end{wrapfigure}
+
+Donde el campo tiene que tener las siguientes condiciones de contorno $E(x_n)=0$, $E(x_p)=0$ y tiene que ser continuo en $x=0$, dado por $N_\mathrm{D}x_n=-N_\mathrm{A}x_p$.\\
+
+\noindent Como hemos visto en las ecuaciones \ref{eq: campo electrico en union PN} el campo eléctrico es lineal por lo que el potencial ha de ser cuadrático (no hay más que integrar en $x$ entre $x_p$ y $x_n$)
+\begin{equation}
+\begin{aligned}
+    & V_\mathrm{j}(x_p)=\frac{eN_\mathrm{D}(x-x_n)^2}{2\epsilon}\\
+    & V_\mathrm{j}(x_n)=-\frac{eN_\mathrm{D}(x-x_n)^2}{2\epsilon}+V_\mathrm{B}
+    \end{aligned}
+\end{equation}
+Con lo que todas las relaciones para el campo, potencial y concentraciones son funcion de $x_n$ y $x_p$, que son parámetros no conocidos. Si incluimos la continuidad de $V_\mathrm{B}$ en $x=0$
+\begin{equation}
+    V_\mathrm{B}=\frac{e}{2\epsilon} \left(N_\mathrm{A}x_p^2+N_\mathrm{D}x_n^2\right)
+\end{equation}
+\clearpage
+Podemos así obtener las expresiones para dichos puntos
+\begin{equation}
+x_p=-\left(\frac{2 \epsilon V_\mathrm{B}}{e} \frac{N_\mathrm{D}}{N_\mathrm{A}} \frac{1}{N_\mathrm{A}+N_\mathrm{D}}\right)^{1 / 2} \hfill x_n=\left(\frac{2 \epsilon V_\mathrm{B}}{e} \frac{N_\mathrm{A}}{N_\mathrm{D}} \frac{1}{N_\mathrm{A}+N_\mathrm{D}}\right)^{1 / 2}
+\end{equation}
+\noindent Gracias a esto podemos hallar la \textbf{anchura de la zona de transición}.
+\begin{equation}
+W=x_n-x_p=\left[\frac{2 \epsilon V_\mathrm{B}}{e\left(N_\mathrm{A}+N_\mathrm{D}\right)}\right]^{1 / 2}\left(\sqrt{\frac{N_\mathrm{A}}{N_\mathrm{D}}}+\sqrt{\frac{N_\mathrm{D}}{N_\mathrm{A}}}\right)
+\label{eq: Anchura de la zona de transicion}
+\end{equation}
+La \textbf{carga por unidad de área en un lado de la ZCE}.
+\begin{equation}
+    Q=e N_D x_n=\left(\frac{2 \epsilon V_\mathrm{B} e N_\mathrm{A} N_\mathrm{D}}{N_\mathrm{A}+N_\mathrm{D}}\right)^{1 / 2}
+    \label{eq: Carga por unidad de área en un lado de la ZCE}
+\end{equation}
+\subsubsection{Uniones asimétricas}
+\noindent Volviendo a la figura \ref{fig: densidad de carga asimetrica}, si acercamos al origen el punto $x_p$. Considerando $N_\mathrm{A}\gg N_\mathrm{D} \Rightarrow x_p\approx 0$ por lo que la posición $x_n$ es
+\begin{equation}
+    x_n=\left (\frac{2\epsilon V_\mathrm{B}}{e} \frac{1}{N_\mathrm{D}} \right )^{1/2}
+\end{equation}
+
+\noindent Comentar que todo el potencial cae en el lado menos impurificado de la ZCE. Para $N_\mathrm{D}>>N_\mathrm{A}$ se hace de manera análoga.
+\subsection{Unión PN bajo polarización}
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includegraphics{Standalone/T3_10_Inverso_de_la_capacidad_al.pdf}
+    \caption{Inverso de la capacidad al cuadrado frente al potencial.}
+    \label{fig:enter-label}
+\end{wrapfigure}
+
+\noindent La región que presenta más resistividad, es la zona de transición, ya que toda la tensión cae en ella. En la zona de transición, en la zona de transición cae como $$V_\mathrm{j}(x_n)-V_\mathrm{j}(x_p)=V_\mathrm{B}-V$$
+Introducir el potencial externo, nos suaviza o agudiza las curvas de la figura \ref{fig:Niveles de energia y Fermi} para modelizar este comportamiento hacemos desarrollo análogo a la de la sección anterior solo que cambiando $V_\mathrm{B}$ por $V_\mathrm{B}-V$.
+\subsubsection{Capacidad de transición}
+\noindent Como hemos visto a ecuación \ref{eq: Carga por unidad de área en un lado de la ZCE} nos da una expresión para la carga que tenemos en la zona de transición por lo que al haber además una diferencia de potencial entre los extremos de la zona, obtenemos que existe una capacidad por unidad de área en la zona de transición.
+\begin{equation}
+    C_\mathrm{j}=C_\mathrm{T}=\left | \diff[]{Q}{V} \right|=\left( 
+\frac{\epsilon e N_\mathrm{A}N_\mathrm{D}}{2(N_\mathrm{A}+N_\mathrm{D})} \right)^{(1/2)} (V_\mathrm{B}-V)^{-1/2}=\frac{\epsilon}{W}
+\label{eq: Capacidad de transicion}
+\end{equation}
+\newpage
+\subsection{Portadores y corrientes en la unión PN polarizada}
+Para hacer este desarrollo vamos a calcular las densidades en las zonas neutras, para ello utilizaremos las densidades de portadores minoritarios en los bordes de ZCE.\\\\
+Vamos a realizar las siguientes aproximaciones:
+\begin{itemize}
+    \item Condiciones estacionarias, \textbf{ausencia de generación recombinación en ZCE}. Por lo que se conservarán las corrientes $J_p$ y $J_n$ en ZCE.   \hfill C$_1$
+    \item \textbf{Débil polarización}, $J_\mathrm{p}\cong 0$ frente a las componentes de arraster y difusión.   \hfill C$_2$
+    \item  Débil nivel de inyección $p_p-p_{p0}<<p_{p0}$ y $n_n-n_{n0}<<n_{n0}$.    \hfill C$_3$
+\end{itemize}
+Donde vamos a utilizar la siguiente notación: $n_{p,n}=n(x_{p,n})$ y $n_{n0,p0}$ para las densidades en el equilibrio.
+Ahora sí podemos calcular las densidades de portadores minoritarios.\\\\ Haremos el desasrrollo para el lado N , por lo que utilizaremos los huecos, de la ecuación \ref{eq: continuidad huecos} 
+\begin{equation*}
+    \cancelto{0 \text{ por C}_3}{\pdiff[]{p}{t}}=D_p \nabla_\mathbf{r}^2 p- \mu_p \nabla_\mathbf{r} (p\mathbf{E})-\cancelto{0 \text{ por }\mathrm{C}_1}{\frac{p-p_0}{\tau_p}+g_\mathrm{L}}
+\end{equation*}
+entonces
+\begin{equation*}
+    \nabla_r(\mu_p p \mathbf{E}-D_p\nabla_r p)=0 \xrightarrow{\mathrm{C_1}}\cancelto{0\text{ por C}_2}{\frac{\mathbf{J}_p}{e}}=\mu_p p\mathbf{E}-D_p\nabla_r p
+\end{equation*}
+Separando en componentes (solo hacemos $x$), utilizamos la ley de Gauss del campo eléctrico y obtenemos
+\begin{equation}
+    -\mu_p p \diff[]{V_\mathrm{j}}{x}=D_p\diff[]{p}{x} \xrightarrow{\text{Integramos en x}} \frac{\mathrm{d}p}{p}=\frac{-\mu_p}{D_p} \mathrm{d}V_\mathrm{j} \Rightarrow p(x)=p_p \exp{\left ( -\frac{eV_\mathrm{j}(x)}{k_\mathrm{B}T} \right )}
+    \label{eq: Densidad portadores minoritarios p}
+\end{equation}
+Como $V_\mathrm{j}(x_n)=V_\mathrm{B}-V$ la expresión para los electrones
+\begin{equation}
+    n(x)=n_n\exp{\left ( -\frac{e(V_\mathrm{B}-V-V_\mathrm{j}(x))}{k_\mathrm{B}T} \right )}
+    \label{eq: Densidad portadores minoritarios n}
+\end{equation}
+Vamos a establecer ahora los valores en los límites para los valores de $p_p$ y $n_n$. 
+\begin{equation}
+          \begin{aligned}
+         & \text{Si } x=x_n, \ V_\mathrm{j}=V_\mathrm{B}-V \xrightarrow{} p(x_n)=p_n=p_p\exp{\left(-\frac{e(V_\mathrm{B}-V)}{k_\mathrm{B}T} \right)}\\\\ & \text{Si }  x=x_p, \ V_\mathrm{j}=0 \xrightarrow{} n(x_p)=n_p=n_n\exp{\left(-\frac{e(V_\mathrm{B}-V)}{k_\mathrm{B}T} \right)}\end{aligned}  
+         \label{eq: expresión de las concentraciones de los minoritarios en los puntos analogos}
+\end{equation}
+Obteniendo un resultado análogo al del equilibrio
+\begin{equation}
+    V_\mathrm{B}-V=\frac{k_\mathrm{B}T}{e} \ln \frac{p_p}{p_n}=\frac{k_\mathrm{B}T}{e} \ln \frac{n_n}{n_p}
+\end{equation}
+\newpage
+Por lo que obtenemos las expresiones para las concentraciones de los portadores minoritarios en los bordes de la ZCE como funciones de las concentraciones en el equilibrio, el potencial al que sometemos el semiconductor y la temperatura.
+\begin{equation}
+    p_n=p_{n0} \exp{\frac{eV}{k_\mathrm{B}T}} \hspace{2cm} n_p=n_{p0} \exp{\frac{eV}{k_\mathrm{B}T}}
+    \label{eq: Relaciones de Boltzmann}
+\end{equation}
+Que son las conocidas como \textbf{Relaciones de Boltzmann} que nos servirán para resolver la ecuación de continuidad en las zonas neutras.
+\subsubsection{Distribuciones de portadores minoritarios en las zonas neutras}
+\begin{figure}[h]
+\centering
+\includegraphics{Standalone/T3_11_concenctraciones_portadores_minoritarios.pdf}
+    \caption{Concentración de portadores minoritarios en una unión PN en polarización directa. Apreciamos que cuando nos alejamos de la ZCE la densidad de portadores se vuelve constante. }
+    \label{fig: concenctraciones portadores minoritarios}
+\end{figure}
+Queremos ahora estudiar cómo se distribuyen los portadores de carga minoritarios en las zonas neutras, para ello volvemos a utilizar la ecuación de continuidad \ref{eq: continuidad huecos}, en este caso nos encontramos en $x>x_n$, trabajamos sobre la concentración y la ecuación es 
+\begin{equation}
+     \diff[2]{p_n}{x}=\frac{p_n}{L_p^2}-\frac{p_{n0}}{L_p^2}
+     \label{eq: portadores minoritarios zona neutra N}
+\end{equation}
+Que tiene como solución la ecuación \ref{eq: Cont Generacion en volumen}, donde $L_p=\sqrt{D_p\tau_p}$ es la \textbf{longitud de difusión} ahora vamos a establecer condiciones de contorno para obtener la solución final de la distribución. Si utilizamos la condición de \textbf{diodo largo} $L_\mathrm{Zona Neutra} \gg L_\mathrm{eq}$.
+\begin{equation}
+    p_n(x)=p_{n0}+\cancelto{0 \text{ ya que } p_n(x)|_{x\xrightarrow[]{} \infty}=p_{n0}}{A}e^{x/L_p}+Be^{-x/L_p} \Rightarrow  \hspace{1cm} p_n(x)=Be^{-x/L_p}
+\end{equation}
+Ahora, si calculamos dicha ecuación en el punto $x=x_n$
+\begin{equation*}
+    p_n(x_n)|_{x=x_n}=p_n(x_n)=p_{n0} \exp{\frac{eV}{k_\mathrm{B}T}}\xrightarrow{} B=p_{n0}\left(\exp{\left(\frac{eV}{k_\mathrm{B}T}\right)-1} \right) \exp{\frac{x_n}{L_p}}
+\end{equation*}
+Con lo que tenemos la siguiente expresión para la distribución de los portadores minoritarios
+\begin{equation}
+    p_n(x)-p_{n0}=p_{n0} \left( \exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1  \right) \exp{-\frac{x-x_n}{L_p}}
+    \label{eq: Distribucion de portadores minoritarios, huecos}
+\end{equation}
+Análogamente obtenemos la expresión de los electrones del lado P ($x>x_p$)
+\begin{equation}
+    n_p(x)-n_{p0}=n_{p0} \left( \exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1  \right) \exp{\frac{x-x_p}{L_n}}
+    \label{eq: Distribucion de portadores minoritarios, electrones}
+\end{equation}
+\newpage
+Por último vamos a considerar que la conocida como condición de \textbf{cuasi-neutralidad} que la diferencia entre el exceso de portadores y la densidad de portadores en el equilibrio es constante en las zonas neutras
+\begin{equation}
+    \begin{aligned}
+        &n_n(x)-n_{n0} \cong p_n(x)-p_{p0} \ \ \text{Zona N} \\
+        &n_n(x)-n_{n0} \cong p_n(x)-p_{p0} \ \ \text{Zona P}
+    \end{aligned}
+\end{equation}
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[h]{0.4\textwidth}
+    \includegraphics{Standalone/T3_12_Concentracion_de_portadores_frente_a.pdf}
+    \caption{Concentración de portadores frente a la posición en polarización directa.}
+    \end{subfigure}
+    \hspace{15mm}
+    \begin{subfigure}[h]{0.4\textwidth}
+        \includegraphics{Standalone/T3_13_Concentracion_de_portadores_frente_a.pdf}
+    \caption{Concentración de portadores frente a la posición en polarización indirecta.}
+    \end{subfigure}
+    \caption{Concentración de portadores frente a la posición.}
+    \label{fig:enter-label}
+\end{figure}
+\subsubsection{Cálculo de la corriente}
+En la ZCE, consideraremos ausencia de generación recombinación por lo que podemos considerar que la densidad de corriente es \textbf{constante}, para ello debemos considerar
+\begin{itemize}
+    \item Suponemos que el campo eléctrico en los límites de ZCE se hace nulo. Por lo que podemos despreciar la contribución de la corriente de arrastre de los minoritarios en las zonas neutras.
+    \item La corriente total es la suma de $\mathbf{J}_p$ y $\mathbf{J}_n$ que son constantes en la ZCE.
+\end{itemize}
+Vamos a calcular la corriente en las zonas neutras, para ello utilizamos la ecuación \ref{eq: correinte de difusion}, como de costumbre utilizaremos un modelo unidimensional
+\begin{equation}
+    \begin{aligned}
+        &\text{Zona P   }J_n(x)=eD_n\diff[]{n_p(x)}{x}= \frac{eD_nn_{p0}}{L_n} \left( \exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1  \right) \exp{\frac{x-x_p}{L_n}}\\\\
+        & \text{Zona N   }J_p(x)=eD_p\diff[]{n_p(x)}{x}= \frac{eD_pn_{p0}}{L_p} \left( \exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1  \right) \exp{\frac{x-x_p}{L_p}}
+    \end{aligned}
+    \label{eq: Corrientes de difusion zonas neutras}
+\end{equation}
+La corriente total será entonces
+\begin{equation}
+J=\underbrace{e\left[\textcolor{red}{\frac{n_{p o} D_n}{L_n}}+\textcolor{blue}{\frac{p_{n o} D_p}{L_p}}\right]}_{J_0=\textcolor{red}{J_{n0}}+\textcolor{blue}{J_{p0}}}\left( \exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1  \right)=J_o\left( \exp{\left( \frac{eV}{k_\mathrm{B}T}\right)}-1  \right)
+\end{equation}
+Siendo $J_0$ la \textbf{corriente inversa de saturación.}
+\newpage
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \includegraphics{Standalone/T3_14_Corriente_ideal_PN.pdf}
+    \caption{Corriente ideal de una unión PN.}
+    \label{fig: Corriente ideal PN}
+\end{wrapfigure}
+Hasta ahora hemos considerado que la union PN era simétrica, es decir que el número de impurezas dondadoras y aceptadoras era más o menos igual.
+\begin{itemize}
+    \item Si tenemos mayor número de impurezas aceptadoras, la corriente en la unión es debida a los huecos.
+    \item Si tenemos mayor número de impurezas donadoras, la corriente es debida a los electrones.
+\end{itemize}
+\noindent Ya hemos visto cómo son las corrientes en las zonas neutras de los portadores minoritarios. Si recordamos, la corriente total es constante por lo que para calcular la corriente de los portadores mayoritarios en las zonas neutras únicamente tenemos que restar las corrientes de los minoritarios a la corriente total.
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \includegraphics{Standalone/T3_15_Componentes_de_la_corriente_PN.pdf}
+    \caption{Componentes ideales de la corriente en una unión PN.}
+    \label{fig:Componentes de la corriente PN}
+\end{wrapfigure}
+
+\subsubsection{\textcolor{red}{Cuasiniveles de Fermi}}
+\noindent Como vimos en la sección \ref{sec: Union PN en equilibrio}, el nivel de Fermi se mantiene constante respecto a la posición, en todo el cristal. Sin embargo cuando salimos del equilibrio, el nivel de Fermi sí que depende de la posición, por lo que tendremos que volver a hacer uso de los cuasiniveles de Fermi para poder calcular la corriente. En este caso, los niveles de Fermi sí que dependen de la posción, es decir si hacemos el cálculo para huecos tenemos un nivel y si hacemos el cálculo para electrones tendremos otro nivel. El cálculo es análogo a lo calculado en la sección \ref{sec: Union PN en equilibrio} para electrones
+\begin{equation}
+    n(x)=N_\mathrm{c}\exp{\left[ \frac{E_\mathrm{FN}(x)-E_\mathrm{C}(x)}{k_\mathrm{B}T}\right]}
+    \label{eq: Concentracion de portadores cuasiniveles de Fermi}
+\end{equation}
+Para huecos
+\begin{equation}
+    p(x)=N_\mathrm{v}\exp{\left[ \frac{E_\mathrm{V}(x)-E_\mathrm{FP}(x)}{k_\mathrm{B}T}\right]}
+    \label{eq: Concentracion de portadores cuasiniveles de Fermi}
+\end{equation}
+En la figura \ref{fig:Diagramas de energia PN y cuasiniveles} están representados los niveles de Fermi. Supongamos que estamos en el régimen de débil nivel de inyección, que para los minoritarios sí que suponem variaciones considerables mientras que para los mayoritarios apenas varían. Además apreciamos que en la Figura, los cuasiniveles son constantes.
+\clearpage
+\begin{figure}[h]
+    \begin{subfigure}[h]{0.4\textwidth}
+    \includegraphics{Standalone/T3_16_polarizacion_inversa.pdf}
+    \caption{Polarización inversa.}
+    \label{fig: polarizacion inversa}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.4\textwidth}
+\hspace{20mm}
+    \includegraphics{Standalone/T3_17_polarizacion_directa.pdf}
+    \caption{Polarización directa.}
+    \label{fig: polarizacion directa}
+    \end{subfigure}
+    \caption{Diagramas de energías asociados a una unión PN.}
+    \label{fig:Diagramas de energia PN y cuasiniveles}
+\end{figure}
+
+\section{Unión PN. Comportamiento dinámico}
+\subsection{Modelo de pequeña señal}
+Para poder realizar este modelo vamos a hacer las siguientes suposiciones
+\begin{itemize}
+    \item La respuesta a la pequeña señal siempre es \textbf{lineal}.
+    \item La unión PN siempre tendrá \textbf{polarización directa}.
+    \item Estamos en régimen de baja frecuencia, por lo que trataremos el problema como una sucesión de regímenes estacionarios.
+    \item La señal que llega a la unión PN es es sinusoidal. $v(t)=V_0+v_i(t)=V_0+V_i\exp{j\omega t}$ y $J(t)=J_0+J_i\exp{j\omega t}$ 
+\end{itemize}
+Como condición inicial del problema tenemos alguna de las características estáticas y buscamos hayar $J(\omega)$ para poder calcular la impedancia.\\\\
+A priori esperamos que haya dos contribuciones, una \textbf{contribución resistiva} y otra \textbf{contribución capacitiva.}
+A partir de la ecuación de continuidad dependiente del tiempo obtenemos
+\begin{equation}
+\frac{1}{Z(\omega)}=Y(\omega)=\frac{J_1}{V_i}=\frac{e^2}{k_\mathrm{B}}\left[\frac{D_p p_{n 0}}{L_p}\left(1+j \omega \tau_p\right)^{1 / 2}+\frac{D_n n_{p 0}}{L_n}\left(1+j \omega \tau_n\right)^{1 / 2}\right] \exp{\frac{e V_0}{k_\mathrm{B} T}}
+\label{eq: Admitancia}
+\end{equation}
+Obtenemos la solución general
+\begin{equation}
+Y(\omega)=G_{\mathrm{d} p}\left(1+j \omega \tau_p\right)^{1 / 2}+G_{\mathrm{d} n}\left(1+j \omega \tau_n\right)^{1 / 2} \end{equation}
+\begin{equation*}
+G_{\mathrm{d} p}=\frac{e^2}{k_\mathrm{B}} \frac{D_p p_{n 0}}{L_p} \exp{\frac{e V_0}{k_\mathrm{B}}} \quad G_{\mathrm{d} n}=\frac{e^2}{k_\mathrm{B}} \frac{D_n n_{p 0}}{L_n} \exp{\frac{e V_o}{k_\mathrm{B} T}}
+\end{equation*}
+\clearpage
+\begin{wrapfigure}{r}{0.35\textwidth}
+    \includegraphics{Standalone/T3_18_Corriente_ideal_y_real_PN.pdf}
+    \caption{Corriente \textcolor{red}{ideal} y corrriente \textcolor{blue}{real} de una unión PN.}
+    \label{fig: Corriente ideal y real PN}
+\end{wrapfigure}
+
+
+Reordenando términos obtenemos que la admintancia, tiene una parte real, que depende del punto de operación, asociado a la \textbf{contribución resistiva} y otro imaginario asociado a la \textbf{contribución capacitiva}
+\begin{equation}
+    Y(\omega)=\frac{1}{R_\mathrm{d}\left(\omega, V_o\right)}+j \omega C_\mathrm{d}\left(\omega, V_0\right)
+    \label{eq: admitancia general}
+\end{equation}
+Si nos vamos al régimen de baja frecuencia, los coeficientes dejan de ser dependientes de la frecuencia y obtenemos $Y=G_\mathrm{d}+j\omega C_\mathrm{d}$
+\begin{equation}
+ \left.G_\mathrm{d}=\frac{1}{R_\mathrm{d}}=\frac{e^2}{K_B T}\left(\frac{D_p p_{n 0}}{L_p}+\frac{D_n n_{p 0}}{L_n}\right) e^{e V_0 / k_\mathrm{B}T}=\frac{\mathrm{d} J}{\mathrm{d} V}\right)_{V=V_0}
+ \label{eq: conductancia }
+ \end{equation}
+ Que la pendiente de la característica $J-V$ en el punto de operación.
+ \begin{equation}
+ C_\mathrm{d}=\frac{e^2}{2 k_\mathrm{B} T}\left(\frac{D_p p_{n 0}}{L_p} \tau_p+\frac{D_n n_{p 0}}{L_n} \tau_n\right) e^{e V_0 / k_\mathrm{B} T}    
+ \label{eq: Capacidad de difusion}
+ \end{equation}
+La capacidad de difusión que representa la variación de cargas en zonas neutras.
+\subsubsection{\textcolor{red}{Circuito equivalente de pequeña señal y baja frecuencia}}
+Como hemos visto, nuestro diodo, tiene asociadas contribuciones resistivas y capacitivas, esto hace que a la hora de estudiarlo en un circuito, podamos por reemplazarlo por una resistencia y dos condensadores conectados en paralelo.
+\begin{itemize}
+    \item \textbf{Capacidad de transición}: Que se da en la ZCE y que está representada por la ecuación \ref{eq: Capacidad de transicion}
+    \item \textbf{Capacidad de difusión}: Que se encuentra en las zonas neutras \ref{eq: Capacidad de difusion}
+    \item \textbf{Resistencia incremental}: Asociada al diodo y que corresponde al inverso de la ecuación \ref{eq: conductancia }
+    \item Además podemos asociar una resistencia en serie asociada a las zonas neutras y a los contactos que será nuestro circuito equivalente real.    
+\end{itemize}
+
+
+\subsection{\textcolor{red}{Desviación del diodo real respecto al ideal}}
+\noindent La figura \ref{fig: Corriente ideal PN} es un caso ideal, experimentalmente observamos que existe un potencial de rotura $V_\mathrm{BR}$ como se muestra en la figura \ref{fig: Corriente ideal y real PN}, a partir de este potencial, comenzamos a ver corrientes dadas por efecto tunel y por ionización por impacto de los átomos del semiconductor.
+\clearpage
+
+\subsubsection{\textcolor{red}{Procesos reales en polarización inversa}}
+\begin{itemize}
+    \item En el diodo real, sí que tenemos procesos de generación recombinación en la ZCE, la generación de pares, aparece cuando existe un campo eléctrico demasiado grande en los bordes, y en esta situación domina la corriente de arrastre por lo que contribuye a la corriente total.
+    \item Cuando aplicamos potenciales altos, la separación entre las bandas de energía disiminuye (Figura \ref{fig: polarizacion inversa}) por lo que los electrones pueden pasar por efecto tunel de una banda de energía a otra, lo que contribuye a la corriente y nos genera la ruptura.
+    \item A voltajes altos los electrones tienen mucha energía por lo que podrán colisionar con átomos de la red cristalina, ionizándolos y generando pares electrón hueco que hace que nos aumente la corriente.
+\end{itemize}
+\subsubsection{\textcolor{red}{Procesos reales en polarización directa}}
+\begin{itemize}
+    \item Si sometemos el diodo a voltajes positivos y no muy altos, el voltaje cae en la ZCE y apenas varía en las zonas neutras, tenemos excesos de portadores, por lo que aumenta la contribución por recombinación que es mayor a la ideal.
+    \item Si aumentamos el voltaje, encontramos una zona que es prácticamente igual a la ideal, que denominamos \textbf{zona de cuasi-idealidad}.
+    \item Cuando tenemos voltajes altos, comenzamos a entrar en el régimen de alta inyección por lo que los procesos de generación recombinación son más ineficientes lo que hace que perdamos intensidad, a estos procesos los podemos asociar una \textbf{resistencia en serie}. A voltajes muy muy altos, el diodo se comporta como una resistencia.
+\end{itemize}
+
+\section{Unión metal-semiconductor} \label{sec: Union MSC}
+Hasta ahora hemos considerado que las zonas P y N estaban unidas como si fueran una única estructura, en una unión homogénea. Ahora bien, también podemos establecer una unión a través de un metal, conocida como \textbf{unión metal-semiconductor}.\\\\
+\noindent Dentro de las uniones MSC, tenemos dos tipos de unión: \textbf{unión óhmica}, que apenas presenta resistencia frente al paso de corriente en cualquiera de los sentidos, por lo que se usa en los contactos de los dispositivos; y \textbf{unión rectificadora}, que funcina como una unión PN.
+\\\\
+Vamos a analizar las figura \ref{fig: Union MSC sin contacto} y a establecer las condicoines que tiene esta unión:
+\begin{itemize}
+    \item \textbf{Nivel de vacío}, es el nivel que tomaremos como referencia en estas uniones.
+    \item \textbf{Función de trabajo} $\phi_\mathrm{M,SC}$, medida en voltios, nos define la energía mínima necesaria para arrancar un electrón de un sólido.
+    \item \textbf{Afinidad electrónica} $\chi$, medida en eV's, que representa la energía que cede un electrón cuando llega a la capa de conducción.
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Standalone/T3_19_Union_MSC_sin_contacto.pdf}
+    \caption{Diagrama de bandas de una unión metal semiconductor, antes de entrar en contacto. Los estados ocupados estan representados en las zonas grises, los vacíos en las vacías.}
+    \label{fig: Union MSC sin contacto}
+\end{figure}
+\subsection{\textcolor{red}{Unión metal-semiconducor tipo N}}
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \includegraphics{Standalone/T3_20_Union_metalsemiconductor_tipo_N.pdf}
+        \caption{Diagrama de bandas de energía de una unión metal semiconductor tipo N.}
+    \label{fig: Union metalsemiconductor tipo N}
+\end{wrapfigure}
+Antes del contacto el nivel de Fermi del semiconductor se encuentra por encima del nivel de Fermi del metal $\phi_\mathrm{M}>\phi_\mathrm{SC}$. Al hacer contacto, queremos que nuestro nivel de Fermi sea constante en todo el sistema cuando estemos en equilibrio térmico. Esto implica que los electrones del semiconductor, fluyan hasta el estado de energía menos energético de la banda de conducción.\\\\
+Este flujo de electrones hace que, en el semiconductor, tengamos un un exceso de átomos cargados positivamente en una zona cercana a la unión.
+\\\\
+\noindent En la figura \ref{fig: Union metalsemiconductor tipo N} vemos que las bandas de energía se están doblando hacia arriba, esto es debido a que los electrones tienen cierta dificultad para pasar del metal al semiconductor por la presencia de las cargas positivas en los límites del semiconductor, ya que una vez llegan al límite de la zona cargada positivamente, tienden a permanecer estáticas. 
+\\\\
+Supondremos también que en la zona de carga espacial tendremos \hyperref[sec: Vaciamiento total]{vaciamiento total}. Además como nuestro nivel de referencia está en el nivel de vacío, el metal se encuentra a $-V_\mathrm{B}$ respecto al semiconductor. Los cálculos de $\rho, \ E, \ V, \ C$ son análogos a la unión $\mathrm{P}^+\mathrm{N}$, por lo tanto la anchura de la zona de carga espacial será
+\begin{equation}
+    d\equiv x_\mathrm{n}=\left(\frac{2\epsilon V_\mathrm{B}}{eN_\mathrm{D}} \right)^{1/2}
+    \label{ec: Anchura de la ZCE unión P+N sin polarizar}
+\end{equation}
+\subsubsection{Polarización de la unión} \label{sec: Polarizacion Union metal semiconductor tipo N}
+\noindent El criterio de signos que vamos a seguir para establecer la polarización de la corriente será el siguiente
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+    \hline
+        Metal $(\mathrm{P}^+)$ & SC  (N)& Polarización\\
+        \hline
+        \hline
+         -& + & $V_\mathrm{B}$\\
+         +&  -& directa $(V>0)$\\
+         -&  +& inversa $(V<0)$\\
+         \hline
+    \end{tabular}    
+     \caption{Criterio de signos}
+    \label{tab:Criterio de signos para la polarización}
+\end{table}\\
+\noindent Cuando la unión tiene polarización \textbf{directa}, vemos que la barrera de potencial sube respecto al potencial de contacto, por lo que la curvatura que tiene la barrera se atenúa como se muestra en la figura \ref{fig: Union MSC-N polarizacion directa}.\\\\
+A esta unión con polarización directa, se le conoce como \textbf{unión rectificadora}, y se utiliza en los conocidos como \textbf{diodos Shottky}.
+\begin{equation}
+    J=J_0 \exp{\left(\frac{eV}{k_\mathrm{B}T}-1 \right)}
+    \label{eq: union rectificadora}
+\end{equation}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+        \includegraphics{Standalone/T3_21_Union_MSC_N_polarizacion_directa.pdf}
+    \caption{Niveles de energía de una unión Metal-SC-N con polarización directa}
+    \label{fig: Union MSC-N polarizacion directa}
+\end{wrapfigure}
+
+\noindent Esta unión elimina la capacidad de difusión que sí que presentaba (y dominaba) en la unión PN con polarización directa ya que no hay presentes corrientes de difusión en la unión, únicamente tenemos corrientes de arrastre.\\\\
+Esto es posible gracias a la \textbf{emisión termoiónica}, que permite generar electrones únicamente ligados al potencial $\phi_\mathrm{M}$ que, nos dan corrientes de arrastre al ser movidos por el campo eléctrico externo. 
+La corriente de difusión es prácticamente nula debido a la presencia del metal que actúa como un sumidero de portadores.\\\\
+\noindent Hasta ahora hemos considerado uniones con $\phi_\mathrm{M}> \phi_\mathrm{SC}$. Si consideramos ahora $\phi_\mathrm{M}< \phi_\mathrm{SC}$ el diagrama de bandas antes de la unión es la representada en la figura \ref{fig: Union MSC sin contacto para phiM <phiSC}.
+\clearpage
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Standalone/T3_22_Union_MSC_sin_contacto_para.pdf}
+    \caption{Diagrama de bandas de una unión metal semiconductor, antes de entrar en contacto.}
+    \label{fig: Union MSC sin contacto para phiM <phiSC}
+\end{figure}
+
+El análisis es análogo al caso anterior pero hay una difereencia, esta vez las bandas de energía se doblan hacia abajo, en lugar de hacia arriba.\\
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \includegraphics{Standalone/T3_23_Union_metalsemiconductor_tipo_N_curva.pdf}
+        \caption{Diagrama de bandas de energía de una unión metal semiconductor tipo N.}
+    \label{fig: Union metalsemiconductor tipo N, curva hacia abajo}
+\end{wrapfigure}
+\noindent En equilibrio térmico, el nivel de Fermi sigue siendo constante por lo que cuando tenemos contacto, las bandas tienen la forma que se muestra \ref{fig: Union metalsemiconductor tipo N, curva hacia abajo}.\\\\ El metal sigue teniendo carga superficial, pero el semiconductor tiene carga libre cercana a su superficie ya que no tenemos una barrera de potencial para pasar del semiconductor al metal. Esto hace que las barreras en la superficie de contacto no cambien al polarizar, como sí pasaba en el caso de la figura \ref{fig: Union MSC-N polarizacion directa}.
+\subsubsection{Polarización de la Unión}
+\noindent Las barreras de potencial son constantes en la región cercana a la superficie, lo que implica que la concentración de portadores en la superficie sea constante y que se encuentre \textbf{siempre en equilibrio}. Esta unión apenas ofrece resistencia al paso de corriente en cualquiera de los sentidos.
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[h]{0.4\linewidth}
+    \centering
+        \includegraphics{Standalone/T3_24_Polarizacion_directa.pdf}
+        \caption{Polarización directa}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.4\textwidth}
+    \centering
+            \includegraphics{Standalone/T3_25_Polarizacion_inversa.pdf}
+        \caption{Polarización inversa}
+    \end{subfigure}
+    \caption{Polarización de contacto óhmico.}
+\end{figure}
+\newpage
+\noindent Esta geometría de las bandas genera estados superficiales que capturan electrones que vacían el semiconductor. Para solucionar este problema se opta por hacer que la unión sea gradual, para ello podemos alear el metal y el semiconductor; ó impurificar mucho el semiconductor, de tal manera que sólo tenemos contribución de los electrones (mayoritarios).
+\subsection{\textcolor{red}{Unión metal-semiconductor tipo P} }\label{sec: Union MSC-P}
+Volvamos a considerar que $\phi_\mathrm{M}<\phi_\mathrm{SC}$, antes de entrar en contacto vemos que tenemos una situación análoga a la anterior, pero en este caso vamos a considerar huecos.
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Standalone/T3_26_Union_MSC_sin_contacto.pdf}
+    \caption{Diagrama de bandas de una unión metal semiconductor, antes de entrar en contacto.}
+    \label{fig: Union MSC sin contacto}
+\end{figure}
+
+\noindent Cuando ponemos en contacto el metal con el semiconductor tipo P, y estamos en equilibrio térmico, el nivel de Fermi es constante y tendremos exceso de concentración de cargas positivas en la superficie del metal y de cargas negativas en el semiconductor. Por lo que tendremos un diagrama de bandas similiar al de la figura \ref{fig: Union metalsemiconductor tipo N, curva hacia abajo}.\\
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \includegraphics{Standalone/T3_27_Union_metalsemiconductor_tipo_P_curva.pdf}
+        \caption{Diagrama de bandas de energía de una unión metal semiconductor tipo P.}
+    \label{fig: Union metalsemiconductor tipo P, curva hacia abajo}
+\end{wrapfigure}
+
+En el metal tenemos densidad de carga superficial mientras que en el semiconductor tenemos densidad de carga volúmica fija. Vamos a seguir considerando vaciamiento total en el semiconductor. El metal se encuentra a $+V_\mathrm{B}$, respecto al nivel de vacío,que es el potencial de contacto. El cálculo de $\rho, \ E, \ V, \ C$ es análogo a los de la unión P$\mathrm{N}^+$.\\\\
+Como estamos tratando con huecos, para pasar del semiconductor al metal, tienen que tener una energía $eV_\mathrm{B}$ mientras que para pasar del semiconductor al metal, como el extremo de la banda de valencia está por debajo de la banda de conducción, tendrá que tener una energía $E_\mathrm{SC}-\phi_\mathrm{M}=\chi_\mathrm{SC}+E_\mathrm{g}-\phi_\mathrm{M}$.
+\clearpage
+\subsubsection{Polarización de la Unión}
+El criterio de signos que vamos a utilizar en este caso es 
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+    \hline
+        Metal $(\mathrm{N}^+)$ & SC  (P)& Polarización\\
+        \hline
+        \hline
+         +& - & $V_\mathrm{B}$\\
+         -&  +& directa $(V>0)$\\
+         +&  -& inversa $(V<0)$\\
+         \hline
+    \end{tabular}    
+     \caption{Criterio de signos}
+    \label{tab:Criterio de signos para la polarización union mscp}
+\end{table}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \includegraphics{Standalone/T3_28_Union_metalsemiconductor_tipo_P_curva.pdf}
+        \caption{Diagrama de bandas de energía de una unión metal semiconductor tipo P.}
+    \label{fig: Union metalsemiconductor tipo P, curva hacia abajo}
+\end{wrapfigure}
+
+Si tenemos polarización directa, sólo la barrera para pasar del metal al semiconductor permanece constante mientras que la barrera para pasar del semiconductor al metal cambia a $e(V_\mathrm{B}-V)$. En este caso las bandas presentan la misma estructura que en la figura \ref{fig: Union metalsemiconductor tipo P, curva hacia abajo} solo que la curvatura es menor debido a la presencia del nuevo potencial. Además aparecen dos niveles de Fermi, uno en el semiconductor y otro en el metal.\\\\
+\noindent La unión es rectificadora y sigue siendo la ecuación \ref{eq: union rectificadora} \\
+\begin{center}
+    \rule{8cm}{2pt} 
+\end{center}
+
+\noindent Vamos ahora a considerar que $\phi_\mathrm{M}>\phi_\mathrm{SC}$ como se ha hecho anteriormente, el diagrama de bandas antes del contacto es 
+\begin{figure}[h!]
+    \centering
+    \includegraphics{Standalone/T3_29_Union_MSC_tipo_P_sin.pdf}
+    \caption{Diagrama de bandas de una unión metal semiconductor, antes de entrar en contacto.}
+    \label{fig: Union MSC tipo P sin contacto phim>phisc}
+\end{figure}
+\clearpage
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \includegraphics{Standalone/T3_30_Union_metalsemiconductor_tipo_P_en.pdf}
+        \caption{Diagrama de bandas de energía de una unión metal semiconductor tipo P en equilibrio.}
+    \label{fig: Union metalsemiconductor tipo P en equilibrio}
+\end{wrapfigure}
+
+\noindent En el equilibrio, las barreras se doblan hacia abajo y tienen la forma que se muestra en la figura \ref{fig: Union metalsemiconductor tipo P en equilibrio}.\\\\
+Las barreras en este caso se mantienen constantes cuando polarizamos el diodo. A este tipo de unión se le conoce como \textbf{unión óhmica}.\\\\\\\\\\\\\\
+\section{Unión real}
+\noindent En una unió real, tenemos estados superficiales, este tipo de estados tienen ocupación variable tanto en equilibrio como con polarización; además si no se realiza correctamente la unión, no podremos conocer el tipo de unión que tenemos en el diodo.\\\\
+Cuando tenemos uniones óhmicas, utilizaremos un semiconductor muy impurificado ($\phi_\mathrm{M}>\phi_\mathrm{SC}$ y SC-N), que nos hará que funcione como un rectificador de corriente., si tenemos que la función de trabajo del metal es mayor que la del semiconductor, la zona de vaciamiento y la barrera que hay en las bandas es muy estrecha por lo que el efecto túnel tiene relevancia a la hora del paso de la corriente en ambas direcciones.
